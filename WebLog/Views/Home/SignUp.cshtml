@@ -1,0 +1,65 @@
+﻿@model WebLog.Core.ViewModels.AuthViewModels.SignUpViewModel
+
+@using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Imie: </label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="form-group">
+        <label>Nazwisko: </label>
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Surname)
+    </div>
+
+    <div class="form-group">
+        <label>Data urodzenia: </label>
+        @Html.TextBoxFor(x => x.Birth, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Birth)
+    </div>
+
+    <div class="form-group">
+        <label>Email: </label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+
+
+    <div class="form-group">
+        <label>Adres: </label>
+        @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Adress)
+    </div>
+
+
+    <div class="form-group">
+        <label>Pesel: </label>
+        @Html.TextBoxFor(x => x.Pesel, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Pesel)
+    </div>
+
+
+    <div class="form-group">
+        <label>Telefon: </label>
+        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Phone)
+    </div>
+
+    <div class="form-group">
+        <label>Hasło: </label>
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+
+    <div class="form-group">
+        <label>Typ użytkownika: </label>
+        @Html.EnumDropDownListFor(x => x.TypeOfUser, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.TypeOfUser)
+    </div>
+
+    <div class="form-group modal-header">
+        <input type="submit" class="btn btn-primary" value="Register">
+    </div>
+}

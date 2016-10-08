@@ -1,0 +1,35 @@
+﻿@model WebLog.Core.ViewModels.MessageViewModel
+
+<div class="container">
+    <div class="col-sm-4">
+        @foreach (var person in Model.ViewMessages)
+        {
+            <div class="row">
+                <a onclick='getMessages("@person.Key")'>@person.Key</a>
+            </div>
+        }
+    </div>
+    <div class="col-lg-8" id="messages">
+
+    </div>
+    <div hidden>
+        @foreach (var person in Model.ViewMessages)
+        {
+            <div id="@("messages" + person.Key)" class="col-lg-8">
+                @foreach (var message in person.Value)
+                {
+                    <div class="row">
+                        <textarea>@message</textarea>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+    var getMessages = function (person) {
+        $("#messages").html($("#messages" + person).html());
+    }
+</script>

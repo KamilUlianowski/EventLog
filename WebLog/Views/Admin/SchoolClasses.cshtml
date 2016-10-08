@@ -1,0 +1,10 @@
+﻿@model WebLog.Core.ViewModels.ManageViewModel
+
+@foreach (var schoolClass in Model.Classes)
+{
+    <div class="row">
+        <a href="~/Admin/SchoolClassDetail/@schoolClass.Id">@schoolClass.Name</a>
+    </div>
+}
+
+<a class="btn btn-primary" href="~/Admin/AddClass">Nowa klasa</a>

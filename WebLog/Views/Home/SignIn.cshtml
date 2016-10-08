@@ -1,0 +1,28 @@
+﻿@model WebLog.Core.ViewModels.AuthViewModels.SignInViewModel
+
+@using (Html.BeginForm("SignIn", "Home", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Email: </label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+
+    <div class="form-group">
+        <label>Hasło: </label>
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm-1">
+            <input type="submit" class="btn btn-primary" value="SignIn">
+        </div>
+
+        <div>
+            <a class="btn btn-primary col-sm-2" href="~/Home/RemindPassword">Przypomnij haslo</a>
+        </div>
+
+    </div>
+}

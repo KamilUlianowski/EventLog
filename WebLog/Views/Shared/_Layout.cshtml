@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body>
+
+    <div>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Home/Index">Dziennik internetowy</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="~/Home/Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
+                        <li><a href="~/Home/MySchool"><span class="glyphicon glyphicon-briefcase"></span> My school</a></li>
+                        <li><a href="~/Admin/Manage"><span class="glyphicon glyphicon-edit"></span> Manage</a></li>
+                        <li><a href="~/Edit/Profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="~/Home/LogOut"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a href="~/Home/SignUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="~/Home/SignIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

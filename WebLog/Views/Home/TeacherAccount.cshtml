@@ -1,0 +1,17 @@
+﻿@model WebLog.Core.ViewModels.TeacherAccountViewModel
+
+@foreach (var subject in Model.Teacher.Subjects)
+{
+    <div class="row">
+        <h2>@subject.Name</h2>
+        <div class="row">
+            @foreach (var schoolClass in subject.SchoolClasses)
+            {
+                <a class="btn btn-primary" href="~/Home/TeacherClass?subjectId=@subject.Id&schoolClassId=@schoolClass.Id">
+                    @schoolClass.Name
+                </a>
+                
+            }
+        </div>
+    </div>
+}

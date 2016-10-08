@@ -1,0 +1,10 @@
+﻿@model WebLog.Core.ViewModels.SubjectsViewModel
+
+@foreach (var subject in Model.Subjects)
+{
+    <div class="row">
+        <a href="~/Admin/SubjectDetail/@subject.Id">@subject.Name</a>
+    </div>
+}
+
+<a class="btn btn-primary" href="~/Admin/AddSubject">Dodaj nowy przedmiot</a>

@@ -1,0 +1,43 @@
+﻿@model WebLog.Core.ViewModels.SummaryViewModels.SummaryViewModel
+
+
+@using (Ajax.BeginForm("Search", "Summary", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "searchResult"
+}))
+{
+    <div class="form-inline">
+        <div class="form-group">
+            @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(x => x.StartDate)
+        </div>
+
+        <div class="form-group">
+            @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(x => x.EndDate)
+        </div>
+
+        <div class="form-group">
+            <label>Przedmiot</label>
+            @Html.DropDownListFor(model => model.SelectedSubject, Model.Subjects, "")
+            @Html.ValidationMessageFor(x => x.EndDate)
+        </div>
+
+        <div class="form-group">
+            <label>Parent</label>
+            @Html.DropDownListFor(model => model.SelectedStudent, Model.Students, "")
+            @Html.ValidationMessageFor(x => x.EndDate)
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="SignIn">
+        </div>
+
+    </div>
+}
+
+<div id="searchResult">
+
+</div>

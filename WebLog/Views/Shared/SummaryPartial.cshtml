@@ -1,0 +1,16 @@
+﻿@model  Dictionary<string, Dictionary<string, List<int>>>
+
+@foreach (var subject in Model)
+{
+    <h1>@subject.Key</h1>
+    foreach (var student in subject.Value)
+    {
+        <div class="row">
+            <h4>@student.Key</h4>
+            @foreach (var grade in student.Value)
+            {
+                <a>@grade</a>
+            }
+        </div>
+    }
+}

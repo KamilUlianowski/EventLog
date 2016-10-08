@@ -1,0 +1,16 @@
+﻿@model WebLog.Core.ViewModels.NewSubjectViewModel
+
+@using (Html.BeginForm("AddSubject", "Admin", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Nazwa: </label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Dodaj">
+    </div>
+
+}

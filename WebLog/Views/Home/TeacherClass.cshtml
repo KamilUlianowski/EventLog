@@ -1,0 +1,7 @@
+﻿@model WebLog.Core.ViewModels.StudentGradesViewModel
+
+<h3>@Model.SchoolClass.Name</h3>
+
+<div id="grades-window">
+    @Html.Partial("SchoolGrades", Model)
+</div>

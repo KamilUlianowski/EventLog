@@ -1,0 +1,14 @@
+﻿@model WebLog.Core.ViewModels.StudentAccountViewModel
+    
+<h3>@(Model.Student.Name + " " + Model.Student.Surname)</h3>
+
+@foreach (var dict in Model.DictGrades)
+{
+    <div class="row">
+        <h4>@dict.Key</h4>
+            @foreach (var grade in dict.Value)
+            {
+                <a>@grade.Grade</a>
+            }
+        </div>
+}

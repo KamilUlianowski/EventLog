@@ -1,0 +1,22 @@
+﻿@model WebLog.Core.ViewModels.UserAccountsViewModels.ParentAccountViewModel
+
+
+<div class="container">
+    <div class="col-lg-8">
+        <h3>@(Model.Parent.Student.Name + " " + Model.Parent.Student.Surname)</h3>
+
+        @foreach (var dict in Model.DictGrades)
+        {
+            <div class="row">
+                <h4>@dict.Key</h4>
+                @foreach (var grade in dict.Value)
+                {
+                    <a>@grade.Grade</a>
+                }
+            </div>
+        }
+    </div>
+    <div class="col-lg-4">
+        @Html.Partial("RequestToTeacher", Model)
+    </div>
+</div>
