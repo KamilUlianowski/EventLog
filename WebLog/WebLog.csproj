@@ -271,101 +271,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Migrations\201610051024301_init.cs" />
-    <Compile Include="Migrations\201610051024301_init.Designer.cs">
-      <DependentUpon>201610051024301_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051038416_fixuser.cs" />
-    <Compile Include="Migrations\201610051038416_fixuser.Designer.cs">
-      <DependentUpon>201610051038416_fixuser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051220409_addSubject.cs" />
-    <Compile Include="Migrations\201610051220409_addSubject.Designer.cs">
-      <DependentUpon>201610051220409_addSubject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051453184_fixRelation.cs" />
-    <Compile Include="Migrations\201610051453184_fixRelation.Designer.cs">
-      <DependentUpon>201610051453184_fixRelation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051808012_subjectAndTeachers.cs" />
-    <Compile Include="Migrations\201610051808012_subjectAndTeachers.Designer.cs">
-      <DependentUpon>201610051808012_subjectAndTeachers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051902509_RelationBetweenParentAndStudent.cs" />
-    <Compile Include="Migrations\201610051902509_RelationBetweenParentAndStudent.Designer.cs">
-      <DependentUpon>201610051902509_RelationBetweenParentAndStudent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051915038_AddGrades.cs" />
-    <Compile Include="Migrations\201610051915038_AddGrades.Designer.cs">
-      <DependentUpon>201610051915038_AddGrades.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051916440_AddGrades2.cs" />
-    <Compile Include="Migrations\201610051916440_AddGrades2.Designer.cs">
-      <DependentUpon>201610051916440_AddGrades2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610052219135_fixDatabase.cs" />
-    <Compile Include="Migrations\201610052219135_fixDatabase.Designer.cs">
-      <DependentUpon>201610052219135_fixDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610061032087_AddDate.cs" />
-    <Compile Include="Migrations\201610061032087_AddDate.Designer.cs">
-      <DependentUpon>201610061032087_AddDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610062250474_fix-parent.cs" />
-    <Compile Include="Migrations\201610062250474_fix-parent.Designer.cs">
-      <DependentUpon>201610062250474_fix-parent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610071909196_addMessages.cs" />
-    <Compile Include="Migrations\201610071909196_addMessages.Designer.cs">
-      <DependentUpon>201610071909196_addMessages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610071955144_addMessages2.cs" />
-    <Compile Include="Migrations\201610071955144_addMessages2.Designer.cs">
-      <DependentUpon>201610071955144_addMessages2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072108074_addMessages3.cs" />
-    <Compile Include="Migrations\201610072108074_addMessages3.Designer.cs">
-      <DependentUpon>201610072108074_addMessages3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072132255_addMessages4.cs" />
-    <Compile Include="Migrations\201610072132255_addMessages4.Designer.cs">
-      <DependentUpon>201610072132255_addMessages4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072138403_addMessages5.cs" />
-    <Compile Include="Migrations\201610072138403_addMessages5.Designer.cs">
-      <DependentUpon>201610072138403_addMessages5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072220185_addMessages6.cs" />
-    <Compile Include="Migrations\201610072220185_addMessages6.Designer.cs">
-      <DependentUpon>201610072220185_addMessages6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072245202_migration232.cs" />
-    <Compile Include="Migrations\201610072245202_migration232.Designer.cs">
-      <DependentUpon>201610072245202_migration232.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072252095_fixidontknowwhich.cs" />
-    <Compile Include="Migrations\201610072252095_fixidontknowwhich.Designer.cs">
-      <DependentUpon>201610072252095_fixidontknowwhich.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072257080_fixidontknowwhich9.cs" />
-    <Compile Include="Migrations\201610072257080_fixidontknowwhich9.Designer.cs">
-      <DependentUpon>201610072257080_fixidontknowwhich9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072302230_fixidontknowwhich99.cs" />
-    <Compile Include="Migrations\201610072302230_fixidontknowwhich99.Designer.cs">
-      <DependentUpon>201610072302230_fixidontknowwhich99.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072304434_fixidontknowwhich992.cs" />
-    <Compile Include="Migrations\201610072304434_fixidontknowwhich992.Designer.cs">
-      <DependentUpon>201610072304434_fixidontknowwhich992.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072322079_wtf.cs" />
-    <Compile Include="Migrations\201610072322079_wtf.Designer.cs">
-      <DependentUpon>201610072322079_wtf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610072324197_wtf2.cs" />
-    <Compile Include="Migrations\201610072324197_wtf2.Designer.cs">
-      <DependentUpon>201610072324197_wtf2.cs</DependentUpon>
+    <Compile Include="Migrations\201610081531339_bazakz.cs" />
+    <Compile Include="Migrations\201610081531339_bazakz.Designer.cs">
+      <DependentUpon>201610081531339_bazakz.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\Models\User.cs" />
@@ -470,77 +378,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610051024301_init.resx">
-      <DependentUpon>201610051024301_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051038416_fixuser.resx">
-      <DependentUpon>201610051038416_fixuser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051220409_addSubject.resx">
-      <DependentUpon>201610051220409_addSubject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051453184_fixRelation.resx">
-      <DependentUpon>201610051453184_fixRelation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051808012_subjectAndTeachers.resx">
-      <DependentUpon>201610051808012_subjectAndTeachers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051902509_RelationBetweenParentAndStudent.resx">
-      <DependentUpon>201610051902509_RelationBetweenParentAndStudent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051915038_AddGrades.resx">
-      <DependentUpon>201610051915038_AddGrades.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051916440_AddGrades2.resx">
-      <DependentUpon>201610051916440_AddGrades2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610052219135_fixDatabase.resx">
-      <DependentUpon>201610052219135_fixDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610061032087_AddDate.resx">
-      <DependentUpon>201610061032087_AddDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610062250474_fix-parent.resx">
-      <DependentUpon>201610062250474_fix-parent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610071909196_addMessages.resx">
-      <DependentUpon>201610071909196_addMessages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610071955144_addMessages2.resx">
-      <DependentUpon>201610071955144_addMessages2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072108074_addMessages3.resx">
-      <DependentUpon>201610072108074_addMessages3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072132255_addMessages4.resx">
-      <DependentUpon>201610072132255_addMessages4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072138403_addMessages5.resx">
-      <DependentUpon>201610072138403_addMessages5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072220185_addMessages6.resx">
-      <DependentUpon>201610072220185_addMessages6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072245202_migration232.resx">
-      <DependentUpon>201610072245202_migration232.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072252095_fixidontknowwhich.resx">
-      <DependentUpon>201610072252095_fixidontknowwhich.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072257080_fixidontknowwhich9.resx">
-      <DependentUpon>201610072257080_fixidontknowwhich9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072302230_fixidontknowwhich99.resx">
-      <DependentUpon>201610072302230_fixidontknowwhich99.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072304434_fixidontknowwhich992.resx">
-      <DependentUpon>201610072304434_fixidontknowwhich992.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072322079_wtf.resx">
-      <DependentUpon>201610072322079_wtf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610072324197_wtf2.resx">
-      <DependentUpon>201610072324197_wtf2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610081531339_bazakz.resx">
+      <DependentUpon>201610081531339_bazakz.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
