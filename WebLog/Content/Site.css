@@ -21,3 +21,111 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body
+{
+	/* Background pattern from subtlepatterns.com */
+	background-image: url("/content/img/hexellence.png");
+	font-size: 20px;
+}
+
+#content-SignIn
+{
+	background-color: white;
+	width: 375px;
+	padding: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 250px;
+	-webkit-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
+	-moz-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
+	box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
+}
+
+.input-signin
+{
+	width: 300px;
+	background-color: #efefef;
+	color: #666;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	font-size: 20px;
+	padding: 10px;
+	box-sizing: border-box;
+	outline: none;
+	margin-top: 10px;
+}
+
+.input-signin:focus
+{
+	-webkit-box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
+	-moz-box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
+	box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
+	border: 2px solid #a5cda5;
+	background-color: #e9f3e9;
+	color: #428c42;
+}
+
+#submit-signin
+{
+	width: 300px;
+	background-color: #36b03c;
+	font-size: 20px;
+	color: white;
+	padding: 15px 10px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	letter-spacing: 2px;
+	outline: none;
+}
+
+#submit-signin:focus
+{
+	-webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+	-moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+	box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+}
+
+#submit-signin:hover
+{
+	background-color: #37b93d;
+}
+
+input::-webkit-input-placeholder
+{
+	color:#999;
+}
+
+input:focus::-webkit-input-placeholder
+{
+	color: #428c42;
+}
+
+#submit-signin2
+{
+	font-size: 15px;
+	padding: 10px 10px;
+    width: 300px;
+	background-color: #36b03c;
+	color: white;
+	margin-top: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	letter-spacing: 2px;
+	outline: none;
+}
+
+#submit-signin2:focus
+{
+	-webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+	-moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+	box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+}
+
+#submit-signin2:hover
+{
+	background-color: #37b93d;
+}
