@@ -3,9 +3,11 @@ using System.Data.Entity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using WebLog.Core;
+using WebLog.Core.Factory;
 using WebLog.Core.Models;
 using WebLog.Core.Services;
 using WebLog.Persistance;
+using WebLog.Persistance.Factory;
 using WebLog.Persistance.Services;
 
 namespace WebLog.App_Start
@@ -43,11 +45,11 @@ namespace WebLog.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-
             container.RegisterType<DbContext, LogDbContext>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IAuthService, AuthService>();
             container.RegisterType<IMailService, MailService>();
+            container.RegisterType<IUserFactory, UserFactory>();
         }
     }
 }

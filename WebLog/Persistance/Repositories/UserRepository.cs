@@ -1,39 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Microsoft.Ajax.Utilities;
 using WebLog.Core.Common;
+using WebLog.Core.Factory;
 using WebLog.Core.Models;
 using WebLog.Core.Repositories;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.AuthViewModels;
+using WebLog.Persistance.Factory;
 
 namespace WebLog.Persistance.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        private LogDbContext _dbContext;
+        private readonly LogDbContext _dbContext;
+        private readonly IUserFactory _userFactory;
 
         public UserRepository(LogDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
+            _userFactory = new UserFactory();
         }
 
         public void AddUser(SignUpViewModel signUpViewModel)
         {
-            switch (signUpViewModel.TypeOfUser)
-            {
-                case TypeOfUser.Student:
-                    _dbContext.Students.Add(new Student(signUpViewModel));
-                    break;
-                case TypeOfUser.Parent:
-                    _dbContext.Parents.Add(new Parent(signUpViewModel));
-                    break;
-                case TypeOfUser.Teacher:
-                    _dbContext.Teachers.Add(new Teacher(signUpViewModel));
-                    break;
-            }
+            _dbContext.Users.Add(_userFactory.CreateUser(signUpViewModel));
         }
 
         public bool Login(SignInViewModel signInViewModel)

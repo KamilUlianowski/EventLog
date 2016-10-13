@@ -29,7 +29,7 @@ namespace WebLog.Core.Models
             Password = signUpViewModel.Password;
             Pesel = signUpViewModel.Pesel;
             Adress = signUpViewModel.Adress;
-            Password = signUpViewModel.Phone;
+            Phone = signUpViewModel.Phone;
         }
 
         public User()

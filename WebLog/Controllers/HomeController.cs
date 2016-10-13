@@ -94,7 +94,6 @@ namespace WebLog.Controllers
         {
             _unitOfWork.SchoolGrades.AddGrade(grade, teacherId, subjectId, studentId);
             _unitOfWork.Complete();
-            //  return PartialView("SchoolGrades");
         }
 
         [HttpPost]
@@ -102,9 +101,15 @@ namespace WebLog.Controllers
         {
             _authService.Login(signInViewModel, System.Web.HttpContext.Current);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("MySchool", "Home");
 
 
+        }
+
+        [HttpPost]
+        public void SendAdvertisement()
+        {
+            
         }
 
         [HttpGet]

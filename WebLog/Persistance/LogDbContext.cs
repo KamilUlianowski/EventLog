@@ -17,5 +17,6 @@ namespace WebLog.Core.Models
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<SchoolGrade> SchoolGrades { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
     }
 }
