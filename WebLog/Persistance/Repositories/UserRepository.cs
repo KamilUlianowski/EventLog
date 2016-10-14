@@ -11,6 +11,7 @@ using WebLog.Core.Repositories;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.AuthViewModels;
 using WebLog.Persistance.Factory;
+using ChangePasswordViewModel = WebLog.Core.ViewModels.AuthViewModels.ChangePasswordViewModel;
 
 namespace WebLog.Persistance.Repositories
 {
@@ -34,6 +35,32 @@ namespace WebLog.Persistance.Repositories
         {
             return _dbContext.Users.Any(x => x.Email == signInViewModel.Email &&
                                              x.Password == signInViewModel.Password);
+        }
+
+        public bool CheckToken(string token)
+        {
+            return token != null && _dbContext.Users.Any(x => x.Token == token);
+        }
+
+        public void UpdateToken(string email)
+        {
+            var user = _dbContext.Users.FirstOrDefault(x => x.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            if (user == null)
+                return;
+
+            user.Token = "t" + Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        }
+
+        public void UpdatePassword(ChangePasswordViewModel vm)
+        {
+            var user = _dbContext.Users.FirstOrDefault(x => x.Token == vm.Token);
+            if (user != null)
+            {
+                user.Password = vm.Password;
+                user.Token = null;
+            }
+
         }
 
         public User GetUser(string mail)

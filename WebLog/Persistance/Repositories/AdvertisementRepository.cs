@@ -17,9 +17,32 @@ namespace WebLog.Persistance.Repositories
             _context = context;
         }
 
+        public override Advertisement Get(int id)
+        {
+            return _context.Advertisements.Include(x => x.Teacher)
+                .Include(x => x.Classes)
+                .FirstOrDefault(x => x.Id == id);
+        }
+
         public override IEnumerable<Advertisement> GetAll()
         {
-            return _context.Advertisements.Include(x => x.Teacher);
+            return _context.Advertisements.Include(x => x.Teacher)
+                                          .Include(x => x.Classes);
+        }
+
+        public IEnumerable<Advertisement> GetAdvertisements(int id)
+        {
+
+            return _context.Advertisements.Include(x => x.Teacher)
+                .Include(x => x.Classes)
+                .Where(x => x.Classes.Any(c => c.Id == id));
+        }
+
+        public IEnumerable<Advertisement> GetAdvertisements(List<int> advertisementsId)
+        {
+            return _context.Advertisements.Include(x => x.Teacher)
+                                          .Include(x => x.Classes)
+                                          .Where(x => advertisementsId.Contains(x.Id));
         }
     }
 }

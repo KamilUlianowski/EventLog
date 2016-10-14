@@ -51,5 +51,24 @@ namespace WebLog.Persistance.Repositories
             else
                 teacher.Subjects.Add(subject);
         }
+
+        public void UpdateContent(int subjectId, string content)
+        {
+            var subject = _context.Subjects.Include(x => x.SchoolClasses)
+                .Include(x => x.Teachers)
+                .FirstOrDefault(x => x.Id == subjectId);
+
+            if (subject == null)
+                return;
+
+            subject.Content = content;
+        }
+
+        public Subject Get(string name)
+        {
+            return _context.Subjects.Include(x => x.SchoolClasses)
+                .Include(x => x.Teachers)
+                .FirstOrDefault(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+        }
     }
 }

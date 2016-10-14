@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -13,7 +14,9 @@ using WebLog.Core.Models;
 using WebLog.Core.Services;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.AuthViewModels;
+using WebLog.Core.ViewModels.SubjectViewModels;
 using WebLog.Core.ViewModels.UserAccountsViewModels;
+using ChangePasswordViewModel = WebLog.Core.ViewModels.AuthViewModels.ChangePasswordViewModel;
 
 namespace WebLog.Controllers
 {
@@ -48,13 +51,14 @@ namespace WebLog.Controllers
             {
                 var student = _unitOfWork.Students.Get(user.Id);
                 var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
-                return View("StudentAccount", new StudentAccountViewModel(student, schoolGrades));
+                var advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
+                return View("StudentAccount", new StudentAccountViewModel(student, schoolGrades, advertisements));
             }
 
             else if (user.GetType() == typeof(Teacher))
             {
                 var teacher = _unitOfWork.Teachers.Get(user.Id);
-                var schoolClasses = _unitOfWork.Classes.GetTeacherClasses(teacher).ToList();
+                var schoolClasses = _unitOfWork.Classes.GetAll().ToList();
                 return View("TeacherAccount", new TeacherAccountViewModel(teacher, schoolClasses));
             }
 
@@ -109,7 +113,7 @@ namespace WebLog.Controllers
         [HttpPost]
         public void SendAdvertisement()
         {
-            
+
         }
 
         [HttpGet]
@@ -197,12 +201,28 @@ namespace WebLog.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ChangePassword(string userToken)
+        {
+            return _unitOfWork.Users.CheckToken(userToken) ? View(new ChangePasswordViewModel(userToken)) : View("Index");
+        }
+
         [HttpPost]
         public ActionResult RemindPassword(string email)
         {
 
-            _iMailService.RemindOrChangePassword(email, _unitOfWork.Users.GetUser(email).Password);
+            _unitOfWork.Users.UpdateToken(email);
+            _unitOfWork.Complete();
+            _iMailService.RemindOrChangePassword(email, _unitOfWork.Users.GetUser(email).Token);
             return RedirectToAction("Confirm", new { message = "Wysłano maila" });
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordViewModel vm)
+        {
+            _unitOfWork.Users.UpdatePassword(vm);
+            _unitOfWork.Complete();
+            return View("Index");
         }
 
         [HttpGet]
@@ -218,5 +238,48 @@ namespace WebLog.Controllers
             return View(new MessageViewModel(User.Identity.GetUserId(), messages));
         }
 
+        [HttpGet]
+        public ActionResult Subject(int id)
+        {
+            var subject = _unitOfWork.Subjects.Get(id);
+
+            return View(new SubjectSiteViewModel(subject));
+        }
+
+        [HttpGet]
+        public ActionResult SubjectName(string name)
+        {
+            var subject = _unitOfWork.Subjects.Get(name);
+
+            return View("Subject", new SubjectSiteViewModel(subject));
+        }
+
+        [HttpPost]
+        public ActionResult AddContent(SubjectSiteViewModel vm)
+        {
+            _unitOfWork.Subjects.UpdateContent(vm.Subject.Id, vm.Content);
+            _unitOfWork.Complete();
+            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(vm.Subject.Id)));
+        }
+
+        [HttpPost]
+        public ActionResult AddFile(int subjectId, HttpPostedFileBase file)
+        {
+
+            var directory = AppDomain.CurrentDomain.BaseDirectory + @"SubjectFiles\\";
+            if (file == null || file.ContentLength <= 0) return View("Index");
+
+            var fileName = Path.GetFileName(file.FileName);
+
+            if (fileName != null)
+            {
+                var finallyPath = Path.Combine(directory, fileName);
+                file.SaveAs(finallyPath);
+                var subject = _unitOfWork.Subjects.Get(subjectId);
+                _unitOfWork.Files.Add(new SubjectFile(subject, finallyPath));
+            }
+            _unitOfWork.Complete();
+            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(subjectId)));
+        }
     }
 }

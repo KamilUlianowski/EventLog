@@ -90,10 +90,6 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.Mvc.4.0.1\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
@@ -119,6 +115,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -162,6 +159,14 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc5, Version=1.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc5.1.2.3\lib\net45\Unity.Mvc5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
@@ -234,8 +239,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Global.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -254,8 +263,10 @@
     <Compile Include="Core\Models\SchoolClass.cs" />
     <Compile Include="Core\Models\Student.cs" />
     <Compile Include="Core\Models\Subject.cs" />
+    <Compile Include="Core\Models\SubjectFile.cs" />
     <Compile Include="Core\Models\Teacher.cs" />
     <Compile Include="Core\Repositories\IAdvertisementRepository.cs" />
+    <Compile Include="Core\Repositories\IFileRepository.cs" />
     <Compile Include="Core\Repositories\IMessageRepository.cs" />
     <Compile Include="Core\Repositories\IParentRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
@@ -268,12 +279,14 @@
     <Compile Include="Core\Services\IAuthService.cs" />
     <Compile Include="Core\Services\IMailService.cs" />
     <Compile Include="Core\ViewModels\AuthViewModels\AccountViewModels.cs" />
+    <Compile Include="Core\ViewModels\AuthViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="Core\ViewModels\AuthViewModels\SignUpParentViewModel.cs" />
     <Compile Include="Core\ViewModels\EditUserViewModel.cs" />
     <Compile Include="Core\ViewModels\ManageViewModel.cs" />
     <Compile Include="Core\ViewModels\AuthViewModels\ManageViewModels.cs" />
     <Compile Include="Core\ViewModels\MessageViewModel.cs" />
     <Compile Include="Core\ViewModels\StudentGradesViewModel.cs" />
+    <Compile Include="Core\ViewModels\SubjectViewModels\SubjectSiteViewModel.cs" />
     <Compile Include="Core\ViewModels\SummaryViewModels\SummaryViewModel.cs" />
     <Compile Include="Core\ViewModels\UserAccountsViewModels\ParentAccountViewModel.cs" />
     <Compile Include="Core\ViewModels\UserAccountsViewModels\StudentAccountViewModel.cs" />
@@ -282,8 +295,8 @@
     <Compile Include="Core\ViewModels\SchoolClassViewModel.cs" />
     <Compile Include="Core\ViewModels\AuthViewModels\SignInViewModel.cs" />
     <Compile Include="Core\ViewModels\AuthViewModels\SignUpViewModel.cs" />
-    <Compile Include="Core\ViewModels\SubjectDetailViewModel.cs" />
-    <Compile Include="Core\ViewModels\SubjectsViewModel.cs" />
+    <Compile Include="Core\ViewModels\SubjectViewModels\SubjectDetailViewModel.cs" />
+    <Compile Include="Core\ViewModels\SubjectViewModels\SubjectsViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -295,12 +308,41 @@
     <Compile Include="Migrations\201610122130362_add_advertisemen.Designer.cs">
       <DependentUpon>201610122130362_add_advertisemen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610132221018_fixadvertisements.cs" />
+    <Compile Include="Migrations\201610132221018_fixadvertisements.Designer.cs">
+      <DependentUpon>201610132221018_fixadvertisements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610132224101_fixadvertisements2.cs" />
+    <Compile Include="Migrations\201610132224101_fixadvertisements2.Designer.cs">
+      <DependentUpon>201610132224101_fixadvertisements2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610141030376_wtf5.cs" />
+    <Compile Include="Migrations\201610141030376_wtf5.Designer.cs">
+      <DependentUpon>201610141030376_wtf5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610141046572_wtf6.cs" />
+    <Compile Include="Migrations\201610141046572_wtf6.Designer.cs">
+      <DependentUpon>201610141046572_wtf6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610141353414_AddToken.cs" />
+    <Compile Include="Migrations\201610141353414_AddToken.Designer.cs">
+      <DependentUpon>201610141353414_AddToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610141610220_addFilesSubject.cs" />
+    <Compile Include="Migrations\201610141610220_addFilesSubject.Designer.cs">
+      <DependentUpon>201610141610220_addFilesSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610141925566_addContent.cs" />
+    <Compile Include="Migrations\201610141925566_addContent.Designer.cs">
+      <DependentUpon>201610141925566_addContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\Models\User.cs" />
     <Compile Include="Core\ViewModels\UserViewModel.cs" />
     <Compile Include="Persistance\Factory\UserFactory.cs" />
     <Compile Include="Persistance\LogDbContext.cs" />
     <Compile Include="Persistance\Repositories\AdvertisementRepository.cs" />
+    <Compile Include="Persistance\Repositories\FileRepository.cs" />
     <Compile Include="Persistance\Repositories\MessageRepository.cs" />
     <Compile Include="Persistance\Repositories\ParentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -385,6 +427,8 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Shared\RequestToTeacher.cshtml" />
     <Content Include="Views\Home\Messages.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Home\Subject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -401,11 +445,36 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Global.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610081531339_bazakz.resx">
       <DependentUpon>201610081531339_bazakz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610122130362_add_advertisemen.resx">
       <DependentUpon>201610122130362_add_advertisemen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610132221018_fixadvertisements.resx">
+      <DependentUpon>201610132221018_fixadvertisements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610132224101_fixadvertisements2.resx">
+      <DependentUpon>201610132224101_fixadvertisements2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610141030376_wtf5.resx">
+      <DependentUpon>201610141030376_wtf5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610141046572_wtf6.resx">
+      <DependentUpon>201610141046572_wtf6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610141353414_AddToken.resx">
+      <DependentUpon>201610141353414_AddToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610141610220_addFilesSubject.resx">
+      <DependentUpon>201610141610220_addFilesSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610141925566_addContent.resx">
+      <DependentUpon>201610141925566_addContent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

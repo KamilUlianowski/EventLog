@@ -6,6 +6,7 @@ using WebLog.Core.Common;
 using WebLog.Core.Models;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.AuthViewModels;
+using ChangePasswordViewModel = WebLog.Core.ViewModels.AuthViewModels.ChangePasswordViewModel;
 
 namespace WebLog.Core.Repositories
 {
@@ -13,7 +14,10 @@ namespace WebLog.Core.Repositories
     {
         void AddUser(SignUpViewModel signUpViewModel);
         bool Login(SignInViewModel signInViewModel);
+        bool CheckToken(string token);
         void Update(EditUserViewModel editUserViewModel);
+        void UpdateToken(string email);
+        void UpdatePassword(ChangePasswordViewModel vm);
         User GetUser(string mail);  
     }
 }

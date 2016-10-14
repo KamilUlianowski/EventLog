@@ -12,7 +12,7 @@ namespace WebLog.Persistance
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly LogDbContext _dbDbContext;
+        private readonly LogDbContext _dbContext;
         public IUserRepository Users { get; }
         public ISchoolClassRepository Classes { get; }
         public IStudentRepository Students { get; }
@@ -21,10 +21,12 @@ namespace WebLog.Persistance
         public ISubjectRepository Subjects { get; }
         public ISchoolGradeRepository SchoolGrades { get; }
         public IMessageRepository Messages { get; }
+        public IAdvertisementRepository Advertisements { get; }
+        public IFileRepository Files { get; }
 
         public UnitOfWork(LogDbContext dbContext)
         {
-            _dbDbContext = dbContext;
+            _dbContext = dbContext;
             Classes = new SchoolClassRepository(dbContext);
             Users = new UserRepository(dbContext);
             Students = new StudentRepository(dbContext);
@@ -33,11 +35,13 @@ namespace WebLog.Persistance
             Subjects = new SubjectRepository(dbContext);
             SchoolGrades = new SchoolGradeRepository(dbContext);
             Messages = new MessageRepository(dbContext);
+            Advertisements = new AdvertisementRepository(dbContext);
+            Files = new FileRepository(dbContext);
         }
 
         public void Complete()
         {
-            _dbDbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
     }
 }

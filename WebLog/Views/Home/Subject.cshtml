@@ -1,0 +1,26 @@
+﻿@model WebLog.Core.ViewModels.SubjectViewModels.SubjectSiteViewModel
+    
+<h1>@Model.Subject.Name</h1>
+
+
+<form action="~/Home/AddFile" method="post" enctype="multipart/form-data">
+    <input name="subjectId" value="@Model.Subject.Id" hidden/>
+    <input type="file" name="file"/>
+    <input type="submit" value="Wyślij plik"/>
+</form>
+
+@using (Html.BeginForm("AddContent", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Subject.Id)
+    <div class="form-group">
+        <label>Content: </label>
+        @Html.TextAreaFor(x => x.Content, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Content)
+    </div>
+
+
+        <div class="form-group ">
+            <input type="submit" class="btn btn-primary" value="SignIn">
+        </div>
+
+}

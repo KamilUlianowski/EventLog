@@ -16,6 +16,11 @@ namespace WebLog.Persistance.Repositories
             _context = context;
         }
 
+        public override Student Get(int id)
+        {
+            return _context.Students.Include(x => x.SchoolClass).FirstOrDefault(x => x.Id == id);
+        }
+
         public User GetStudent(SignUpParentViewModel parentViewModel)
         {
             var student = _context.Students.FirstOrDefault(x => x.Name.Equals(parentViewModel.Name, StringComparison.OrdinalIgnoreCase) &&

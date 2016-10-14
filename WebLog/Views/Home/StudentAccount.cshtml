@@ -2,13 +2,26 @@
     
 <h3>@(Model.Student.Name + " " + Model.Student.Surname)</h3>
 
-@foreach (var dict in Model.DictGrades)
-{
-    <div class="row">
-        <h4>@dict.Key</h4>
-            @foreach (var grade in dict.Value)
-            {
-                <a>@grade.Grade</a>
-            }
-        </div>
-}
+<div class="col-lg-12">
+    <div class="col-lg-8">
+        @foreach (var dict in Model.DictGrades)
+        {
+            <div class="row">
+                <a href="~/Home/SubjectName?name=@dict.Key"><h4>@dict.Key</h4></a>
+                @foreach (var grade in dict.Value)
+                {
+                    <a>@grade.Grade</a>
+                }
+            </div>
+        }
+    </div>
+    <div class="col-lg-4">
+        @foreach (var advertisement in Model.Advertisements)
+        {
+            <div class="row">
+                <h4>@advertisement.Teacher.Name  @advertisement.Teacher.Surname</h4>
+                <p>@advertisement.Text</p>
+            </div>
+        }
+    </div>
+</div>

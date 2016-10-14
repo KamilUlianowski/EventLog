@@ -12,6 +12,7 @@ namespace WebLog.Core.Models
         public List<Student> Students { get; set; }
         public ICollection<Subject> Subjects { get; set; }
         public Teacher Teacher { get; set; }
+        public List<Advertisement> Advertisements { get; set; }
 
         public SchoolClass(string name)
         {

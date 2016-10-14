@@ -10,7 +10,7 @@ namespace WebLog.Persistance.Services
 {
     public class MailService : IMailService
     {
-        public void RemindOrChangePassword(string email, string password)
+        public void RemindOrChangePassword(string email, string token)
         {
             try
             {
@@ -21,10 +21,10 @@ namespace WebLog.Persistance.Services
                 client.Timeout = 10000;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new System.Net.NetworkCredential("kamilulianowski@gmail.com", "KUDR17131d");
+                client.Credentials = new System.Net.NetworkCredential("czesio476@gmail.com", "KU6c2114Ppk");
 
-                MailMessage mm = new MailMessage("kamilulianowski@gmail.com", email, "Przypomnienie Hasła",
-                    "Twoje hasło to:" + password);
+                MailMessage mm = new MailMessage("czesio476@gmail.com", email, "Przypomnienie Hasła",
+                    "Link do zmiany asla:" + "http://localhost:51086/Home/ChangePassword?userToken=" + token);
                 mm.BodyEncoding = Encoding.UTF8;
                 mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 

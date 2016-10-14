@@ -29,6 +29,7 @@ namespace WebLog.Persistance.Repositories
         {
             return _context.SchoolClass.Include(x => x.Teacher)
                                        .Include(x => x.Students)
+                                       .Include(x => x.Advertisements)
                                        .FirstOrDefault(x => x.Id == id);
         }
 
@@ -81,6 +82,19 @@ namespace WebLog.Persistance.Repositories
             if (schoolClass != null)
                 schoolClass.Teacher = null;
 
+        }
+
+        public IEnumerable<SchoolClass> GetClasses(List<int> classesId)
+        {
+           return _context.SchoolClass.Include(x => x.Teacher)
+                                .Where(x => classesId.Contains(x.Id));
+        }
+
+        public void AddAdvertisement(int classId, Advertisement advertisement)
+        {
+            var schoolClass = Get(classId);
+
+            schoolClass?.Advertisements.Add(advertisement);
         }
 
         //public SchoolClass GetClass(int teacherId, int subjectId)

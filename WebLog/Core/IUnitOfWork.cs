@@ -16,6 +16,8 @@ namespace WebLog.Core
         ISubjectRepository Subjects { get; }
         ISchoolGradeRepository SchoolGrades { get; }
         IMessageRepository Messages { get; }
+        IAdvertisementRepository Advertisements { get; }
+        IFileRepository Files { get; }
 
         void Complete();
     }

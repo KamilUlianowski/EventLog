@@ -11,6 +11,9 @@ namespace WebLog.Core.Repositories
     {
         void UpdateSubject(int subjectId, int schoolClassId);
         void UpdateSubjectTeachers(int subjectId, int teacherId);
+        void UpdateContent(int subjectId, string content);
+        Subject Get(string name);
+        
 
     }
 }
