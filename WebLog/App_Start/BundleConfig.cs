@@ -27,6 +27,9 @@ namespace WebLog
             bundles.Add(new ScriptBundle("~/bundles/bootstrap/datepicker").Include(
                 "~/Scripts/bootstrap-datepicker.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ownScript").Include(
+                "~/Scripts/Site.js"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

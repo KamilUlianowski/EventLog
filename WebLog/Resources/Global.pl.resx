@@ -231,4 +231,7 @@
   <data name="SurnameValidation" xml:space="preserve">
     <value>Nazwisko powinno się składać od 2 do 30 znaków</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Aktualizuj</value>
+  </data>
 </root>

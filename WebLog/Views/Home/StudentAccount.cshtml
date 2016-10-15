@@ -10,7 +10,7 @@
                 <a href="~/Home/SubjectName?name=@dict.Key"><h4>@dict.Key</h4></a>
                 @foreach (var grade in dict.Value)
                 {
-                    <a>@grade.Grade</a>
+                    <a>@((int)grade.Grade)</a>
                 }
             </div>
         }

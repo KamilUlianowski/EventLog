@@ -21,6 +21,7 @@ namespace WebLog.Core.Models
         public string Surname { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime Birth { get; set; }
 
         [Required]

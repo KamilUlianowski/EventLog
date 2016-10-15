@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label>@Global.Birth: </label>
-        @Html.TextBoxFor(x => x.Birth, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Birth, new { @class = "form-control", id= "datetimepicker" })
         @Html.ValidationMessageFor(x => x.Birth)
     </div>
 
@@ -47,6 +47,6 @@
 
 
     <div class="form-group modal-header">
-        <input type="submit" class="btn btn-primary" value="Register">
+        <input type="submit" class="btn btn-primary" value="@Global.Update">
     </div>
 }

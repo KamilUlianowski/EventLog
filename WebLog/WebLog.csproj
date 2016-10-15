@@ -300,6 +300,10 @@
     <Compile Include="Migrations\201610151726552_enumForGrades2.Designer.cs">
       <DependentUpon>201610151726552_enumForGrades2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610151853132_fixDate.cs" />
+    <Compile Include="Migrations\201610151853132_fixDate.Designer.cs">
+      <DependentUpon>201610151853132_fixDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\Models\User.cs" />
     <Compile Include="Core\ViewModels\UserViewModel.cs" />
@@ -504,6 +508,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610151726552_enumForGrades2.resx">
       <DependentUpon>201610151726552_enumForGrades2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610151853132_fixDate.resx">
+      <DependentUpon>201610151853132_fixDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

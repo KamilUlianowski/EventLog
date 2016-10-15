@@ -6,7 +6,7 @@
 
     <div class="form-group">
         <label>@Global.Email: </label>
-        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type="email" })
         @Html.ValidationMessageFor(x => x.Email)
     </div>
 

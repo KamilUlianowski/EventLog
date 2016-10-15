@@ -252,4 +252,7 @@
   <data name="NameClassValidation" xml:space="preserve">
     <value>Name of the class must be between 2 and 10 characters</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>
