@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid date..
+        /// </summary>
+        public static string BirthValidation {
+            get {
+                return ResourceManager.GetString("BirthValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Classes.
         /// </summary>
         public static string Classes {
@@ -147,6 +156,15 @@ namespace Resources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid email..
+        /// </summary>
+        public static string EmailValidation {
+            get {
+                return ResourceManager.GetString("EmailValidation", resourceCulture);
             }
         }
         
@@ -223,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name must be beween 2 and 30 characters.
+        /// </summary>
+        public static string NameValidation {
+            get {
+                return ResourceManager.GetString("NameValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Class.
         /// </summary>
         public static string NewClass {
@@ -241,11 +268,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password must be between 6 and 15 characters.
+        /// </summary>
+        public static string PasswordValidation {
+            get {
+                return ResourceManager.GetString("PasswordValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pesel.
         /// </summary>
         public static string Pesel {
             get {
                 return ResourceManager.GetString("Pesel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PESEL consists of 11 numbers .
+        /// </summary>
+        public static string PeselValidationLength {
+            get {
+                return ResourceManager.GetString("PeselValidationLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pesel consists only of numbers.
+        /// </summary>
+        public static string PeselValidationNumbers {
+            get {
+                return ResourceManager.GetString("PeselValidationNumbers", resourceCulture);
             }
         }
         
@@ -264,6 +318,15 @@ namespace Resources {
         public static string RemindPassword {
             get {
                 return ResourceManager.GetString("RemindPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required.
+        /// </summary>
+        public static string Required {
+            get {
+                return ResourceManager.GetString("Required", resourceCulture);
             }
         }
         
@@ -313,6 +376,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone consists only of numbers.
+        /// </summary>
+        public static string SignUpViewModel_Phone_Phone_consists_only_of_numbers {
+            get {
+                return ResourceManager.GetString("SignUpViewModel_Phone_Phone_consists_only_of_numbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information about the student.
         /// </summary>
         public static string StudentData {
@@ -345,6 +417,15 @@ namespace Resources {
         public static string Surname {
             get {
                 return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname must be between 2 and 30 characters.
+        /// </summary>
+        public static string SurnameValidation {
+            get {
+                return ResourceManager.GetString("SurnameValidation", resourceCulture);
             }
         }
         

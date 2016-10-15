@@ -222,4 +222,31 @@
   <data name="Subjects" xml:space="preserve">
     <value>Subjects</value>
   </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="NameValidation" xml:space="preserve">
+    <value>Name must be beween 2 and 30 characters</value>
+  </data>
+  <data name="SurnameValidation" xml:space="preserve">
+    <value>Surname must be between 2 and 30 characters</value>
+  </data>
+  <data name="BirthValidation" xml:space="preserve">
+    <value>Please enter a valid date.</value>
+  </data>
+  <data name="EmailValidation" xml:space="preserve">
+    <value>Please enter a valid email.</value>
+  </data>
+  <data name="PasswordValidation" xml:space="preserve">
+    <value>Password must be between 6 and 15 characters</value>
+  </data>
+  <data name="PeselValidationLength" xml:space="preserve">
+    <value>PESEL consists of 11 numbers </value>
+  </data>
+  <data name="PeselValidationNumbers" xml:space="preserve">
+    <value>Pesel consists only of numbers</value>
+  </data>
+  <data name="SignUpViewModel_Phone_Phone_consists_only_of_numbers" xml:space="preserve">
+    <value>Phone consists only of numbers</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -11,10 +12,12 @@ namespace WebLog.Core.Models
     public class Message
     {
         public int Id { get; set; }
+
+        [Required]
+        [MaxLength(300)]
         public string Text { get; set; }
 
-        [Column(TypeName = "DateTime2")]
-        public DateTime? SendDate { get; set; }
+        public DateTime SendDate { get; set; }
         public User UserFrom { get; set; }
         public User UserTo { get; set; }
 

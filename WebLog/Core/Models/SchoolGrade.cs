@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -9,10 +10,11 @@ namespace WebLog.Core.Models
     public class SchoolGrade
     {
         public int Id { get; set; }
+
+        [Required]
         public int Grade { get; set; }
 
-        [Column(TypeName = "DateTime2")]
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
         public Teacher Teacher { get; set; }
         public Student Student { get; set; }
         public Subject Subject { get; set; }

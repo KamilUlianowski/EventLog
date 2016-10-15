@@ -24,8 +24,13 @@ namespace WebLog
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap/datepicker").Include(
+                "~/Scripts/bootstrap-datepicker.js"));
+
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datepicker.css",
                       "~/Content/site.css",
                       "~/Content/site2.css"));
         }

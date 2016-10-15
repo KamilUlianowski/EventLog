@@ -222,4 +222,13 @@
   <data name="Subjects" xml:space="preserve">
     <value>Przedmioty</value>
   </data>
+  <data name="NameValidation" xml:space="preserve">
+    <value>Imie powinno się składać od 2 do 30 znaków</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="SurnameValidation" xml:space="preserve">
+    <value>Nazwisko powinno się składać od 2 do 30 znaków</value>
+  </data>
 </root>
