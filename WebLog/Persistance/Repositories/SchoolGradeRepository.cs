@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using WebLog.Core.Common;
 using WebLog.Core.Models;
 using WebLog.Core.Repositories;
 
@@ -41,7 +42,7 @@ namespace WebLog.Persistance.Repositories
                 .OrderBy(x => x.Subject.Id);
         }
 
-        public void AddGrade(int grade, int teacherId, int subjectId, int studentId)
+        public void AddGrade(Grade grade, int teacherId, int subjectId, int studentId)
         {
             var teacher = _context.Teachers.FirstOrDefault(x => x.Id == teacherId);
             var subject = _context.Subjects.FirstOrDefault(x => x.Id == subjectId);

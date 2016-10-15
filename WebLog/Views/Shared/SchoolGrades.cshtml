@@ -1,4 +1,5 @@
-﻿@model WebLog.Core.ViewModels.StudentGradesViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.StudentGradesViewModel
 
 @foreach (var student in Model.SchoolClass.Students)
 {
@@ -8,32 +9,44 @@
             @(student.Name + " " + student.Surname)
         </div>
 
-        <div id="@("studentGrades"+@student.Id)" class="col-lg-4">
+        <div id="@("studentGrades" + @student.Id)" class="col-lg-4">
             @foreach (var grade in Model.SchoolGrades.Where(x => x.Student.Id == student.Id))
             {
-                <a>@grade.Grade</a>
+                <a>@((int)grade.Grade)</a>
             }
         </div>
         <div class="col-lg-6">
-            <input id="@("student" + student.Id)" type="number"/>
-            <a onclick="updateSubjectClass(@student.Id);"><span class="glyphicon glyphicon-plus"></span></a>
+
+            @using (Ajax.BeginForm("AddGrade", "Home", new { selectedStudent = @student.Id }, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "addGrade(" + student.Id + ")"
+
+
+            }))
+            {
+                @Html.HiddenFor(x => x.Teacher.Id)
+                @Html.HiddenFor(x => x.Subject.Id)
+                @Html.HiddenFor(x => x.SchoolClass.Id)
+
+                <div class="form-inline">
+                    <div class="form-group">
+                        @Html.EnumDropDownListFor(x => x.NewGrade, "Ocena", new { @class = "form-control", type = "date", id = "student" + student.Id })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" onsubmit="addGrade(@student.Id)" value="@Global.Add">
+                    </div>
+
+                </div>
+            }
         </div>
     </div>
 }
-
 <script type="text/javascript">
-    function updateSubjectClass(id) {
+    function addGrade(id) {
         var selectedGrade = $("#student" + id).val();
-        if (confirm("Czy napewno chcesz dodać ocenę?")) {
-            $.ajax({
-                type: "POST",
-                url: "/Home/AddGrade",
-                data: { grade: selectedGrade, teacherId: @Model.Teacher.Id, subjectId: @Model.Subject.Id, studentId: id},
-            success: function(msg) {
-                $("#studentGrades"+id).append("<a>" + selectedGrade + "</a>");
-            },
-            error: function(e) {
-            }
-        });}
+        $("#studentGrades" + id).append("<a>" + selectedGrade + "</a>");
     }
+
 </script>

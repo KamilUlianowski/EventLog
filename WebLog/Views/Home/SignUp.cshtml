@@ -64,15 +64,3 @@
         <input type="submit" class="btn btn-primary" value="@Global.SignUp">
     </div>
 }
-
-@section scripts
-{
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap/datepicker")
-
-    <script>
-        $(function () {
-            $('#datetimepicker').datepicker();
-        });
-    </script>
-}

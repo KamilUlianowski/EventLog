@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name of the class must be between 2 and 10 characters.
+        /// </summary>
+        public static string NameClassValidation {
+            get {
+                return ResourceManager.GetString("NameClassValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name must be beween 2 and 30 characters.
         /// </summary>
         public static string NameValidation {

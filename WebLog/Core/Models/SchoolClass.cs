@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,7 @@ namespace WebLog.Core.Models
 
         [Required]
         [MaxLength(20)]
+        [Index(IsUnique = true)]
         public string Name { get; set; }
 
         public List<Student> Students { get; set; }

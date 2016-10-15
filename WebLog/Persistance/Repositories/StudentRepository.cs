@@ -18,13 +18,14 @@ namespace WebLog.Persistance.Repositories
 
         public override Student Get(int id)
         {
-            return _context.Students.Include(x => x.SchoolClass).FirstOrDefault(x => x.Id == id);
+            return _context.Students.Include(x => x.SchoolClass)
+                                .FirstOrDefault(x => x.Id == id);
         }
 
         public User GetStudent(SignUpParentViewModel parentViewModel)
         {
             var student = _context.Students.FirstOrDefault(x => x.Name.Equals(parentViewModel.Name, StringComparison.OrdinalIgnoreCase) &&
-                                                                x.Surname.Equals(parentViewModel.Surname, StringComparison.OrdinalIgnoreCase) && 
+                                                                x.Surname.Equals(parentViewModel.Surname, StringComparison.OrdinalIgnoreCase) &&
                                                                 x.Pesel == parentViewModel.Pesel);
 
             return student;

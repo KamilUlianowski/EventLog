@@ -7,13 +7,13 @@ namespace WebLog.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class userValidation : IMigrationMetadata
+    public sealed partial class enumForGrades2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(userValidation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(enumForGrades2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610151304154_userValidation"; }
+            get { return "201610151726552_enumForGrades2"; }
         }
         
         string IMigrationMetadata.Source

@@ -35,18 +35,18 @@ namespace WebLog.Core.Common
                         dict[schoolGrade.Subject.Name].ContainsKey(schoolGrade.Student.Name + " " +
                                                                    schoolGrade.Student.Surname))
                         dict[schoolGrade.Subject.Name][schoolGrade.Student.Name + " " + schoolGrade.Student.Surname].Add
-                            (schoolGrade.Grade);
+                            (Int32.Parse(schoolGrade.Grade.ToString()));
                     else
                         dict[schoolGrade.Subject.Name].Add(
                             schoolGrade.Student.Name + " " + schoolGrade.Student.Surname,
-                            new List<int>() { schoolGrade.Grade });
+                            new List<int>() { Int32.Parse(schoolGrade.Grade.ToString()) });
                 }
                 else
                 {
                     dict.Add(schoolGrade.Subject.Name, new Dictionary<string, List<int>>());
                     dict[schoolGrade.Subject.Name].Add(
                            schoolGrade.Student.Name + " " + schoolGrade.Student.Surname,
-                           new List<int>() { schoolGrade.Grade });
+                           new List<int>() { Int32.Parse(schoolGrade.Grade.ToString()) });
                 }
 
             }

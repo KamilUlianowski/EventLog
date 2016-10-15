@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WebLog.Core.Common;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.AuthViewModels;
@@ -23,6 +24,7 @@ namespace WebLog.Core.Models
         public DateTime Birth { get; set; }
 
         [Required]
+        [Index(IsUnique = true)]
         [MaxLength(30)]
         public string Email { get; set; }
 

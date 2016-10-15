@@ -246,7 +246,6 @@
     <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Core\Common\ConvertHelper.cs" />
     <Compile Include="Core\Common\Grade.cs" />
-    <Compile Include="Core\Common\StaticStrings.cs" />
     <Compile Include="Core\Common\TypeOfUsers.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\Factory\IUserFactory.cs" />
@@ -297,9 +296,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610151304154_userValidation.cs" />
-    <Compile Include="Migrations\201610151304154_userValidation.Designer.cs">
-      <DependentUpon>201610151304154_userValidation.cs</DependentUpon>
+    <Compile Include="Migrations\201610151726552_enumForGrades2.cs" />
+    <Compile Include="Migrations\201610151726552_enumForGrades2.Designer.cs">
+      <DependentUpon>201610151726552_enumForGrades2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\Models\User.cs" />
@@ -446,6 +445,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -502,8 +502,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610151304154_userValidation.resx">
-      <DependentUpon>201610151304154_userValidation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610151726552_enumForGrades2.resx">
+      <DependentUpon>201610151726552_enumForGrades2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

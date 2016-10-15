@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using WebLog.Core.Common;
 
 namespace WebLog.Core.Models
 {
@@ -12,7 +13,7 @@ namespace WebLog.Core.Models
         public int Id { get; set; }
 
         [Required]
-        public int Grade { get; set; }
+        public Grade Grade { get; set; }
 
         public DateTime Date { get; set; }
         public Teacher Teacher { get; set; }
@@ -24,7 +25,7 @@ namespace WebLog.Core.Models
             Date = DateTime.Now;
         }
 
-        public SchoolGrade(int grade, Teacher teacher, Student student, Subject subject)
+        public SchoolGrade(Grade grade, Teacher teacher, Student student, Subject subject)
         {
             Grade = grade;
             Teacher = teacher;

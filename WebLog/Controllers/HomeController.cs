@@ -53,7 +53,9 @@ namespace WebLog.Controllers
             {
                 var student = _unitOfWork.Students.Get(user.Id);
                 var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
-                var advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
+                var advertisements = new List<Advertisement>();
+                if(student.SchoolClass != null)
+                    advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
                 return View("StudentAccount", new StudentAccountViewModel(student, schoolGrades, advertisements));
             }
 
@@ -96,9 +98,9 @@ namespace WebLog.Controllers
         }
 
         [HttpPost]
-        public void AddGrade(int grade, int teacherId, int subjectId, int studentId)
+        public void AddGrade(StudentGradesViewModel vm, int selectedStudent)
         {
-            _unitOfWork.SchoolGrades.AddGrade(grade, teacherId, subjectId, studentId);
+            _unitOfWork.SchoolGrades.AddGrade(vm.NewGrade, vm.Teacher.Id, vm.Subject.Id, selectedStudent);
             _unitOfWork.Complete();
         }
 

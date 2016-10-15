@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using WebLog.Core.Models;
@@ -9,6 +10,8 @@ namespace WebLog.Core.ViewModels.SubjectViewModels
     public class SubjectSiteViewModel
     {
         public Subject Subject { get; set; }
+
+        [Required]
         public string FilePath { get; set; }
         public string Content { get; set; }
 

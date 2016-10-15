@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebLog.Core.Common;
 using WebLog.Core.Models;
 
 namespace WebLog.Core.Repositories
@@ -10,6 +11,6 @@ namespace WebLog.Core.Repositories
     {
         IEnumerable<SchoolGrade> GetSchoolGrades(int subjectId, int schoolClassId);
         IEnumerable<SchoolGrade> GetSchoolGrades(int studentId);
-        void AddGrade(int grade, int teacherId, int subjectId, int studentId);
+        void AddGrade(Grade grade, int teacherId, int subjectId, int studentId);
     }
 }

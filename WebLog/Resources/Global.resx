@@ -249,4 +249,7 @@
   <data name="SignUpViewModel_Phone_Phone_consists_only_of_numbers" xml:space="preserve">
     <value>Phone consists only of numbers</value>
   </data>
+  <data name="NameClassValidation" xml:space="preserve">
+    <value>Name of the class must be between 2 and 10 characters</value>
+  </data>
 </root>
