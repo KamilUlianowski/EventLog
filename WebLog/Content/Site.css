@@ -1,8 +1,4 @@
-﻿body {
-	padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
+﻿/* Set padding to keep content from hitting the edges */
 .body-content {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -26,17 +22,17 @@ body
 {
 	/* Background pattern from subtlepatterns.com */
 	background-image: url("/content/img/hexellence.png");
-	font-size: 20px;
+	font-size: 16px;
 }
 
-#content-SignIn
+#content-signin
 {
 	background-color: white;
 	width: 375px;
 	padding: 50px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 250px;
+	margin-top: 100px;
 	-webkit-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
 	-moz-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
 	box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
@@ -130,9 +126,6 @@ input:focus::-webkit-input-placeholder
 	background-color: #37b93d;
 }
 
-.navbar-glyphicon {
-	margin-left: 6px;
-}
 
 .navbar-lang {
     margin-top: 5px;

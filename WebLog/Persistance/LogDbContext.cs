@@ -13,6 +13,7 @@ namespace WebLog.Core.Models
         public DbSet<SchoolClass> SchoolClass { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Admin> Admin { get; set; }
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<SchoolGrade> SchoolGrades { get; set; }

@@ -1,4 +1,5 @@
-﻿@model WebLog.Core.ViewModels.SummaryViewModels.SummaryViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.SummaryViewModels.SummaryViewModel
 
 
 @using (Ajax.BeginForm("Search", "Summary", new AjaxOptions
@@ -10,29 +11,25 @@
 {
     <div class="form-inline">
         <div class="form-group">
-            @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", type = "date" })
-            @Html.ValidationMessageFor(x => x.StartDate)
+            @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", id="", placeholder = "start date", type="date" })
         </div>
 
         <div class="form-group">
-            @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", type = "date" })
-            @Html.ValidationMessageFor(x => x.EndDate)
+            @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", id = "", placeholder = "end date", type="date" })
         </div>
 
         <div class="form-group">
-            <label>Przedmiot</label>
+            <label>@Global.Subject</label>
             @Html.DropDownListFor(model => model.SelectedSubject, Model.Subjects, "")
-            @Html.ValidationMessageFor(x => x.EndDate)
         </div>
 
         <div class="form-group">
-            <label>Parent</label>
+            <label>@Global.Student</label>
             @Html.DropDownListFor(model => model.SelectedStudent, Model.Students, "")
-            @Html.ValidationMessageFor(x => x.EndDate)
         </div>
         
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="SignIn">
+            <input type="submit" class="btn btn-primary" value="@Global.Search">
         </div>
 
     </div>

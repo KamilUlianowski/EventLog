@@ -250,6 +250,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\Factory\IUserFactory.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Models\Admin.cs" />
     <Compile Include="Core\Models\Advertisement.cs" />
     <Compile Include="Core\Models\ApplicationUser.cs" />
     <Compile Include="Core\Models\Message.cs" />
@@ -303,6 +304,10 @@
     <Compile Include="Migrations\201610151853132_fixDate.cs" />
     <Compile Include="Migrations\201610151853132_fixDate.Designer.cs">
       <DependentUpon>201610151853132_fixDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610152054436_addAdmin.cs" />
+    <Compile Include="Migrations\201610152054436_addAdmin.Designer.cs">
+      <DependentUpon>201610152054436_addAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\Models\User.cs" />
@@ -511,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610151853132_fixDate.resx">
       <DependentUpon>201610151853132_fixDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610152054436_addAdmin.resx">
+      <DependentUpon>201610152054436_addAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

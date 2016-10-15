@@ -255,4 +255,19 @@
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statystyki</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Student" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Teacher" xml:space="preserve">
+    <value>Teacher</value>
+  </data>
 </root>

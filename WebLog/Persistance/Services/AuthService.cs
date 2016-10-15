@@ -25,6 +25,7 @@ namespace WebLog.Persistance.Services
         {
             if (_unitOfWork.Users.Login(signInViewModel))
             {
+                var typeOfUser = _unitOfWork.Users.GetUser(signInViewModel.Email).GetType();
                 var ident = new ClaimsIdentity(
                   new[] { 
               // adding following 2 claim just for supporting default antiforgery provider
@@ -32,8 +33,9 @@ namespace WebLog.Persistance.Services
               new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
 
               new Claim(ClaimTypes.Email,signInViewModel.Email),
+              new Claim(ClaimTypes.Role, typeOfUser.Name),
 
-              // optionally you could add roles if any
+
 
                   },
                   DefaultAuthenticationTypes.ApplicationCookie);

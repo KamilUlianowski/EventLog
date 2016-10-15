@@ -234,4 +234,19 @@
   <data name="Update" xml:space="preserve">
     <value>Aktualizuj</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statystyki</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="Student" xml:space="preserve">
+    <value>Uczeń</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Przedmiot</value>
+  </data>
+  <data name="Teacher" xml:space="preserve">
+    <value>Nauczyciel</value>
+  </data>
 </root>

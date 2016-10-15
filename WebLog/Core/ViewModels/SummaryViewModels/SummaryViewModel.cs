@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,8 +10,12 @@ namespace WebLog.Core.ViewModels.SummaryViewModels
 {
     public class SummaryViewModel
     {
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? StartDate { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? EndDate { get; set; }
+
         public IList<SelectListItem> Students { get; set; }
         public IList<SelectListItem> Subjects { get; set; }
         public int? SelectedStudent { get; set; }

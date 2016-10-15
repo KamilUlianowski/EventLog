@@ -1,29 +1,28 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.AuthViewModels.SignInViewModel
+    
+<div>
+    @using (Html.BeginForm("SignIn", "Home", FormMethod.Post))
+    {
+        <div id="content-signin">
+            <div>
+                @Html.TextBoxFor(x => x.Email, new { @class = "input-signin", @placeholder = @Global.Email })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div>
+                @Html.PasswordFor(x => x.Password, new { @class = "input-signin", @placeholder = @Global.Password })
+                @Html.ValidationMessageFor(x => x.Password)
+            </div>
+            <div>
+                <div>
+                    <input type="submit" id="submit-signin" value="@Global.SignIn">
+                </div>
 
-@using (Html.BeginForm("SignIn", "Home", FormMethod.Post))
-{
+                <div>
+                    <input type="button" value="@Global.RemindPassword" id="submit-signin2" onclick="location.href = 'RemindPassword';" />
+                </div>
 
-    <div class="form-group">
-        <label>@Global.Email: </label>
-        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type="email" })
-        @Html.ValidationMessageFor(x => x.Email)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.Password: </label>
-        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Password)
-    </div>
-
-    <div class="row">
-        <div class="form-group col-sm-1">
-            <input type="submit" class="btn btn-primary" value="@Global.SignIn">
+            </div>
         </div>
-
-        <div>
-            <input type="button" onclick="location.href = 'RemindPassword';" value="@Global.RemindPassword"/>
-        </div>
-
-    </div>
-}
+    }
+</div>

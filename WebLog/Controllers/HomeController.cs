@@ -41,6 +41,7 @@ namespace WebLog.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult MySchool() // brzydka metoda, może do poprawy
         {
             int a = 5;
@@ -79,6 +80,7 @@ namespace WebLog.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Teacher")]
         public ActionResult TeacherClass(int? subjectId, int? schoolClassId)
         {
             var teacher = (Teacher)_unitOfWork.Users.GetUser(User.Identity.GetUserId());
@@ -98,11 +100,87 @@ namespace WebLog.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public void AddGrade(StudentGradesViewModel vm, int selectedStudent)
         {
             _unitOfWork.SchoolGrades.AddGrade(vm.NewGrade, vm.Teacher.Id, vm.Subject.Id, selectedStudent);
             _unitOfWork.Complete();
         }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult RequestToTeacher(ParentAccountViewModel parentViewModel)
+        {
+            parentViewModel.Parent = _unitOfWork.Parents.Get(parentViewModel.Parent.Id);
+            _unitOfWork.Messages.Add(new Message(parentViewModel,
+                _unitOfWork.Teachers.Get(parentViewModel.SelectedTeacher)));
+            _unitOfWork.Complete();
+
+            return RedirectToAction("MySchool");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Messages()
+        {
+            var messages = _unitOfWork.Messages.GetMessages(User.Identity.GetUserId()).ToList();
+            return View(new MessageViewModel(User.Identity.GetUserId(), messages));
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Subject(int id)
+        {
+            var subject = _unitOfWork.Subjects.Get(id);
+
+            return View(new SubjectSiteViewModel(subject));
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult SubjectName(string name)
+        {
+            var subject = _unitOfWork.Subjects.Get(name);
+
+            return View("Subject", new SubjectSiteViewModel(subject));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Teacher")]
+        public ActionResult AddContent(SubjectSiteViewModel vm)
+        {
+            _unitOfWork.Subjects.UpdateContent(vm.Subject.Id, vm.Content);
+            _unitOfWork.Complete();
+            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(vm.Subject.Id)));
+        }
+
+        [HttpPost]
+        [Authorize(Roles="Teacher")]
+        public ActionResult AddFile(int subjectId, HttpPostedFileBase file)
+        {
+
+            var directory = AppDomain.CurrentDomain.BaseDirectory + @"SubjectFiles\\";
+            if (file == null || file.ContentLength <= 0) return View("Index");
+
+            var fileName = Path.GetFileName(file.FileName);
+
+            if (fileName != null)
+            {
+                var finallyPath = Path.Combine(directory, fileName);
+                file.SaveAs(finallyPath);
+                var subject = _unitOfWork.Subjects.Get(subjectId);
+                _unitOfWork.Files.Add(new SubjectFile(subject, finallyPath));
+            }
+            _unitOfWork.Complete();
+            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(subjectId)));
+        }
+
+        [HttpGet]
+        public void ChangeLanguage(string lang)
+        {
+            Session["lang"] = lang;
+        }
+
 
         [HttpPost]
         public ActionResult SignIn(SignInViewModel signInViewModel)
@@ -111,12 +189,6 @@ namespace WebLog.Controllers
 
             return RedirectToAction("MySchool", "Home");
 
-
-        }
-
-        [HttpPost]
-        public void SendAdvertisement()
-        {
 
         }
 
@@ -151,6 +223,21 @@ namespace WebLog.Controllers
             return View(parentViewModel);
         }
 
+        [HttpGet]
+        public ActionResult SignUp(UserViewModel userViewModel)
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordViewModel vm)
+        {
+            _unitOfWork.Users.UpdatePassword(vm);
+            _unitOfWork.Complete();
+            return View("Index");
+        }
+
         [HttpPost]
         public ActionResult SignUpParent(SignUpParentViewModel parentViewModel)
         {
@@ -166,23 +253,6 @@ namespace WebLog.Controllers
 
 
             return RedirectToAction("Index", "Home");
-        }
-
-        [HttpPost]
-        public ActionResult RequestToTeacher(ParentAccountViewModel parentViewModel)
-        {
-            parentViewModel.Parent = _unitOfWork.Parents.Get(parentViewModel.Parent.Id);
-            _unitOfWork.Messages.Add(new Message(parentViewModel,
-                _unitOfWork.Teachers.Get(parentViewModel.SelectedTeacher)));
-            _unitOfWork.Complete();
-
-            return RedirectToAction("MySchool");
-        }
-
-        [HttpGet]
-        public ActionResult SignUp(UserViewModel userViewModel)
-        {
-            return View();
         }
 
         public ActionResult LogOut()
@@ -221,75 +291,5 @@ namespace WebLog.Controllers
             return RedirectToAction("Confirm", new { message = "Wysłano maila" });
         }
 
-        [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordViewModel vm)
-        {
-            _unitOfWork.Users.UpdatePassword(vm);
-            _unitOfWork.Complete();
-            return View("Index");
-        }
-
-        [HttpGet]
-        public ActionResult Confirm(string message)
-        {
-            return View((object)message);
-        }
-
-        [HttpGet]
-        public ActionResult Messages()
-        {
-            var messages = _unitOfWork.Messages.GetMessages(User.Identity.GetUserId()).ToList();
-            return View(new MessageViewModel(User.Identity.GetUserId(), messages));
-        }
-
-        [HttpGet]
-        public ActionResult Subject(int id)
-        {
-            var subject = _unitOfWork.Subjects.Get(id);
-
-            return View(new SubjectSiteViewModel(subject));
-        }
-
-        [HttpGet]
-        public ActionResult SubjectName(string name)
-        {
-            var subject = _unitOfWork.Subjects.Get(name);
-
-            return View("Subject", new SubjectSiteViewModel(subject));
-        }
-
-        [HttpPost]
-        public ActionResult AddContent(SubjectSiteViewModel vm)
-        {
-            _unitOfWork.Subjects.UpdateContent(vm.Subject.Id, vm.Content);
-            _unitOfWork.Complete();
-            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(vm.Subject.Id)));
-        }
-
-        [HttpPost]
-        public ActionResult AddFile(int subjectId, HttpPostedFileBase file)
-        {
-
-            var directory = AppDomain.CurrentDomain.BaseDirectory + @"SubjectFiles\\";
-            if (file == null || file.ContentLength <= 0) return View("Index");
-
-            var fileName = Path.GetFileName(file.FileName);
-
-            if (fileName != null)
-            {
-                var finallyPath = Path.Combine(directory, fileName);
-                file.SaveAs(finallyPath);
-                var subject = _unitOfWork.Subjects.Get(subjectId);
-                _unitOfWork.Files.Add(new SubjectFile(subject, finallyPath));
-            }
-            _unitOfWork.Complete();
-            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(subjectId)));
-        }
-
-        [HttpGet]
-        public void ChangeLanguage(string lang)
-        {
-            Session["lang"] = lang;
-        }
     }
 }

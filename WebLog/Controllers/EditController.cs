@@ -18,6 +18,8 @@ namespace WebLog.Controllers
             _unitOfWork = unitOfWork;
         }
         // GET: Edit
+
+        [Authorize]
         public ActionResult Profile()
         {
             var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
@@ -29,6 +31,7 @@ namespace WebLog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Update(EditUserViewModel editUserViewModel)
         {
             _unitOfWork.Users.Update(editUserViewModel);

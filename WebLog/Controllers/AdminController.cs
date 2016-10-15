@@ -10,6 +10,7 @@ using WebLog.Core.ViewModels;
 
 namespace WebLog.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
 
@@ -20,7 +21,6 @@ namespace WebLog.Controllers
             _unitOfWork = unitOfWork;
         }
         // GET: Admin
-        [Authorize]
         public ActionResult Manage()
         {
             return View();
@@ -38,14 +38,12 @@ namespace WebLog.Controllers
                         _unitOfWork.Classes.GetAll().ToList()));
         }
 
-        [Authorize]
         [HttpGet]
         public ActionResult AddClass()
         {
             return View();
         }
 
-        [Authorize]
         [HttpPost]
         public ActionResult AddClass(SchoolClassViewModel schoolViewModel)
         {
