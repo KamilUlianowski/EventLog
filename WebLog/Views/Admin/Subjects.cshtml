@@ -1,4 +1,5 @@
-﻿@model WebLog.Core.ViewModels.SubjectsViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.SubjectsViewModel
 
 @foreach (var subject in Model.Subjects)
 {
@@ -7,4 +8,4 @@
     </div>
 }
 
-<a class="btn btn-primary" href="~/Admin/AddSubject">Dodaj nowy przedmiot</a>
+<a class="btn btn-primary" href="~/Admin/AddSubject">@Global.AddNewSubject</a>

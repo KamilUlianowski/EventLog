@@ -1,17 +1,18 @@
-﻿@model WebLog.Core.ViewModels.SchoolClassViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.SchoolClassViewModel
 
 <h2>@Model.Name</h2>
 
 @if (Model.Teacher != null)
 {
     <div class="row">
-        <h2 class="col-lg-5">Wychowawca: @(Model.Teacher.Name + " " + Model.Teacher.Surname)</h2>
+        <h2 class="col-lg-5">@Global.Educator: @(Model.Teacher.Name + " " + Model.Teacher.Surname)</h2>
         @using (Html.BeginForm("DeleteTeacher", "Admin", new { schoolClassId = Model.Id }, FormMethod.Post))
         {
 
             @Html.HiddenFor(x => x.Id)
             <div class="form-group modal-header">
-                <input type="submit" class="btn btn-primary" value="Usuń">
+                <input type="submit" class="btn btn-primary" value="@Global.Delete">
             </div>
         }
     </div>
@@ -22,14 +23,14 @@ else
     using (Html.BeginForm("AddTeacherToClass", "Admin", FormMethod.Post))
     {
         <div class="form-group">
-            <label>Wychowawca: </label>
+            <label>@Global.Educator: </label>
             @Html.HiddenFor(x => x.Id);
             @Html.DropDownListFor(model => model.SelectedTeacherId, Model.AllTeachers, "")
 
         </div>
 
         <div class="form-group modal-header">
-            <input type="submit" class="btn btn-primary" value="Dodaj">
+            <input type="submit" class="btn btn-primary" value="@Global.Add">
         </div>
     }
 }
@@ -49,7 +50,7 @@ else
             @Html.HiddenFor(x => x.SelectedStudentId);
 
             <div class="form-group modal-header">
-                <input type="submit" class="btn btn-primary" value="Usuń">
+                <input type="submit" class="btn btn-primary" value="@Global.Delete">
             </div>
         }
 
@@ -57,18 +58,18 @@ else
     </div>
 }
 
-<label>Dodaj ucznia</label>
+<label>@Global.AddStudent</label>
 
 @using (Html.BeginForm("AddStudentToClass", "Admin", FormMethod.Post))
 {
     <div class="form-group">
-        <label>Uczniowie: </label>
+        <label>@Global.Students: </label>
         @Html.HiddenFor(x => x.Id);
         @Html.DropDownListFor(model => model.SelectedStudentId, Model.AllStudents, "")
 
     </div>
 
     <div class="form-group modal-header">
-        <input type="submit" class="btn btn-primary" value="Dodaj">
+        <input type="submit" class="btn btn-primary" value="@Global.Add">
     </div>
 }

@@ -118,108 +118,108 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
   </data>
   <data name="Address" xml:space="preserve">
-    <value>Address</value>
+    <value>Adres</value>
   </data>
   <data name="Birth" xml:space="preserve">
-    <value>Birth</value>
+    <value>Date urodzenia</value>
   </data>
   <data name="Content" xml:space="preserve">
-    <value>Content</value>
+    <value>Treści kształcenia</value>
   </data>
   <data name="Educator" xml:space="preserve">
-    <value>Educator</value>
+    <value>Wychowawca</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Język</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
+    <value>Wyloguj</value>
   </data>
   <data name="Manage" xml:space="preserve">
-    <value>Manage</value>
+    <value>Zarządzaj</value>
   </data>
   <data name="Message" xml:space="preserve">
-    <value>Message</value>
+    <value>Wiadomość</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Messages</value>
+    <value>Wiadomości</value>
   </data>
   <data name="MessageSent" xml:space="preserve">
-    <value>Message has been sent</value>
+    <value>Wiadomość została wysłana</value>
   </data>
   <data name="MySchool" xml:space="preserve">
-    <value>My School</value>
+    <value>Moja szkoła</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Imie</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Hasło</value>
   </data>
   <data name="Pesel" xml:space="preserve">
     <value>Pesel</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>Profile</value>
+    <value>Profil</value>
   </data>
   <data name="RemindPassword" xml:space="preserve">
-    <value>Remind Password</value>
+    <value>Przypomnij hasło</value>
   </data>
   <data name="SchoolRegister" xml:space="preserve">
-    <value>SchoolRegister</value>
+    <value>Dziennik szkolny</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>Send</value>
+    <value>Wyślij</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value>Login</value>
+    <value>Zaloguj</value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value>Register</value>
+    <value>Rejestruj</value>
   </data>
   <data name="StudentData" xml:space="preserve">
-    <value>Information about the student</value>
+    <value>Dane ucznia</value>
   </data>
   <data name="Surname" xml:space="preserve">
-    <value>Surname</value>
+    <value>Nazwisko</value>
   </data>
   <data name="Telephone" xml:space="preserve">
-    <value>Telephone</value>
+    <value>Telefon</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text of message</value>
+    <value>Treść wiadomości</value>
   </data>
   <data name="TypeOfUser" xml:space="preserve">
-    <value>TypeOfUser</value>
+    <value>Typ Użytkownika</value>
   </data>
   <data name="AddNewSubject" xml:space="preserve">
-    <value>Add new Subject</value>
+    <value>Dodaj nowy przedmiot</value>
   </data>
   <data name="AddStudent" xml:space="preserve">
-    <value>Add Student</value>
+    <value>Dodaj ucznia</value>
   </data>
   <data name="Classes" xml:space="preserve">
-    <value>Classes</value>
+    <value>Klasy</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Remove</value>
+    <value>Usuń</value>
   </data>
   <data name="NewClass" xml:space="preserve">
-    <value>New Class</value>
+    <value>Nowa klasa</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
   </data>
   <data name="Students" xml:space="preserve">
-    <value>Students</value>
+    <value>Uczniowie</value>
   </data>
   <data name="Subjects" xml:space="preserve">
-    <value>Subjects</value>
+    <value>Przedmioty</value>
   </data>
 </root>

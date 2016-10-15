@@ -1,4 +1,5 @@
-﻿@model WebLog.Core.ViewModels.TeacherAccountViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.TeacherAccountViewModel
 
 <div class="row">
     <div class="col-lg-8">
@@ -26,7 +27,7 @@
             @Html.HiddenFor(x => x.Teacher.Birth)
 
             <div class="form-group">
-                <label>Text: </label>
+                <label>@Global.Text: </label>
                 @Html.TextAreaFor(x => x.Text, new {@class = "form-control"})
                 @Html.ValidationMessageFor(x => x.Text)
             </div>
@@ -45,7 +46,7 @@
             }
 
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Wyślij">
+                <input type="submit" class="btn btn-primary" value="@Global.Send">
             </div>
         }
         <span id="returnMessage"></span>
@@ -56,7 +57,7 @@
 <script>
     function resetForm() {
         $("#adv-form")[0].reset();
-        $("#returnMessage").text("Wiadomosc wyslana");
+        $("#returnMessage").text(@Global.MessageSent);
 
     }
 </script>

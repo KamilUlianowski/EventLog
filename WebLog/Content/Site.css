@@ -1,25 +1,25 @@
 ﻿body {
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+	white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
-    max-width: 280px;
+	max-width: 280px;
 }
 
 body
@@ -107,7 +107,7 @@ input:focus::-webkit-input-placeholder
 {
 	font-size: 15px;
 	padding: 10px 10px;
-    width: 300px;
+	width: 300px;
 	background-color: #36b03c;
 	color: white;
 	margin-top: 20px;
@@ -128,4 +128,12 @@ input:focus::-webkit-input-placeholder
 #submit-signin2:hover
 {
 	background-color: #37b93d;
+}
+
+.navbar-glyphicon {
+	margin-left: 6px;
+}
+
+.navbar-lang {
+    margin-top: 5px;
 }

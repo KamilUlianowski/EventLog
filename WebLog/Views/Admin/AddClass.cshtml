@@ -1,15 +1,16 @@
-﻿@model WebLog.Core.ViewModels.SchoolClassViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.SchoolClassViewModel
     
 @using (Html.BeginForm("AddClass", "Admin", FormMethod.Post))
 {
     <div class="form-group">
-        <label>Imie: </label>
+        <label>@Global.Name: </label>
         @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
         @Html.ValidationMessageFor(x => x.Name)
     </div>
 
     <div class="form-group modal-header">
-        <input type="submit" class="btn btn-primary" value="Register">
+        <input type="submit" class="btn btn-primary" value="@Global.Add">
     </div>
 
 }

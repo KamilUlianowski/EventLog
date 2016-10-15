@@ -1,4 +1,5 @@
-﻿@model WebLog.Core.ViewModels.ManageViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.ManageViewModel
 
 @foreach (var schoolClass in Model.Classes)
 {
@@ -7,4 +8,4 @@
     </div>
 }
 
-<a class="btn btn-primary" href="~/Admin/AddClass">Nowa klasa</a>
+<a class="btn btn-primary" href="~/Admin/AddClass">@Global.NewClass</a>

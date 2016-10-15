@@ -1,22 +1,23 @@
-﻿@model WebLog.Core.ViewModels.UserAccountsViewModels.ParentAccountViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.UserAccountsViewModels.ParentAccountViewModel
 
 @using (Html.BeginForm("RequestToTeacher", "Home", FormMethod.Post))
 {
     @Html.HiddenFor(x => x.Parent.Id)
     @Html.HiddenFor(x => x.Parent.Birth)
     <div class="form-group">
-        <label>Wychowawca: </label>
+        <label>@Global.Educator: </label>
         @Html.DropDownListFor(model => model.SelectedTeacher, Model.Teachers, "")
 
     </div>
 
     <div class="form-group">
-        <label>Wiadomość: </label>
+        <label>@Global.Message: </label>
         @Html.TextAreaFor(model => model.Message);
 
     </div>
 
     <div class="form-group modal-header">
-        <input type="submit" class="btn btn-primary" value="Dodaj">
+        <input type="submit" class="btn btn-primary" value="@Global.Add">
     </div>
 }

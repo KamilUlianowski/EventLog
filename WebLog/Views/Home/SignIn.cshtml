@@ -1,27 +1,28 @@
-﻿@model WebLog.Core.ViewModels.AuthViewModels.SignInViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.AuthViewModels.SignInViewModel
 
 @using (Html.BeginForm("SignIn", "Home", FormMethod.Post))
 {
 
     <div class="form-group">
-        <label>Email: </label>
+        <label>@Global.Email: </label>
         @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Email)
     </div>
 
     <div class="form-group">
-        <label>Hasło: </label>
+        <label>@Global.Password: </label>
         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Password)
     </div>
 
     <div class="row">
         <div class="form-group col-sm-1">
-            <input type="submit" class="btn btn-primary" value="SignIn">
+            <input type="submit" class="btn btn-primary" value="@Global.SignIn">
         </div>
 
         <div>
-            <input type="button" onclick="location.href = 'RemindPassword';"/>
+            <input type="button" onclick="location.href = 'RemindPassword';" value="@Global.RemindPassword"/>
         </div>
 
     </div>
