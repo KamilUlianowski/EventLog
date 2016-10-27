@@ -20,11 +20,9 @@
         }
     </div>
     <div class="col-lg-4">
-        @using (Ajax.BeginRouteForm("DefaultApi", new { controller = "Log", action="AddAdvertisement", HttpRoute = "true" },
-        new AjaxOptions { HttpMethod = "POST", OnFailure = "onFailure", OnSuccess = "resetForm" }, new {id = "adv-form"}))
+        @using (Ajax.BeginRouteForm("DefaultApi", new { controller = "Log", action="AddAdvertisement", HttpRoute = "true" }, 
+        new AjaxOptions { HttpMethod = "POST", OnFailure = "onFailure", OnSuccess = "resetForm" }, new { id = "adv-form"}))
         {
-            @Html.HiddenFor(x => x.Teacher.Id)
-            @Html.HiddenFor(x => x.Teacher.Birth)
 
             <div class="form-group">
                 <label>@Global.Text: </label>
@@ -32,7 +30,8 @@
                 @Html.ValidationMessageFor(x => x.Text)
             </div>
 
-
+            @Html.HiddenFor(x => x.Teacher.Id)
+            @Html.HiddenFor(x => x.Teacher.Birth)
 
             foreach (var item in Model.Classes)
             {
@@ -57,7 +56,7 @@
 <script>
     function resetForm() {
         $("#adv-form")[0].reset();
-        $("#returnMessage").text(@Global.MessageSent);
+        $("#returnMessage").text("@Global.MessageSent");
 
     }
 </script>

@@ -49,7 +49,7 @@ namespace WebLog.Persistance.Repositories
             if (user == null)
                 return;
 
-            user.Token = "t" + Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            user.Token = Guid.NewGuid().ToString();
         }
 
         public void UpdatePassword(ChangePasswordViewModel vm)

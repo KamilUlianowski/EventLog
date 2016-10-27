@@ -1,11 +1,12 @@
-﻿@model WebLog.Core.ViewModels.MessageViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.MessageViewModel
 
 <div class="container">
     <div class="col-sm-4">
         @foreach (var person in Model.ViewMessages)
         {
             <div class="row">
-                <a onclick='getMessages("@person.Key")'>@person.Key</a>
+                <a onclick='getMessages("@person.Key.Item2")'>@person.Key.Item2</a>
             </div>
         }
     </div>
@@ -15,21 +16,55 @@
     <div hidden>
         @foreach (var person in Model.ViewMessages)
         {
-            <div id="@("messages" + person.Key)" class="col-lg-8">
+            <div id="@("messages" + person.Key.Item2)" class="col-lg-8">
                 @foreach (var message in person.Value)
                 {
                     <div class="row">
-                        <textarea>@message</textarea>
+                        <textarea disabled="disabled" style="resize: none">@message</textarea>
                     </div>
                 }
+
+                <div id="@("form" + person.Key.Item2)">
+                    @using (Ajax.BeginForm("SendMessage", "Home", new { userToEmail = person.Key.Item1 }, new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        OnSuccess = "addMessage('" + person.Key.Item2 + "')"
+                    }))
+                    {
+                        <div class="form-inline">
+                            <div class="form-group">
+                                @Html.TextAreaFor(x => x.Message, new { @class = "form-control", id = "input" + person.Key.Item2 })
+                            </div>
+
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="@Global.Send" />
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
             </div>
         }
     </div>
 </div>
 
 <script type="text/javascript">
-    
     var getMessages = function (person) {
         $("#messages").html($("#messages" + person).html());
+    }
+
+    function addMessage(user) {
+        var newMessage = $("#input" + user).val();
+        var p = $("#form" + user).detach();
+        $("#form" + user).remove(); // nie wiem czemu tak, do poprawy
+        $("#messages" + user).append("<div class='row'>" +
+                        "<textarea disabled='disabled' style='resize: none'>" +
+                        newMessage +
+                        "</textarea>" +
+                    "</div>");
+        p.appendTo("#messages" + user);
+        $("#messages").html($("#messages" + user).html());
+
     }
 </script>

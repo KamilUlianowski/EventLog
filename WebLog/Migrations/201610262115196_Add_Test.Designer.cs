@@ -7,13 +7,13 @@ namespace WebLog.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addAdmin : IMigrationMetadata
+    public sealed partial class Add_Test : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addAdmin));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_Test));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610152054436_addAdmin"; }
+            get { return "201610262115196_Add_Test"; }
         }
         
         string IMigrationMetadata.Source

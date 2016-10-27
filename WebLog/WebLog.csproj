@@ -232,7 +232,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Controllers\LogController.cs" />
+    <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -244,6 +244,7 @@
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\SummaryController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Core\Common\ConvertHelper.cs" />
     <Compile Include="Core\Common\Grade.cs" />
     <Compile Include="Core\Common\TypeOfUsers.cs" />
@@ -262,6 +263,9 @@
     <Compile Include="Core\Models\Subject.cs" />
     <Compile Include="Core\Models\SubjectFile.cs" />
     <Compile Include="Core\Models\Teacher.cs" />
+    <Compile Include="Core\Models\Question.cs" />
+    <Compile Include="Core\Models\QuestionAnswer.cs" />
+    <Compile Include="Core\Models\Test.cs" />
     <Compile Include="Core\Repositories\IAdvertisementRepository.cs" />
     <Compile Include="Core\Repositories\IFileRepository.cs" />
     <Compile Include="Core\Repositories\IMessageRepository.cs" />
@@ -272,6 +276,9 @@
     <Compile Include="Core\Repositories\IStudentRepository.cs" />
     <Compile Include="Core\Repositories\ISubjectRepository.cs" />
     <Compile Include="Core\Repositories\ITeacherRepository.cs" />
+    <Compile Include="Core\Repositories\IQuestionAnswerRepository.cs" />
+    <Compile Include="Core\Repositories\IQuestionRepository.cs" />
+    <Compile Include="Core\Repositories\ITestRepository.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
     <Compile Include="Core\Services\IAuthService.cs" />
     <Compile Include="Core\Services\IMailService.cs" />
@@ -285,6 +292,10 @@
     <Compile Include="Core\ViewModels\StudentGradesViewModel.cs" />
     <Compile Include="Core\ViewModels\SubjectViewModels\SubjectSiteViewModel.cs" />
     <Compile Include="Core\ViewModels\SummaryViewModels\SummaryViewModel.cs" />
+    <Compile Include="Core\ViewModels\TestsViewModels\NewQuestionViewModel.cs" />
+    <Compile Include="Core\ViewModels\TestsViewModels\NewTestViewModel.cs" />
+    <Compile Include="Core\ViewModels\TestsViewModels\QuestionViewModel.cs" />
+    <Compile Include="Core\ViewModels\TestsViewModels\TestDetailViewModel.cs" />
     <Compile Include="Core\ViewModels\UserAccountsViewModels\ParentAccountViewModel.cs" />
     <Compile Include="Core\ViewModels\UserAccountsViewModels\StudentAccountViewModel.cs" />
     <Compile Include="Core\ViewModels\UserAccountsViewModels\TeacherAccountViewModel.cs" />
@@ -297,17 +308,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610151726552_enumForGrades2.cs" />
-    <Compile Include="Migrations\201610151726552_enumForGrades2.Designer.cs">
-      <DependentUpon>201610151726552_enumForGrades2.cs</DependentUpon>
+    <Compile Include="Migrations\201610262115196_Add_Test.cs" />
+    <Compile Include="Migrations\201610262115196_Add_Test.Designer.cs">
+      <DependentUpon>201610262115196_Add_Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610151853132_fixDate.cs" />
-    <Compile Include="Migrations\201610151853132_fixDate.Designer.cs">
-      <DependentUpon>201610151853132_fixDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610152054436_addAdmin.cs" />
-    <Compile Include="Migrations\201610152054436_addAdmin.Designer.cs">
-      <DependentUpon>201610152054436_addAdmin.cs</DependentUpon>
+    <Compile Include="Migrations\201610262213385_Add_Test2.cs" />
+    <Compile Include="Migrations\201610262213385_Add_Test2.Designer.cs">
+      <DependentUpon>201610262213385_Add_Test2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\Models\User.cs" />
@@ -324,6 +331,9 @@
     <Compile Include="Persistance\Repositories\StudentRepository.cs" />
     <Compile Include="Persistance\Repositories\SubjectRepository.cs" />
     <Compile Include="Persistance\Repositories\TeacherRepository.cs" />
+    <Compile Include="Persistance\Repositories\QuestionAnswerRepository.cs" />
+    <Compile Include="Persistance\Repositories\QuestionRepository.cs" />
+    <Compile Include="Persistance\Repositories\TestRepository.cs" />
     <Compile Include="Persistance\Repositories\UserRepository.cs" />
     <Compile Include="Persistance\Services\AuthService.cs" />
     <Compile Include="Persistance\Services\MailService.cs" />
@@ -456,7 +466,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -495,6 +507,11 @@
     <Content Include="Views\Home\Messages.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Home\Subject.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\AddTest.cshtml" />
+    <Content Include="Views\Test\Detail.cshtml" />
+    <Content Include="Views\Shared\Question.cshtml" />
+    <Content Include="Views\Test\AddQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -511,14 +528,11 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610151726552_enumForGrades2.resx">
-      <DependentUpon>201610151726552_enumForGrades2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610262115196_Add_Test.resx">
+      <DependentUpon>201610262115196_Add_Test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610151853132_fixDate.resx">
-      <DependentUpon>201610151853132_fixDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610152054436_addAdmin.resx">
-      <DependentUpon>201610152054436_addAdmin.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610262213385_Add_Test2.resx">
+      <DependentUpon>201610262213385_Add_Test2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

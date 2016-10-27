@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new test.
+        /// </summary>
+        public static string AddTest {
+            get {
+                return ResourceManager.GetString("AddTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birth.
         /// </summary>
         public static string Birth {
@@ -246,6 +255,15 @@ namespace Resources {
         public static string NameClassValidation {
             get {
                 return ResourceManager.GetString("NameClassValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of test.
+        /// </summary>
+        public static string NameOfTest {
+            get {
+                return ResourceManager.GetString("NameOfTest", resourceCulture);
             }
         }
         
@@ -498,6 +516,15 @@ namespace Resources {
         public static string Text {
             get {
                 return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time of test.
+        /// </summary>
+        public static string TimeOfTest {
+            get {
+                return ResourceManager.GetString("TimeOfTest", resourceCulture);
             }
         }
         

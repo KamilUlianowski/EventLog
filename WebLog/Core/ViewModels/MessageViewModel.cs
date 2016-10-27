@@ -11,7 +11,8 @@ namespace WebLog.Core.ViewModels
     public class MessageViewModel
     {
         public string LoggedMail { get; set; }
-        public Dictionary<string, List<string>> ViewMessages { get; set; }
+        public Dictionary<Tuple<string,string>, List<string>> ViewMessages { get; set; }
+        public string Message { get; set; }
 
         public MessageViewModel()
         {

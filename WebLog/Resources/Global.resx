@@ -270,4 +270,13 @@
   <data name="Teacher" xml:space="preserve">
     <value>Teacher</value>
   </data>
+  <data name="NameOfTest" xml:space="preserve">
+    <value>Name of test</value>
+  </data>
+  <data name="TimeOfTest" xml:space="preserve">
+    <value>Time of test</value>
+  </data>
+  <data name="AddTest" xml:space="preserve">
+    <value>Add new test</value>
+  </data>
 </root>

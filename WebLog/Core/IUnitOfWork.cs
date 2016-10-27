@@ -18,6 +18,9 @@ namespace WebLog.Core
         IMessageRepository Messages { get; }
         IAdvertisementRepository Advertisements { get; }
         IFileRepository Files { get; }
+        IQuestionRepository Questions { get; }
+        IQuestionAnswerRepository QuestionAnswers { get; }
+        ITestRepository Tests { get; set; }
 
         void Complete();
     }

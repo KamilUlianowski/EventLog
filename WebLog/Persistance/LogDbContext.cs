@@ -20,5 +20,8 @@ namespace WebLog.Core.Models
         public DbSet<Message> Messages { get; set; }
         public DbSet<Advertisement> Advertisements { get; set; }
         public DbSet<SubjectFile> Files { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public DbSet<Test> Tests { get; set; }
     }
 }

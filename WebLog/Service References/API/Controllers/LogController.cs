@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 using WebLog.Core;
 using WebLog.Core.Models;
 using WebLog.Core.ViewModels;
@@ -39,6 +40,7 @@ namespace WebLog.API.Controllers
 
             return Ok();
         }
+
 
     }
 }

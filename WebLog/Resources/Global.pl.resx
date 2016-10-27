@@ -226,7 +226,7 @@
     <value>Imie powinno się składać od 2 do 30 znaków</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>Required</value>
+    <value>Wymagane</value>
   </data>
   <data name="SurnameValidation" xml:space="preserve">
     <value>Nazwisko powinno się składać od 2 do 30 znaków</value>
@@ -248,5 +248,17 @@
   </data>
   <data name="Teacher" xml:space="preserve">
     <value>Nauczyciel</value>
+  </data>
+  <data name="BirthValidation" xml:space="preserve">
+    <value>Proszę wpisać odpowiednią datę</value>
+  </data>
+  <data name="NameOfTest" xml:space="preserve">
+    <value>Nazwa testu</value>
+  </data>
+  <data name="TimeOfTest" xml:space="preserve">
+    <value>Czas trwania testu</value>
+  </data>
+  <data name="AddTest" xml:space="preserve">
+    <value>Dodaj nowy test</value>
   </data>
 </root>

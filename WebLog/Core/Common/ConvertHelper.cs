@@ -55,14 +55,14 @@ namespace WebLog.Core.Common
         }
 
         //email od kogo - w tuplu kto wysłał (ty czy ktoś inny) i treść
-        public static Dictionary<string, List<string>> ConvertMessagesToShowInView(List<Message> messages, string email)
+        public static Dictionary<Tuple<string,string>, List<string>> ConvertMessagesToShowInView(List<Message> messages, string email)
         {
-            var viewMessages = new Dictionary<string, List<string>>();
+            var viewMessages = new Dictionary<Tuple<string,string>, List<string>>();
 
             foreach (var message in messages)
             {
-                var userFrom = message.UserFrom.Name + "_" + message.UserFrom.Surname;
-                var userTo = message.UserTo.Name + "_" + message.UserTo.Surname;
+                var userFrom = new Tuple<string, string>(message.UserFrom.Email,message.UserFrom.Name + "_" + message.UserFrom.Surname);
+                var userTo = new Tuple<string, string>(message.UserTo.Email, message.UserTo.Name + "_" + message.UserTo.Surname);
 
                 if (!viewMessages.ContainsKey(userFrom) && message.UserFrom.Email != email)
                     viewMessages.Add(userFrom, new List<string>() { message.Text });

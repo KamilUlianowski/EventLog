@@ -23,6 +23,9 @@ namespace WebLog.Persistance
         public IMessageRepository Messages { get; }
         public IAdvertisementRepository Advertisements { get; }
         public IFileRepository Files { get; }
+        public IQuestionRepository Questions { get; }
+        public IQuestionAnswerRepository QuestionAnswers { get; }
+        public ITestRepository Tests { get; set; }
 
         public UnitOfWork(LogDbContext dbContext)
         {
@@ -37,6 +40,10 @@ namespace WebLog.Persistance
             Messages = new MessageRepository(dbContext);
             Advertisements = new AdvertisementRepository(dbContext);
             Files = new FileRepository(dbContext);
+            Questions = new QuestionRepository(dbContext);
+            QuestionAnswers = new QuestionAnswerRepository(dbContext);
+            Tests = new TestRepository(dbContext);
+
         }
 
         public void Complete()

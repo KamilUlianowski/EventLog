@@ -2,6 +2,7 @@
 {
     public enum TypeOfUser
     {
+        Admin,
         Student,
         Teacher,
         Parent

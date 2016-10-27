@@ -1,4 +1,5 @@
-﻿@using Resources
+﻿@using Microsoft.ApplicationInsights.Web
+@using Resources
 
 <!DOCTYPE html>
 <html>
@@ -25,12 +26,15 @@
                         {
                             <li><a href="~/Admin/Manage"><span class="glyphicon glyphicon-edit"></span> @Global.Manage</a></li>
                         }
-                        if (User.IsInRole("Admin,Teacher"))
+                        if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
                         {
                             <li><a href="~/Summary/Index"><span class="glyphicon glyphicon-align-left"></span> @Global.Statistics</a></li>
                         }
 
-                        <li><a href="~/Home/Messages"><span class="glyphicon glyphicon-envelope"></span> @Global.Messages</a></li>
+                        if (User.IsInRole("Teacher") || User.IsInRole("Parent"))
+                        {
+                            <li><a href="~/Home/Messages"><span class="glyphicon glyphicon-envelope"></span> @Global.Messages</a></li>
+                        }
                         <li><a href="~/Home/MySchool"><span class="glyphicon glyphicon-briefcase"></span> @Global.MySchool</a></li>
                         <li><a href="~/Edit/Profile"><span class="glyphicon glyphicon-user"></span> @Global.Profile</a></li>
                         <li><a href="~/Home/LogOut"><span class="glyphicon glyphicon-log-out"></span> @Global.Logout</a></li>

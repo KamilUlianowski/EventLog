@@ -26,6 +26,14 @@ namespace WebLog.Core.Models
           SendDate = DateTime.Now;  
         }
 
+        public Message(User userFrom, User userTo, string text)
+        {
+            UserFrom = userFrom;
+            UserTo = userTo;
+            Text = text;
+            SendDate = DateTime.Now;
+        }
+
         public Message(ParentAccountViewModel parentViewModel, Teacher teacher)
         {
             SendDate = DateTime.Now;

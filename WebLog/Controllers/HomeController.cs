@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 using WebLog.Core;
 using WebLog.Core.Common;
 using WebLog.Core.Models;
@@ -24,9 +20,9 @@ namespace WebLog.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IAuthService _authService;
         private readonly IMailService _iMailService;
+        private readonly IUnitOfWork _unitOfWork;
 
         public HomeController(IUnitOfWork unitOfWork, IAuthService authService, IMailService iMailService)
         {
@@ -44,7 +40,7 @@ namespace WebLog.Controllers
         [Authorize]
         public ActionResult MySchool() // brzydka metoda, może do poprawy
         {
-            int a = 5;
+            var a = 5;
             var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
 
             if (user == null)
@@ -55,19 +51,19 @@ namespace WebLog.Controllers
                 var student = _unitOfWork.Students.Get(user.Id);
                 var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
                 var advertisements = new List<Advertisement>();
-                if(student.SchoolClass != null)
+                if (student.SchoolClass != null)
                     advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
                 return View("StudentAccount", new StudentAccountViewModel(student, schoolGrades, advertisements));
             }
 
-            else if (user.GetType() == typeof(Teacher))
+            if (user.GetType() == typeof(Teacher))
             {
                 var teacher = _unitOfWork.Teachers.Get(user.Id);
                 var schoolClasses = _unitOfWork.Classes.GetAll().ToList();
                 return View("TeacherAccount", new TeacherAccountViewModel(teacher, schoolClasses));
             }
 
-            else if (user.GetType() == typeof(Parent))
+            if (user.GetType() == typeof(Parent))
             {
                 var parent = _unitOfWork.Parents.Get(user.Id);
                 var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(parent.Student.Id);
@@ -83,20 +79,30 @@ namespace WebLog.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult TeacherClass(int? subjectId, int? schoolClassId)
         {
-            var teacher = (Teacher)_unitOfWork.Users.GetUser(User.Identity.GetUserId());
+            var teacher = (Teacher) _unitOfWork.Users.GetUser(User.Identity.GetUserId());
 
-            if (subjectId == null || schoolClassId == null || teacher == null)
+            if ((subjectId == null) || (schoolClassId == null) || (teacher == null))
                 return RedirectToAction("Index");
 
             var schoolClass = _unitOfWork.Classes.Get(schoolClassId.Value);
             var subject = _unitOfWork.Subjects.Get(subjectId.Value);
             var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(subjectId.Value, schoolClassId.Value).ToList();
 
-            if (schoolClass == null || subject == null)
+            if ((schoolClass == null) || (subject == null))
                 return RedirectToAction("Index");
 
             return View(new StudentGradesViewModel(subject, schoolClass, teacher, schoolGrades));
+        }
 
+        [HttpPost]
+        [Authorize]
+        public void SendMessage(MessageViewModel vm, string userToEmail)
+        {
+            var userFrom = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
+            var userTo = _unitOfWork.Users.GetUser(userToEmail);
+
+            _unitOfWork.Messages.Add(new Message(userFrom, userTo, vm.Message));
+            _unitOfWork.Complete();
         }
 
         [HttpPost]
@@ -132,8 +138,8 @@ namespace WebLog.Controllers
         public ActionResult Subject(int id)
         {
             var subject = _unitOfWork.Subjects.Get(id);
-
-            return View(new SubjectSiteViewModel(subject));
+            var tests = _unitOfWork.Tests.GetTestsFromSubject(id).ToList();
+            return View(new SubjectSiteViewModel(subject, tests));
         }
 
         [HttpGet]
@@ -141,8 +147,8 @@ namespace WebLog.Controllers
         public ActionResult SubjectName(string name)
         {
             var subject = _unitOfWork.Subjects.Get(name);
-
-            return View("Subject", new SubjectSiteViewModel(subject));
+            var tests = _unitOfWork.Tests.GetTestsFromSubject(subject.Id).ToList();
+            return View("Subject", new SubjectSiteViewModel(subject, tests));
         }
 
         [HttpPost]
@@ -155,12 +161,11 @@ namespace WebLog.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="Teacher")]
+        [Authorize(Roles = "Teacher")]
         public ActionResult AddFile(int subjectId, HttpPostedFileBase file)
         {
-
             var directory = AppDomain.CurrentDomain.BaseDirectory + @"SubjectFiles\\";
-            if (file == null || file.ContentLength <= 0) return View("Index");
+            if ((file == null) || (file.ContentLength <= 0)) return View("Index");
 
             var fileName = Path.GetFileName(file.FileName);
 
@@ -188,8 +193,6 @@ namespace WebLog.Controllers
             _authService.Login(signInViewModel, System.Web.HttpContext.Current);
 
             return RedirectToAction("MySchool", "Home");
-
-
         }
 
         [HttpGet]
@@ -210,7 +213,7 @@ namespace WebLog.Controllers
                 if (user == null)
                     return RedirectToAction("Index", "Error", "Wystapil nieoczekiwany blad");
 
-                return RedirectToAction("SignUpParent", "Home", new { parentId = user.Id });
+                return RedirectToAction("SignUpParent", "Home", new {parentId = user.Id});
             }
 
             return RedirectToAction("Index", "Home");
@@ -245,11 +248,11 @@ namespace WebLog.Controllers
 
             if (student != null)
             {
-                _unitOfWork.Parents.AddChildren(parentViewModel.ParentId, (Student)student);
+                _unitOfWork.Parents.AddChildren(parentViewModel.ParentId, (Student) student);
                 _unitOfWork.Complete();
             }
             else
-                return RedirectToAction("Index", "Error", new { message = "Coś poszło nie tak" });
+                return RedirectToAction("Index", "Error", new {message = "Coś poszło nie tak"});
 
 
             return RedirectToAction("Index", "Home");
@@ -260,11 +263,9 @@ namespace WebLog.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
 
-            string[] myCookies = Request.Cookies.AllKeys;
-            foreach (string cookie in myCookies)
-            {
+            var myCookies = Request.Cookies.AllKeys;
+            foreach (var cookie in myCookies)
                 Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
-            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -278,18 +279,24 @@ namespace WebLog.Controllers
         [HttpGet]
         public ActionResult ChangePassword(string userToken)
         {
-            return _unitOfWork.Users.CheckToken(userToken) ? View(new ChangePasswordViewModel(userToken)) : View("Index");
+            return _unitOfWork.Users.CheckToken(userToken)
+                ? View(new ChangePasswordViewModel(userToken))
+                : View("Index");
         }
 
         [HttpPost]
         public ActionResult RemindPassword(string email)
         {
-
             _unitOfWork.Users.UpdateToken(email);
             _unitOfWork.Complete();
             _iMailService.RemindOrChangePassword(email, _unitOfWork.Users.GetUser(email).Token);
-            return RedirectToAction("Confirm", new { message = "Wysłano maila" });
+            return RedirectToAction("Confirm", new {message = "Wysłano maila"});
         }
 
+        [HttpGet]
+        public ActionResult Confirm(string message)
+        {
+            return View((object) message);
+        }
     }
 }
