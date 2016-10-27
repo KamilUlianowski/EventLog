@@ -232,6 +232,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Controllers\LogController.cs" />
+    <Compile Include="Migrations\201610271444391_fix.cs" />
+    <Compile Include="Migrations\201610271444391_fix.Designer.cs">
+      <DependentUpon>201610271444391_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -533,6 +538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610262213385_Add_Test2.resx">
       <DependentUpon>201610262213385_Add_Test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610271444391_fix.resx">
+      <DependentUpon>201610271444391_fix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
