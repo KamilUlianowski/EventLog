@@ -1,7 +1,7 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.MessageViewModel
 
-<div class="container">
+<div class="container" ng-app="mainModule">
     <div class="col-sm-4">
         @foreach (var person in Model.ViewMessages)
         {
@@ -9,6 +9,10 @@
                 <a onclick='getMessages("@person.Key.Item2")'>@person.Key.Item2</a>
             </div>
         }
+    </div>
+
+    <div ng-controller="MainController">
+        {{ test }}
     </div>
     <div class="col-lg-8" id="messages">
 
@@ -49,7 +53,11 @@
     </div>
 </div>
 
-<script type="text/javascript">
+@section Scripts {
+    
+    @Scripts.Render("~/bundles/angular");
+
+    <script type="text/javascript">
     var getMessages = function (person) {
         $("#messages").html($("#messages" + person).html());
     }
@@ -68,3 +76,5 @@
 
     }
 </script>
+
+}

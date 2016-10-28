@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using WebLog.Core.Models;
 
@@ -79,6 +80,34 @@ namespace WebLog.Core.Common
             }
 
             return viewMessages;
+        }
+
+        public static Dictionary<string, List<string>> GetConvertedMessages(List<Message> messages, string mail)
+        {
+            var convMessages = new Dictionary<string, List<string>>();
+
+            foreach (var message in messages)
+            {
+                var userFrom = message.UserFrom.Name + " " + message.UserFrom.Surname;
+                var userTo = message.UserTo.Name + " " + message.UserTo.Surname;
+
+                if (message.UserFrom.Email != mail)
+                {
+                    if (convMessages.ContainsKey(userFrom))
+                        convMessages[userFrom].Add(message.Text);
+                    else
+                        convMessages.Add(userFrom, new List<string> {message.Text});
+                }
+                else if (message.UserTo.Email != mail)
+                {
+                    if (convMessages.ContainsKey(userTo))
+                        convMessages[userTo].Add(message.Text);
+                    else
+                        convMessages.Add(userTo, new List<string> { message.Text });
+                }
+            }
+            
+            return convMessages;   
         }
     }
 }

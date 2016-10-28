@@ -1,0 +1,193 @@
+﻿@model WebLog.Core.ViewModels.TestsViewModels.SolveTestViewModel
+
+@if (Model.Grade != null)
+{
+    <h1>Już wypełniłeś ten test, twoja ocena to @((int)Model.Grade.Grade)</h1>
+}
+else
+{
+
+    <div class="col-lg-12">
+        <div class="col-sm-2 col-sm-offset-5">
+            @foreach (var item in Model.GradingScale)
+            {
+                <span> @item.Key @item.Value </span>
+                <br />
+            }
+            <a data-toggle="modal" data-target="#MyModalTest" class="buttonTest a-learning-check div-link">Rozpocznij test</a>
+        </div>
+    </div>
+
+    <div id="MyModalTest" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="modal-header">
+                        <div class="modal-window-text-header">
+                            <div class="countdown col-sm-12" style="float: none">
+                                <span id="clock" class="text-left"></span>
+                                <div id="QuestionNumber" class="text-right" style="float : right"></div>
+
+                            </div>
+                        </div>
+                        <h3 id="QuestionText" class="modal-title" style="margin-top: 30px"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="question div-link" data-tooltip="0">
+                            <div class="radio">
+                                <h3>
+                                    <input type="radio" id="Answer0" name="optradio" value="0"><label for="Answer0" data-tooltip="0"></label>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="question div-link" data-tooltip="1">
+                            <div class="radio">
+                                <h3>
+                                    <input type="radio" id="Answer1" name="optradio" value="1"><label for="Answer1" data-tooltip="1"></label>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="question div-link" data-tooltip="2">
+                            <div class="radio">
+                                <h3>
+                                    <input type="radio" id="Answer2" name="optradio" value="2"><label for="Answer2" data-tooltip="2"></label>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="ConfirmButton2" type="button" class="btn btn-default">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts {
+
+        @Scripts.Render("~/bundles/countdown")
+
+        <script type='text/javascript'>
+
+            var t = new Date();
+            t.setSeconds(t.getSeconds() + 300);
+            $('#clock').countdown(t)
+     .on('update.countdown', function(event) {
+         var format = '%H:%M:%S';
+         if(event.offset.totalDays > 0) {
+             format = '%-d day%!d ' + format;
+         }
+         if(event.offset.weeks > 0) {
+             format = '%-w week%!w ' + format;
+         }
+         $(this).html(event.strftime(format));
+     })
+     .on('finish.countdown', function(event) {
+         $(this).html('This offer has expired!')
+           .parent().addClass('disabled');
+
+     });
+
+
+            var iterator = 0;
+            var correctAnswers = 0;
+            var listOfPosts = [];
+            var incorectAnswers = [];
+            var selectedAnswer;
+            var selectedAnswers = "";
+            var count = 1;
+            $(".buttonTest")
+                .click(function() {
+                    if (count % 2 == 1) {
+                        $(".question").removeClass("good-answer bad-answer");
+                        count = 1;
+                    }
+                    iterator = 0;
+                    listOfPosts = [];
+                    @foreach (var item in Model.ListOfQuestions)
+                {
+                    <text>
+
+                    listOfPosts.push({
+                        text: "@HttpUtility.JavaScriptStringEncode(item.Text)",
+                        answers: [
+                            "@HttpUtility.JavaScriptStringEncode(item.Answers[0].Text)",
+                            "@HttpUtility.JavaScriptStringEncode(item.Answers[1].Text)",
+                            "@HttpUtility.JavaScriptStringEncode(item.Answers[2].Text)"
+                        ],
+                        correctAnswer: "@item.CorrectAnswer",
+                        id: @item.Id
+                        });
+                    </text>
+                }
+                    $("#QuestionNumber").text("Question " + (iterator + 1) + " of " + listOfPosts.length);
+                    $("#QuestionText").text(listOfPosts[iterator].text);
+                    $('label[for=Answer0]').text(listOfPosts[iterator].answers[0]);
+                    $('label[for=Answer1]').text(listOfPosts[iterator].answers[1]);
+                    $('label[for=Answer2]').text(listOfPosts[iterator].answers[2]);
+                });
+            $("#ConfirmButton2")
+                .click(function() {
+                    if (count % 2 == 0) {
+                        count++;
+                        $('input[type=radio]:checked').attr('checked', false);
+                        if (iterator < listOfPosts.length) {
+                            $(".question ").removeClass("good-answer bad-answer");
+                            $("#ConfirmButton2").text("Select");
+                            $("#QuestionText").text(listOfPosts[iterator].text);
+                            $('label[for=Answer0]').text(listOfPosts[iterator].answers[0]);
+                            $('label[for=Answer1]').text(listOfPosts[iterator].answers[1]);
+                            $('label[for=Answer2]').text(listOfPosts[iterator].answers[2]);
+                            $("#QuestionNumber").text("Question " + (iterator + 1) + " of " + listOfPosts.length);
+                        } else {
+                            $.ajax({
+                                type: "POST",
+                                url: "/Test/SaveTestResult",
+                                data: { result: selectedAnswers, testId: @Model.TestId },
+                                success: function(msg) {
+                                    window.location.assign("/Test/SolveTest/" + @Model.TestId);
+
+                                },
+                                error: function(e) {
+                                }
+                            });
+                        }
+
+                    } else if ($('input[type=radio]:checked').val()) {
+
+                        selectedAnswers += listOfPosts[iterator].id + "," + $('input[type=radio]:checked').val() + ",";
+
+
+                        count++;
+                        selectedAnswer = $('input[type=radio]:checked').val();
+                        if (selectedAnswer == listOfPosts[iterator].correctAnswer) {
+                            correctAnswers++;
+                        } else {
+                            incorectAnswers.push(listOfPosts[iterator].id, selectedAnswer);
+                            $('div[data-tooltip=' + selectedAnswer + ']').addClass("bad-answer");
+                        }
+                        $("#ConfirmButton2").text("Next");
+                        $('div[data-tooltip=' + listOfPosts[iterator].correctAnswer + ']').addClass("good-answer");
+                        iterator++;
+
+                    }
+                });
+
+            $('div[data-tooltip=0]')
+                .click(function() {
+                    $("#Answer0").prop("checked", true);
+                });
+            $('div[data-tooltip=1]')
+                .click(function() {
+                    $("#Answer1").prop("checked", true);
+                });
+
+            $('div[data-tooltip=2]')
+                .click(function() {
+                    $("#Answer2").prop("checked", true);
+                });
+
+        </script>
+    }
+}

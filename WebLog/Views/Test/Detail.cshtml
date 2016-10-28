@@ -1,4 +1,5 @@
 ﻿@using Resources
+@using WebLog.Core.Models
 @model WebLog.Core.ViewModels.TestsViewModels.TestDetailViewModel
     
 <div class="col-sm-4">
@@ -29,8 +30,24 @@
 <div class="col-sm-8">
     @foreach (var question in Model.Questions)
     {
-        <a class="row">@question.Text</a>
+        <div>
+            <a onclick="toggleAnswers(@question.Id)"><span class="row">@(question.Points)p.    @question.Text</span></a>
+            <div id="@("question" + question.Id)" hidden="">
+                @foreach (var answer in question.Answers)
+                {
+                    <span>-@answer.Text</span><br/>
+                }
+            </div>
+        </div>
     }
-   
     
+    <a class="btn btn-primary" href="~/Test/AddQuestion/@Model.Id">@Global.AddQuestion</a>
+
 </div>
+
+<script>
+    function toggleAnswers(questionId) {
+        var el = $("#question" + questionId);
+        el.toggle();
+    }
+</script>

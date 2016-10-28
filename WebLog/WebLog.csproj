@@ -233,10 +233,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Controllers\LogController.cs" />
-    <Compile Include="Migrations\201610271444391_fix.cs" />
-    <Compile Include="Migrations\201610271444391_fix.Designer.cs">
-      <DependentUpon>201610271444391_fix.cs</DependentUpon>
+    <Compile Include="API\Controllers\MessageController.cs" />
+    <Compile Include="Core\Common\TestResult.cs" />
+    <Compile Include="Core\Services\IDataConversionService.cs" />
+    <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
+    <Compile Include="Migrations\201610280655597_asfasdfsa.cs" />
+    <Compile Include="Migrations\201610280655597_asfasdfsa.Designer.cs">
+      <DependentUpon>201610280655597_asfasdfsa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -313,14 +318,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610262115196_Add_Test.cs" />
-    <Compile Include="Migrations\201610262115196_Add_Test.Designer.cs">
-      <DependentUpon>201610262115196_Add_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610262213385_Add_Test2.cs" />
-    <Compile Include="Migrations\201610262213385_Add_Test2.Designer.cs">
-      <DependentUpon>201610262213385_Add_Test2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\Models\User.cs" />
     <Compile Include="Core\ViewModels\UserViewModel.cs" />
@@ -375,6 +372,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\myAngular\MainController.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -390,10 +391,13 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.countdown.js" />
+    <Content Include="Scripts\jquery.countdown.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -517,6 +521,7 @@
     <Content Include="Views\Test\Detail.cshtml" />
     <Content Include="Views\Shared\Question.cshtml" />
     <Content Include="Views\Test\AddQuestion.cshtml" />
+    <Content Include="Views\Test\SolveTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -525,7 +530,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
@@ -533,14 +540,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610262115196_Add_Test.resx">
-      <DependentUpon>201610262115196_Add_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610262213385_Add_Test2.resx">
-      <DependentUpon>201610262213385_Add_Test2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610271444391_fix.resx">
-      <DependentUpon>201610271444391_fix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610280655597_asfasdfsa.resx">
+      <DependentUpon>201610280655597_asfasdfsa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

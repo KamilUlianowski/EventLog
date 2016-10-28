@@ -130,3 +130,52 @@ input:focus::-webkit-input-placeholder
 .navbar-lang {
     margin-top: 5px;
 }
+
+@media screen and (min-width: 768px) {
+    .modal-lg {
+        width: 900px;
+    }
+
+    .modal-sm {
+        width: 300px;
+    }
+}
+
+.good-answer {
+    background-color: green;
+}
+
+.bad-answer {
+    background-color: #d9534f;
+}
+
+.grey-color {
+    color: #aaaaaa;
+}
+
+.question {
+    border: 2px solid #f2f2f2;
+    padding: 5px;
+    font-size: 18px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+    .question:hover {
+        border: 2px solid gray;
+        padding: 5px;
+        -ms-border-radius: 10px;
+        border-radius: 10px;
+        margin-top: 5px;
+    }
+
+.div-link:hover {
+    cursor: pointer;
+}
+
+.modal-window-text-header {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 3px solid #e5e5e5;
+}

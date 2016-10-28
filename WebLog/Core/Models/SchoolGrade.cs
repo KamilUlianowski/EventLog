@@ -19,9 +19,19 @@ namespace WebLog.Core.Models
         public Teacher Teacher { get; set; }
         public Student Student { get; set; }
         public Subject Subject { get; set; }
-            
+        public Test MyTest { get; set; }
         public SchoolGrade()
         {
+            Date = DateTime.Now;
+        }
+
+        public SchoolGrade(Grade grade, Student student, Subject subject, Test test)
+        {
+            Grade = grade;
+            Student = student;
+            Subject = subject;
+            MyTest = test;
+            Subject = subject;
             Date = DateTime.Now;
         }
 

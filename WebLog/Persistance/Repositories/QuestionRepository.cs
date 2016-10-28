@@ -35,5 +35,10 @@ namespace WebLog.Persistance.Repositories
             _context.QuestionAnswers.Add(new QuestionAnswer(vm.Answer3, question));
 
         }
+
+        public override IEnumerable<Question> GetAll()
+        {
+            return _context.Questions.Include(x => x.Answers);
+        }
     }
 }

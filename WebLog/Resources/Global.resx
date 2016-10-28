@@ -279,4 +279,22 @@
   <data name="AddTest" xml:space="preserve">
     <value>Add new test</value>
   </data>
+  <data name="Answers" xml:space="preserve">
+    <value>Answers</value>
+  </data>
+  <data name="Points" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="CorrectAnswer" xml:space="preserve">
+    <value>Correct answer</value>
+  </data>
+  <data name="AddQuestion" xml:space="preserve">
+    <value>Add Question</value>
+  </data>
 </root>

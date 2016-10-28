@@ -34,6 +34,7 @@ namespace WebLog
             container.RegisterType<IAuthService, AuthService>();
             container.RegisterType<IMailService, MailService>();
             container.RegisterType<IUserFactory, UserFactory>();
+            container.RegisterType<IDataConversionService, DataConversionService>();
         }
     }
 }

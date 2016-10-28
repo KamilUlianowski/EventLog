@@ -261,4 +261,22 @@
   <data name="AddTest" xml:space="preserve">
     <value>Dodaj nowy test</value>
   </data>
+  <data name="Answers" xml:space="preserve">
+    <value>Odpowiedzi</value>
+  </data>
+  <data name="Points" xml:space="preserve">
+    <value>Punkty</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Pytanie</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Czas</value>
+  </data>
+  <data name="CorrectAnswer" xml:space="preserve">
+    <value>Poprawna odpowiedź</value>
+  </data>
+  <data name="AddQuestion" xml:space="preserve">
+    <value>Dodaj pytanie</value>
+  </data>
 </root>

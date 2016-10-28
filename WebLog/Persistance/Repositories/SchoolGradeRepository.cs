@@ -53,5 +53,14 @@ namespace WebLog.Persistance.Repositories
 
             _context.SchoolGrades.Add(new SchoolGrade(grade, teacher, student, subject));
         }
+
+        public SchoolGrade GetGradeFromTest(User user, Test test)
+        {
+            return _context.SchoolGrades.Include(x => x.Subject)
+                .Include(x => x.MyTest)
+                .Include(x => x.Teacher)
+                .Include(x => x.Student)
+                .FirstOrDefault(x => x.Student.Id == user.Id && x.MyTest.Id == test.Id);
+        }
     }
 }

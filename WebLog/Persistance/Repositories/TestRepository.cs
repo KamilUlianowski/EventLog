@@ -43,7 +43,7 @@ namespace WebLog.Persistance.Repositories
         public override Test Get(int id)
         {
             return _context.Tests.Include(x => x.Subject)
-                .Include(x => x.Questions)
+                .Include(x => x.Questions.Select(y => y.Answers))
                 .FirstOrDefault(x => x.Id == id);
         }
     }
