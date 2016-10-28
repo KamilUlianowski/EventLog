@@ -179,3 +179,16 @@ input:focus::-webkit-input-placeholder
     background-color: #f2f2f2;
     border-bottom: 3px solid #e5e5e5;
 }
+
+#sidebar-messages {
+    position: fixed;
+    width: 150px;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 9999999;
+}
+
+#content-messages {
+    margin-left: 180px;
+}

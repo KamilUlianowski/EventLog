@@ -234,6 +234,7 @@
   <ItemGroup>
     <Compile Include="API\Controllers\LogController.cs" />
     <Compile Include="API\Controllers\MessageController.cs" />
+    <Compile Include="API\ViewModels\NewMessage.cs" />
     <Compile Include="Core\Common\TestResult.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />

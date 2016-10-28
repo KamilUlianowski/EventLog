@@ -1,80 +1,113 @@
-﻿@using Resources
-@model WebLog.Core.ViewModels.MessageViewModel
-
-<div class="container" ng-app="mainModule">
-    <div class="col-sm-4">
-        @foreach (var person in Model.ViewMessages)
-        {
-            <div class="row">
-                <a onclick='getMessages("@person.Key.Item2")'>@person.Key.Item2</a>
+﻿<div class="container" ng-app="mainModule">
+    <div class="row" ng-controller="MainController">
+        <div id="sidebar-messages">
+            <div ng-repeat="user in messages">
+                <button ng-click="showMessages(user.m_Item1)">{{ user.m_Item1 }}</button>
             </div>
-        }
-    </div>
-
-    <div ng-controller="MainController">
-        {{ test }}
-    </div>
-    <div class="col-lg-8" id="messages">
-
-    </div>
-    <div hidden>
-        @foreach (var person in Model.ViewMessages)
-        {
-            <div id="@("messages" + person.Key.Item2)" class="col-lg-8">
-                @foreach (var message in person.Value)
-                {
-                    <div class="row">
-                        <textarea disabled="disabled" style="resize: none">@message</textarea>
-                    </div>
-                }
-
-                <div id="@("form" + person.Key.Item2)">
-                    @using (Ajax.BeginForm("SendMessage", "Home", new { userToEmail = person.Key.Item1 }, new AjaxOptions
-                    {
-                        HttpMethod = "POST",
-                        OnSuccess = "addMessage('" + person.Key.Item2 + "')"
-                    }))
-                    {
-                        <div class="form-inline">
-                            <div class="form-group">
-                                @Html.TextAreaFor(x => x.Message, new { @class = "form-control", id = "input" + person.Key.Item2 })
-                            </div>
-
-                            <div class="form-group">
-                                <input class="btn btn-primary" type="submit" value="@Global.Send" />
-                            </div>
-
-                        </div>
-                    }
+        </div>
+        <div id="content-messages">
+            <div ng-repeat="message in myMessages">
+                <div class="row">
+                    <textarea disabled="disabled" style="resize: none">{{message}}</textarea>
                 </div>
-
+        
             </div>
-        }
+            <div ng-if="myMessages">
+                <form ng-submit="sendMessage(newMessage)">
+                    <input type="text" ng-model="newMessage" />
+                    <input type="submit" />
+                </form>
+            </div>
+        </div>
+
     </div>
 </div>
 
+
 @section Scripts {
-    
+
     @Scripts.Render("~/bundles/angular");
 
-    <script type="text/javascript">
-    var getMessages = function (person) {
-        $("#messages").html($("#messages" + person).html());
-    }
-
-    function addMessage(user) {
-        var newMessage = $("#input" + user).val();
-        var p = $("#form" + user).detach();
-        $("#form" + user).remove(); // nie wiem czemu tak, do poprawy
-        $("#messages" + user).append("<div class='row'>" +
-                        "<textarea disabled='disabled' style='resize: none'>" +
-                        newMessage +
-                        "</textarea>" +
-                    "</div>");
-        p.appendTo("#messages" + user);
-        $("#messages").html($("#messages" + user).html());
-
-    }
-</script>
-
 }
+
+
+@*@using Resources
+    @model WebLog.Core.ViewModels.MessageViewModel
+
+    <div class="container" ng-app="mainModule">
+        <div class="col-sm-4">
+            @foreach (var person in Model.ViewMessages)
+            {
+                <div class="row">
+                    <a onclick='getMessages("@person.Key.Item2")'>@person.Key.Item2</a>
+                </div>
+            }
+        </div>
+
+        <div ng-controller="MainController">
+            {{ test }}
+        </div>
+        <div class="col-lg-8" id="messages">
+
+        </div>
+        <div hidden>
+            @foreach (var person in Model.ViewMessages)
+            {
+                <div id="@("messages" + person.Key.Item2)" class="col-lg-8">
+                    @foreach (var message in person.Value)
+                    {
+                        <div class="row">
+                            <textarea disabled="disabled" style="resize: none">@message</textarea>
+                        </div>
+                    }
+
+                    <div id="@("form" + person.Key.Item2)">
+                        @using (Ajax.BeginForm("SendMessage", "Home", new { userToEmail = person.Key.Item1 }, new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            OnSuccess = "addMessage('" + person.Key.Item2 + "')"
+                        }))
+                        {
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    @Html.TextAreaFor(x => x.Message, new { @class = "form-control", id = "input" + person.Key.Item2 })
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="btn btn-primary" type="submit" value="@Global.Send" />
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+    @section Scripts {
+
+        @Scripts.Render("~/bundles/angular");
+
+        <script type="text/javascript">
+        var getMessages = function (person) {
+            $("#messages").html($("#messages" + person).html());
+        }
+
+        function addMessage(user) {
+            var newMessage = $("#input" + user).val();
+            var p = $("#form" + user).detach();
+            $("#form" + user).remove(); // nie wiem czemu tak, do poprawy
+            $("#messages" + user).append("<div class='row'>" +
+                            "<textarea disabled='disabled' style='resize: none'>" +
+                            newMessage +
+                            "</textarea>" +
+                        "</div>");
+            p.appendTo("#messages" + user);
+            $("#messages").html($("#messages" + user).html());
+
+        }
+    </script>
+
+    }*@

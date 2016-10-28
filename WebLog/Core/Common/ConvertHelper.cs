@@ -82,10 +82,9 @@ namespace WebLog.Core.Common
             return viewMessages;
         }
 
-        public static Dictionary<string, List<string>> GetConvertedMessages(List<Message> messages, string mail)
+        public static List<Tuple<string, string, List<string>>> GetConvertedMessages(List<Message> messages, string mail)
         {
-            var convMessages = new Dictionary<string, List<string>>();
-
+            var conMessages = new List<Tuple<string, string, List<string>>>();
             foreach (var message in messages)
             {
                 var userFrom = message.UserFrom.Name + " " + message.UserFrom.Surname;
@@ -93,21 +92,22 @@ namespace WebLog.Core.Common
 
                 if (message.UserFrom.Email != mail)
                 {
-                    if (convMessages.ContainsKey(userFrom))
-                        convMessages[userFrom].Add(message.Text);
+                    if (conMessages.Any(x => x.Item1 == userFrom))
+                        conMessages.FirstOrDefault(x => x.Item1 == userFrom).Item3.Add(message.Text);
                     else
-                        convMessages.Add(userFrom, new List<string> {message.Text});
+                        conMessages.Add(new Tuple<string,string, List<string>>(userFrom, message.UserFrom.Email, new List<string> {message.Text}));
                 }
                 else if (message.UserTo.Email != mail)
                 {
-                    if (convMessages.ContainsKey(userTo))
-                        convMessages[userTo].Add(message.Text);
+                    if (conMessages.Any(x => x.Item1 == userTo))
+                        conMessages.FirstOrDefault(x => x.Item1 == userTo).Item3.Add(message.Text);
                     else
-                        convMessages.Add(userTo, new List<string> { message.Text });
+                        conMessages.Add(new Tuple<string, string, List<string>>(userTo, message.UserTo.Email, new List<string> { message.Text }));
+
                 }
             }
             
-            return convMessages;   
+            return conMessages;   
         }
     }
 }
