@@ -303,6 +303,9 @@
   <data name="LoginToService" xml:space="preserve">
     <value>Login to service</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="Remind" xml:space="preserve">
     <value>Remind</value>
   </data>

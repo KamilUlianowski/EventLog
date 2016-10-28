@@ -21,21 +21,12 @@ namespace WebLog.Core.Models
         public string Surname { get; set; }
 
         [Required]
-        [Column(TypeName = "datetime2")]
-        public DateTime Birth { get; set; }
-
-        [Required]
         [Index(IsUnique = true)]
         [MaxLength(30)]
         public string Email { get; set; }
 
         [Required]
         public string Pesel { get; set; }
-
-        [Required]
-        public string Adress { get; set; }
-
-        public string Phone { get; set; }
 
         [Required]
         [MaxLength(30)]
@@ -47,14 +38,9 @@ namespace WebLog.Core.Models
         {
             Name = signUpViewModel.Name;
             Surname = signUpViewModel.Surname;
-            if (signUpViewModel.Birth.Year < 1850)
-                signUpViewModel.Birth = DateTime.Now;
-            Birth = signUpViewModel.Birth;
             Email = signUpViewModel.Email;
             Password = signUpViewModel.Password;
             Pesel = signUpViewModel.Pesel;
-            Adress = signUpViewModel.Adress;
-            Phone = signUpViewModel.Phone;
         }
 
         public User()

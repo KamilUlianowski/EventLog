@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201610280655597_asfasdfsa.Designer.cs">
       <DependentUpon>201610280655597_asfasdfsa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610282154420_updateUser.cs" />
+    <Compile Include="Migrations\201610282154420_updateUser.Designer.cs">
+      <DependentUpon>201610282154420_updateUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -562,6 +566,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610280655597_asfasdfsa.resx">
       <DependentUpon>201610280655597_asfasdfsa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282154420_updateUser.resx">
+      <DependentUpon>201610282154420_updateUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

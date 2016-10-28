@@ -76,10 +76,7 @@ namespace WebLog.Persistance.Repositories
 
             user.Name = editUserViewModel.Name;
             user.Surname = editUserViewModel.Surname;
-            user.Adress = editUserViewModel.Adress;
             user.Pesel = editUserViewModel.Pesel;
-            user.Phone = editUserViewModel.Phone;
-            user.Birth = editUserViewModel.Birth;
         }
 
     }

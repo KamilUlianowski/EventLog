@@ -1,66 +1,90 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.AuthViewModels.SignUpViewModel
-
-@using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
-{
-    <div class="form-group">
-        <label>@Global.Name: </label>
-        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Name)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.Surname: </label>
-        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Surname)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.Birth: </label>
-        @Html.TextBoxFor(x => x.Birth, new { @class = "form-control", id = "datetimepicker1" })
-        @Html.ValidationMessageFor(x => x.Birth)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.Email: </label>
-        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type="email" })
-        @Html.ValidationMessageFor(x => x.Email)
-    </div>
-
-
-    <div class="form-group">
-        <label>@Global.Address: </label>
-        @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Adress)
-    </div>
-
-
-    <div class="form-group">
-        <label>@Global.Pesel: </label>
-        @Html.TextBoxFor(x => x.Pesel, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Pesel)
-    </div>
-
-
-    <div class="form-group">
-        <label>@Global.Telephone: </label>
-        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Phone)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.Password: </label>
-        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Password)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.TypeOfUser: </label>
-        @Html.EnumDropDownListFor(x => x.TypeOfUser, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.TypeOfUser)
-    </div>
-
-    <div class="form-group modal-header">
-        <input type="submit" class="btn btn-primary" value="@Global.SignUp">
-    </div>
+    
+@{
+    Layout = null;
 }
+
+@Styles.Render("~/Content/metro")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/metro")
+@Scripts.Render("~/bundles/ownScript")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
+
+</head>
+<body class="bg-darkTeal">
+    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+    {
+        <div class="register-form padding20 block-shadow">
+            <form>
+                <h1 class="text-light">@Global.Register</h1>
+                <hr class="thin" />
+                <br />
+                <div class="input-control text full-size" data-role="input">
+                    <label for="user_login">@Global.Name</label>
+                    @Html.TextBoxFor(x => x.Name, new { @name = "user_login", id = "user_login", @class = "login-input" })
+                    <div class="validation-message">@Html.ValidationMessageFor(x => x.Name)</div>
+                </div>
+                <br />
+                <br />
+                <br />
+
+                <div class="input-control text full-size" data-role="input">
+                    <label for="user_login">@Global.Surname</label>
+                    @Html.TextBoxFor(x => x.Surname, new { @name = "user_login", id = "user_login", @class = "login-input" })
+                    <div class="validation-message"> @Html.ValidationMessageFor(x => x.Surname)</div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="input-control text full-size" data-role="input">
+                    <label for="user_login">@Global.UserEmail</label>
+                    @Html.TextBoxFor(x => x.Email, new { @name = "user_login", id = "user_login", @class = "login-input" })
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="input-control text full-size" data-role="input">
+                    <label for="user_login">@Global.Password</label>
+                    @Html.PasswordFor(x => x.Password, new { @name = "user_login", id = "user_login", @class = "login-input" })
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="input-control text full-size" data-role="input">
+                    <label for="user_login">@Global.Pesel</label>
+                    @Html.TextBoxFor(x => x.Pesel, new { @name = "user_login", id = "user_login", @class = "login-input" })
+                    @Html.ValidationMessageFor(x => x.Pesel)
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="input-control text full-size" data-role="input">
+                    <label for="user_login">@Global.TypeOfUser</label>
+                    @Html.EnumDropDownListFor(x => x.TypeOfUser, new { @name = "user_login", id = "user_login", @class = "login-input" })
+                    @Html.ValidationMessageFor(x => x.TypeOfUser)
+                </div>
+                <br />
+                <br />
+                <div class="form-actions">
+                    <button type="submit" class="button primary">@Global.SignUp</button><br/>
+                    <span class="sign-up-adds-login"> Do you have already an account?  <a href="~/Home/SignIn">Sign In now!</a></span>
+                </div>
+            </form>
+        </div>
+    }
+</body>
+</html>

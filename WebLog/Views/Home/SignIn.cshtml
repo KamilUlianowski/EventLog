@@ -1,32 +1,6 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.AuthViewModels.SignInViewModel
 
-@*<div>
-        @using (Html.BeginForm("SignIn", "Home", FormMethod.Post))
-        {
-            <div id="content-signin">
-                <div>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "input-signin", @placeholder = @Global.Email })
-                    @Html.ValidationMessageFor(x => x.Email)
-                </div>
-                <div>
-                    @Html.PasswordFor(x => x.Password, new { @class = "input-signin", @placeholder = @Global.Password })
-                    @Html.ValidationMessageFor(x => x.Password)
-                </div>
-                <div>
-                    <div>
-                        <input type="submit" id="submit-signin" value="@Global.SignIn">
-                    </div>
-
-                    <div>
-                        <input type="button" value="@Global.RemindPassword" id="submit-signin2" onclick="location.href = 'RemindPassword';" />
-                    </div>
-
-                </div>
-            </div>
-        }
-    </div>*@
-
 @{
     Layout = null;
 }
@@ -59,21 +33,19 @@
                 <div class="input-control text full-size" data-role="input">
                     <label for="user_login">@Global.UserEmail</label>
                     @Html.TextBoxFor(x => x.Email, new { @name="user_login", id="user_login", @class="login-input" })
-                    <button class="button helper-button clear"><span class="mif-cross"></span></button>
                 </div>
                 <br />
                 <br />
                 <div class="input-control password full-size" data-role="input">
                     <label for="user_password">@Global.UserPassword</label>
                     @Html.PasswordFor(x => x.Password, new { name="user_password", id="user_password", @class = "login-input" })
-                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
                 </div>
                 <br />
                 <br />
                 <div class="form-actions">
                     <button type="submit" class="button primary">@Global.LoginToService</button>
                 <a type="button" class="button link" href="~/Home/RemindPassword">@Global.RemindPassword</a><br/>
-                    <span class="sign-up-adds-login"> Don't have an account?  <a href="~/Home/SignUp">Sign Up now!</a></span>
+                    <span class="sign-up-adds-login"> Don't have an account?  <a href="~/Home/SignUp">   Sign Up now!</a></span>
                 </div>
             </form>
         </div>

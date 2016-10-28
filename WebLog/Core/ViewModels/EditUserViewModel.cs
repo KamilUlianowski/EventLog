@@ -49,13 +49,8 @@ namespace WebLog.Core.ViewModels
             Id = user.Id;
             Name = user.Name;
             Surname = user.Surname;
-            if (user.Birth.Year < 1850)
-                user.Birth = DateTime.Now;
-            Birth = user.Birth;
             Email = user.Email;
             Pesel = user.Pesel;
-            Adress = user.Adress;
-            Phone = user.Phone;
             Password = user.Password;
             
         }
