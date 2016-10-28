@@ -279,4 +279,19 @@
   <data name="AddQuestion" xml:space="preserve">
     <value>Dodaj pytanie</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cofnij</value>
+  </data>
+  <data name="LoginToService" xml:space="preserve">
+    <value>Zaloguj się do serwisu</value>
+  </data>
+  <data name="Remind" xml:space="preserve">
+    <value>Przypomnij</value>
+  </data>
+  <data name="UserEmail" xml:space="preserve">
+    <value>Email :</value>
+  </data>
+  <data name="UserPassword" xml:space="preserve">
+    <value>Hasło :</value>
+  </data>
 </root>

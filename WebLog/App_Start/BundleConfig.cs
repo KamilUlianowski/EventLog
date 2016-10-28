@@ -41,10 +41,18 @@ namespace WebLog
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/bootstrap-datepicker.css",
+                      //"~/Content/bootstrap.css",
+                      //"~/Content/bootstrap-datepicker.css",
                       "~/Content/site.css",
                       "~/Content/site2.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/metro").Include(
+            "~/Scripts/metro.js"));
+
+            bundles.Add(new StyleBundle("~/Content/metro").Include(
+                   "~/Content/metro*"));
+
+
         }
     }
 }

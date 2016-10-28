@@ -1,129 +1,24 @@
-﻿/* Set padding to keep content from hitting the edges */
-.body-content {
-	padding-left: 15px;
-	padding-right: 15px;
+﻿
+.login-form {
+    width: 25rem;
+    height: 18.75rem;
+    position: fixed;
+    top: 50%;
+    margin-top: -9.375rem;
+    left: 50%;
+    margin-left: -12.5rem;
+    background-color: #ffffff;
+    opacity: 0;
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-	white-space: normal;
+.navbar-adds {
+    padding-right: 10px !important;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-	max-width: 280px;
-}
-
-body
-{
-	/* Background pattern from subtlepatterns.com */
-	background-image: url("/content/img/hexellence.png");
-	font-size: 16px;
-}
-
-#content-signin
-{
-	background-color: white;
-	width: 375px;
-	padding: 50px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 100px;
-	-webkit-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
-	-moz-box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
-	box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
-}
-
-.input-signin
-{
-	width: 300px;
-	background-color: #efefef;
-	color: #666;
-	border: 2px solid #ddd;
-	border-radius: 5px;
-	font-size: 20px;
-	padding: 10px;
-	box-sizing: border-box;
-	outline: none;
-	margin-top: 10px;
-}
-
-.input-signin:focus
-{
-	-webkit-box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
-	-moz-box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
-	box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.9);
-	border: 2px solid #a5cda5;
-	background-color: #e9f3e9;
-	color: #428c42;
-}
-
-#submit-signin
-{
-	width: 300px;
-	background-color: #36b03c;
-	font-size: 20px;
-	color: white;
-	padding: 15px 10px;
-	margin-top: 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	letter-spacing: 2px;
-	outline: none;
-}
-
-#submit-signin:focus
-{
-	-webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
-	-moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
-	box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
-}
-
-#submit-signin:hover
-{
-	background-color: #37b93d;
-}
-
-input::-webkit-input-placeholder
-{
-	color:#999;
-}
-
-input:focus::-webkit-input-placeholder
-{
-	color: #428c42;
-}
-
-#submit-signin2
-{
-	font-size: 15px;
-	padding: 10px 10px;
-	width: 300px;
-	background-color: #36b03c;
-	color: white;
-	margin-top: 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	letter-spacing: 2px;
-	outline: none;
-}
-
-#submit-signin2:focus
-{
-	-webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
-	-moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
-	box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
-}
-
-#submit-signin2:hover
-{
-	background-color: #37b93d;
+#submit-signin2:hover {
+    background-color: #37b93d;
 }
 
 
@@ -191,4 +86,22 @@ input:focus::-webkit-input-placeholder
 
 #content-messages {
     margin-left: 180px;
+}
+
+.sign-up-adds {
+    margin-top: 15px;
+    position: fixed;
+}
+
+.sign-up-adds-login {
+    margin-top: 10px;
+    position: fixed;
+}
+
+.cancel-button-adds {
+    margin-left: 10px;
+}
+
+.login-input {
+    margin-top: 5px;
 }

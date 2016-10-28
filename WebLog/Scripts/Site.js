@@ -1,12 +1,24 @@
-﻿$.fn.datepicker.defaults.format = 'mm/dd/yyyy';
+﻿//$.fn.datepicker.defaults.format = 'mm/dd/yyyy';
 
+
+//$(function () {
+//    $('#datetimepicker1').datepicker({
+//    });
+//});
+
+//$(function () {
+//    $('#datetimepicker2').datepicker({
+//    });
+//});
 
 $(function () {
-    $('#datetimepicker1').datepicker({
-    });
-});
+    var form = $(".login-form");
 
-$(function () {
-    $('#datetimepicker2').datepicker({
+    form.css({
+        opacity: 1,
+        "-webkit-transform": "scale(1)",
+        "transform": "scale(1)",
+        "-webkit-transition": ".5s",
+        "transition": ".5s"
     });
 });

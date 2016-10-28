@@ -297,4 +297,19 @@
   <data name="AddQuestion" xml:space="preserve">
     <value>Add Question</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LoginToService" xml:space="preserve">
+    <value>Login to service</value>
+  </data>
+  <data name="Remind" xml:space="preserve">
+    <value>Remind</value>
+  </data>
+  <data name="UserEmail" xml:space="preserve">
+    <value>User email :</value>
+  </data>
+  <data name="UserPassword" xml:space="preserve">
+    <value>User password :</value>
+  </data>
 </root>
