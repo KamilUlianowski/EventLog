@@ -150,5 +150,7 @@ namespace WebLog.Controllers
             return RedirectToAction("SchoolClassDetail", "Admin", new { id = schoolClassViewModel.Id });
         }
 
+
+
     }
 }

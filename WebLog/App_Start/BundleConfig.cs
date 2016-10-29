@@ -20,7 +20,8 @@ namespace WebLog
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular*",
-                      "~/Scripts/myAngular/MainController*"
+                      "~/Scripts/myAngular/MainController*",
+                      "~/Scripts/myAngular/ManageController*"
                        ));
 
 
@@ -33,12 +34,24 @@ namespace WebLog
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-modal").Include(
+                "~/Scripts/bootstrap-only-modal.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap/datepicker").Include(
                 "~/Scripts/bootstrap-datepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ownScript").Include(
                 "~/Scripts/Site.js"));
 
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap-modal").Include(
+                  "~/Content/bootstrap-only-modal.css"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datepicker.css"
+                    ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       //"~/Content/bootstrap.css",

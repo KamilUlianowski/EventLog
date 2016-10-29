@@ -315,4 +315,7 @@
   <data name="UserPassword" xml:space="preserve">
     <value>User password :</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
 </root>

@@ -18,6 +18,8 @@ namespace WebLog.Core.Models
 
         public string Content { get; set; }
 
+        public string ImagePath { get; set; }
+
         public ICollection<SchoolClass> SchoolClasses { get; set; }
         public ICollection<Teacher> Teachers { get; set; }
 

@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Controllers\LogController.cs" />
+    <Compile Include="API\Controllers\ManageController.cs" />
     <Compile Include="API\Controllers\MessageController.cs" />
     <Compile Include="API\ViewModels\NewMessage.cs" />
     <Compile Include="Core\Common\TestResult.cs" />
@@ -245,6 +246,10 @@
     <Compile Include="Migrations\201610282154420_updateUser.cs" />
     <Compile Include="Migrations\201610282154420_updateUser.Designer.cs">
       <DependentUpon>201610282154420_updateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610282335063_imageToSubject.cs" />
+    <Compile Include="Migrations\201610282335063_imageToSubject.Designer.cs">
+      <DependentUpon>201610282335063_imageToSubject.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
@@ -368,9 +373,12 @@
     <Content Include="Content\bootstrap-datepicker3.min.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-only-modal.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\hexellence.png" />
+    <Content Include="Content\img\maths.jpg" />
+    <Content Include="Content\jquery.modal.min.css" />
     <Content Include="Content\metro-colors.css" />
     <Content Include="Content\metro-colors.min.css" />
     <Content Include="Content\metro-icons.css" />
@@ -393,6 +401,8 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap-only-modal.js" />
+    <Content Include="Scripts\jquery.modal.min.js" />
     <Content Include="Scripts\metro.js" />
     <Content Include="Scripts\metro.min.js" />
     <Content Include="Scripts\myAngular\MainController.js" />
@@ -495,6 +505,7 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\myAngular\ManageController.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -569,6 +580,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610282154420_updateUser.resx">
       <DependentUpon>201610282154420_updateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282335063_imageToSubject.resx">
+      <DependentUpon>201610282335063_imageToSubject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

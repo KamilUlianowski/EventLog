@@ -1,52 +1,51 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.EditUserViewModel
-    
+
 @using (Html.BeginForm("Update", "Edit", FormMethod.Post))
 {
-    <div class="form-group">
-        <label>@Global.Name: </label>
-        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Name)
-    </div>
+    <div class="profile-form">
+        <label class="profile-label">@Global.Name: </label>
+        <div class="input-control text">
+            @Html.TextBoxFor(x => x.Name, new { @class = "profile-input" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+        <br />
+        <br />
 
-    <div class="form-group">
-        <label>@Global.Surname: </label>
-        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Surname)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.Birth: </label>
-        @Html.TextBoxFor(x => x.Birth, new { @class = "form-control", id = "datetimepicker1" })
-        @Html.ValidationMessageFor(x => x.Birth)
-    </div>
-
-
-    <div class="form-group">
-        <label>@Global.Address: </label>
-        @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Adress)
-    </div>
-
-    <div class="form-group">
-        <label>@Global.Pesel: </label>
-        @Html.TextBoxFor(x => x.Pesel, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Pesel)
-    </div>
+        <label class="profile-label">@Global.Surname: </label>
+        <div class="input-control text">
+            @Html.TextBoxFor(x => x.Surname, new { @class = "profile-input" })
+            @Html.ValidationMessageFor(x => x.Surname)
+        </div>
+        <br />
+        <br />
 
 
-    <div class="form-group">
-        <label>@Global.Telephone: </label>
-        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Phone)
-    </div>
+        <label class="profile-label">@Global.Email: </label>
+        <div class="input-control text">
+            @Html.TextBoxFor(x => x.Email, new { @class = "profile-input" })
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+        <br />
+        <br />
 
-    @Html.HiddenFor(x => x.Password)
-    @Html.HiddenFor(x => x.Email)
-    @Html.HiddenFor(x => x.Id)
+        <label class="profile-label">@Global.Pesel: </label>
+        <div class="input-control text">
+            @Html.TextBoxFor(x => x.Pesel, new { @class = "profile-input" })
+            @Html.ValidationMessageFor(x => x.Pesel)
+        </div>
+        <br />
+        <br />
 
 
-    <div class="form-group modal-header">
-        <input type="submit" class="btn btn-primary" value="@Global.Update">
+
+        @Html.HiddenFor(x => x.Password)
+        @Html.HiddenFor(x => x.Email)
+        @Html.HiddenFor(x => x.Id)
+
+
+        <div class="form-group modal-header">
+            <input type="submit" class="btn btn-primary" value="@Global.Update">
+        </div>
     </div>
 }

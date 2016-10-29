@@ -27,8 +27,47 @@
     transform: scale(.8);
 }
 
+.profile-form {
+    background-color: #add8e6;
+    left: 35%;
+    top: 10%;
+    width: 25rem;
+    height: 30rem;
+    position: fixed;
+    padding: 20px;
+}
+
+.content-adds {
+    height: 100%;
+    width: 100%;
+}
+
+.page-content {
+    height: 100%;
+    width: 100%;
+}
+
+#Wrapper {
+    overflow: hidden;
+}
+
+#Sidebar {
+    background-color: #71b1d1;
+    height: 100%;
+}
+
 .navbar-adds {
     padding-right: 10px !important;
+}
+
+.profile-label {
+    text-align: right;
+    clear: both;
+}
+
+.profile-input {
+    margin-left: 50px;
+    position: absolute;
 }
 
 #submit-signin2:hover {
@@ -121,5 +160,13 @@
 }
 
 .validation-message {
-    color: #ff0000
+    color: #ff0000;
+}
+
+.image-resize{
+    height: auto; 
+    width: auto; 
+    max-width: 340px; 
+    max-height: 200px;
+    margin: 10px 10px 10px 0;
 }

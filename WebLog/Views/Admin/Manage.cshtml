@@ -1,5 +1,93 @@
 ﻿@using Resources
-<div class="row">
-    <a class="btn btn-primary" href="~/Admin/Subjects">@Global.Subjects</a>
-    <a class="btn btn-primary" href="~/Admin/SchoolClasses">@Global.Classes</a>
+
+@Styles.Render("~/Content/bootstrap-modal")
+
+@*<div class="row">
+        <a class="btn btn-primary" href="~/Admin/Subjects">@Global.Subjects</a>
+        <a class="btn btn-primary" href="~/Admin/SchoolClasses">@Global.Classes</a>
+    </div>*@
+
+<!-- Link to open the modal -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
 </div>
+
+<div class="page-content" ng-app="mainModule" ng-controller="ManageController">
+    <div class="flex-grid no-responsive-future" style="height: 100%;">
+        <div class="row" style="height: 100%">
+            <div class="cell size-x200 sidebar" id="cell-sidebar">
+                <ul class="sidebar">
+                    <li>
+                        <a class="active" href="#">
+                            <span class="mif-apps icon"></span>
+                            <span class="title">Subjects</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-vpn-publ icon"></span>
+                            <span class="title">Classes</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="mif-vpn-publ icon"></span>
+                            <span class="title">Students</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="mif-vpn-publ icon"></span>
+                            <span class="title">Teachers</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="cell auto-size padding20 bg-white" id="cell-content">
+                <h1 class="text-light">@Global.Subjects <span class="mif-drive-eta place-right"></span></h1>
+                <hr class="thin bg-grayLighter">
+                <button data-toggle="modal" data-target="#myModal" class="button primary" onclick="pushMessage('info')"><span class="mif-plus">  @Global.Create </span></button>
+                <hr class="thin bg-grayLighter">
+
+                <div class="image-container image-format-square" ng-repeat="subject in subjects">
+                    <div class="frame"><img class="image-resize" ng-src="{{subject.ImagePath}}" /></div>
+                    <div class="image-overlay">
+                        <h2>{{subject.Name}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/angular");
+    @Scripts.Render("~/bundles/bootstrap-modal");
+
+}
