@@ -1,0 +1,59 @@
+﻿@using Resources
+
+<div id="myModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header-adds">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nowy Przedmiot</h4>
+            </div>
+
+            <form ng-submit="addClass(name)">
+                <div class="modal-body">
+                    <label class="modal-label">Nazwa</label>
+                    <div class="input-control text">
+                        <input type="text" ng-model="name" />
+                    </div><br /><br />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="button primary modal-submit-adds">@Global.Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
+    <h1 class="text-light">@Global.Classes <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+    <button data-toggle="modal" data-target="#myModal" class="button primary"><span class="mif-plus">  @Global.Create </span></button>
+    <hr class="thin bg-grayLighter">
+
+    <div class="manage-table">
+        <table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
+            <thead>
+                <tr>
+                    <td class="sortable-column sort-asc" style="width: 100px">Nazwa</td>
+                    <td class="sortable-column">Wychowawca</td>
+                    <td class="sortable-column">Liczba uczniów</td>
+                    <td class="sortable-column" style="width: 5px">Usuń</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="class in classes">
+                    <td>{{class.Name}}</td>
+                    <td>{{class.Teacher.Name}} {{class.Teacher.Surnames}}</td>
+                    <td>{{class.Students.length}}</td>
+                    <td ng-click="deleteClass(class.Id)"><a class="cross-icon"><span class="mif-cross icon"></span></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

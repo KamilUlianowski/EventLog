@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using WebLog.Core.Models;
@@ -29,6 +30,11 @@ namespace WebLog.Persistance.Repositories
                                                                 x.Pesel == parentViewModel.Pesel);
 
             return student;
+        }
+
+        public override IEnumerable<Student> GetAll()
+        {
+            return _context.Students.Include(x => x.SchoolClass);
         }
     }
 }

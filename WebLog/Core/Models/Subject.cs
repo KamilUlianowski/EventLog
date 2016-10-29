@@ -35,5 +35,13 @@ namespace WebLog.Core.Models
             SchoolClasses = new List<SchoolClass>();
             Teachers = new List<Teacher>();
         }
+
+        public Subject(string name, string url)
+        {
+            Name = name;
+            ImagePath = url;
+            SchoolClasses = new List<SchoolClass>();
+            Teachers = new List<Teacher>();
+        }
     }
 }

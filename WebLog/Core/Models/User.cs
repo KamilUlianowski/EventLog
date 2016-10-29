@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 using WebLog.Core.Common;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.AuthViewModels;
@@ -29,6 +30,7 @@ namespace WebLog.Core.Models
         public string Pesel { get; set; }
 
         [Required]
+        [JsonIgnore]
         [MaxLength(30)]
         public string Password { get; set; }
 

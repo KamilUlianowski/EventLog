@@ -30,28 +30,24 @@ namespace WebLog
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-modal").Include(
                 "~/Scripts/bootstrap-only-modal.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap/datepicker").Include(
-                "~/Scripts/bootstrap-datepicker.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery-datatables").Include(
+                "~/Scripts/DataTables/jquery.dataTables.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/ownScript").Include(
+            bundles.Add(new StyleBundle("~/Content/jquery-datatables").Include(
+                "~/Content/DataTables/css/jquery.dataTables.css"));
+
+
+
+bundles.Add(new ScriptBundle("~/bundles/ownScript").Include(
                 "~/Scripts/Site.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/bootstrap-modal").Include(
                   "~/Content/bootstrap-only-modal.css"
                 ));
-
-            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/bootstrap-datepicker.css"
-                    ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       //"~/Content/bootstrap.css",

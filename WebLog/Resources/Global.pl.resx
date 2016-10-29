@@ -300,4 +300,7 @@
   <data name="Create" xml:space="preserve">
     <value>Stwórz</value>
   </data>
+  <data name="Teachers" xml:space="preserve">
+    <value>Nauczyciele</value>
+  </data>
 </root>

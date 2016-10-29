@@ -1,11 +1,55 @@
-﻿@using Resources
-@model WebLog.Core.ViewModels.SubjectsViewModel
-
-@foreach (var subject in Model.Subjects)
-{
-    <div class="row">
-        <a href="~/Admin/SubjectDetail/@subject.Id">@subject.Name</a>
-    </div>
+﻿@{
+    Layout = null;
 }
 
-<a class="btn btn-primary" href="~/Admin/AddSubject">@Global.AddNewSubject</a>
+@using Resources
+<div id="myModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header-adds">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nowy Przedmiot</h4>
+            </div>
+
+            <form ng-submit="addSubject(nameOfSubject,imageUrl)">
+                <div class="modal-body">
+                    <label class="modal-label">Nazwa</label>
+                    <div class="input-control text">
+                        <input type="text" ng-model="nameOfSubject" />
+                    </div><br /><br />
+
+                    <label class="modal-label">Zdjęcie (link)</label>
+                    <div class="input-control text">
+                        <input type="url" ng-model="imageUrl" />
+                    </div><br /><br />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="button primary modal-submit-adds">@Global.Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="cell auto-size padding20 bg-white" id="cell-content">
+    <h1 class="text-light">@Global.Subjects <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+    <button data-toggle="modal" data-target="#myModal" class="button primary"><span class="mif-plus">  @Global.Create </span></button>
+    <hr class="thin bg-grayLighter">
+
+    <div class="image-container image-format-square" ng-repeat="subject in subjects">
+        <div class="frame img-wrap">
+            <span class="close" ng-click="deleteSubject(subject.Id)">&times;</span>
+            <img class="image-resize" ng-src="{{subject.ImagePath}}" />
+        </div>
+        <div class="image-overlay">
+            <h2>{{subject.Name}}</h2>
+        </div>
+    </div>
+</div>

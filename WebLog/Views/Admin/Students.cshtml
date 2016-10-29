@@ -1,0 +1,28 @@
+﻿
+@using Resources
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
+    <h1 class="text-light">@Global.Student <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+
+    <div class="manage-table">
+        <table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
+            <thead>
+                <tr>
+                    <td class="sortable-column sort-asc" style="width: 100px">Imie</td>
+                    <td class="sortable-column">Nazwisko</td>
+                    <td class="sortable-column">Klasa</td>
+                    <td class="sortable-column">Email</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students">
+                    <td>{{student.Name}}</td>
+                    <td>{{student.Surname}}</td>
+                    <td>{{student.SchoolClass.Name}}</td>
+                    <td>{{student.Email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

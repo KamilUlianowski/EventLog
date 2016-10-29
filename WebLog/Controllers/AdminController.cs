@@ -28,8 +28,22 @@ namespace WebLog.Controllers
 
         public ActionResult Subjects()
         {
-            return View(new SubjectsViewModel(
-                        _unitOfWork.Subjects.GetAll().ToList()));
+            return PartialView();
+        }
+
+        public ActionResult Classes()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Teachers()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Students()
+        {
+            return PartialView();
         }
 
         public ActionResult SchoolClasses()
