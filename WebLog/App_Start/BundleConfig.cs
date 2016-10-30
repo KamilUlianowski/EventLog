@@ -21,7 +21,8 @@ namespace WebLog
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular*",
                       "~/Scripts/myAngular/MainController*",
-                      "~/Scripts/myAngular/ManageController*"
+                      "~/Scripts/myAngular/ManageController*",
+                      "~/Scripts/myAngular/SchoolGradesController*"
                        ));
 
 

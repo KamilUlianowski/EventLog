@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -6549,7 +6549,7 @@ function $CacheFactoryProvider() {
          *
          * @returns {object} an object with the following properties:
          *   <ul>
-         *     <li>**id**: the id of the cache instance</li>
+         *     <li>**id**: the subjectId of the cache instance</li>
          *     <li>**size**: the number of entries kept in the cache instance</li>
          *     <li>**...**: any additional properties from the options object when creating the
          *       cache.</li>
@@ -12765,7 +12765,7 @@ var $jsonpCallbacksProvider = function() {
  * $locale service provides localization rules for various Angular components. As of right now the
  * only public api is:
  *
- * * `id` – `{string}` – locale id formatted as `languageId-countryId` (e.g. `en-us`)
+ * * `id` – `{string}` – locale subjectId formatted as `languageId-countryId` (e.g. `en-us`)
  */
 
 var PATH_MATCH = /^([^\?#]*)(\?([^#]*))?(#(.*))?$/,
@@ -21125,8 +21125,8 @@ function sliceFn(input, begin, end) {
  * Returns an array containing the items from the specified `collection`, ordered by a `comparator`
  * function based on the values computed using the `expression` predicate.
  *
- * For example, `[{id: 'foo'}, {id: 'bar'}] | orderBy:'id'` would result in
- * `[{id: 'bar'}, {id: 'foo'}]`.
+ * For example, `[{id: 'foo'}, {subjectId: 'bar'}] | orderBy:'subjectId'` would result in
+ * `[{id: 'bar'}, {subjectId: 'foo'}]`.
  *
  * The `collection` can be an Array or array-like object (e.g. NodeList, jQuery object, TypedArray,
  * String, etc).
@@ -28435,7 +28435,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  *
  * Another solution is to use a `track by` clause, because then `ngOptions` will track the identity
  * of the item not by reference, but by the result of the `track by` expression. For example, if your
- * collection items have an id property, you would `track by item.id`.
+ * collection items have an id property, you would `track by item.subjectId`.
  *
  * A different issue with objects or collections is that ngModel won't detect if an object property or
  * a collection item changes. For that reason, `ngOptions` additionally watches the model using
@@ -29461,7 +29461,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  * **Note:** `track by` must always be the last expression:
  * </div>
  * ```
- * <div ng-repeat="model in collection | orderBy: 'id' as filtered_result track by model.id">
+ * <div ng-repeat="model in collection | orderBy: 'id' as filtered_result track by model.subjectId">
  *     {{model.name}}
  * </div>
  * ```
@@ -29546,7 +29546,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  *     For example: `item in items` is equivalent to `item in items track by $id(item)`. This implies that the DOM elements
  *     will be associated by item identity in the array.
  *
- *     For example: `item in items track by $id(item)`. A built in `$id()` function can be used to assign a unique
+ *     For example: `item in items track by $id(item)`. A built in `$subjectId()` function can be used to assign a unique
  *     `$$hashKey` property to each item in the array. This property is then used as a key to associated DOM elements
  *     with the corresponding item in the array by identity. Moving the same object in array would move the DOM
  *     element in the same way in the DOM.

@@ -1,16 +1,23 @@
-﻿@model  Dictionary<string, Dictionary<string, List<int>>>
+﻿@using Resources
+@model  Dictionary<string, Dictionary<string, List<int>>>
 
-@foreach (var subject in Model)
-{
-    <h1>@subject.Key</h1>
-    foreach (var student in subject.Value)
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
+    <h1 class="text-light">Zestawienie ocen <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+
+    @foreach (var subject in Model)
     {
-        <div class="row">
-            <h4>@student.Key</h4>
-            @foreach (var grade in student.Value)
-            {
-                <a>@grade</a>
-            }
-        </div>
+        <h1>@subject.Key</h1>
+        foreach (var student in subject.Value)
+        {
+            <div class="row">
+                <h4>@student.Key</h4>
+                @foreach (var grade in student.Value)
+                {
+                    <a>@grade</a>
+                }
+            </div>
+        }
     }
-}
+    
+</div>

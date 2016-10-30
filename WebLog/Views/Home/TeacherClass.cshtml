@@ -1,7 +1,12 @@
-﻿@model WebLog.Core.ViewModels.StudentGradesViewModel
+﻿@using Resources
+@model WebLog.Core.ViewModels.StudentGradesViewModel
 
-<h3>@Model.SchoolClass.Name</h3>
 
-<div id="grades-window">
-    @Html.Partial("SchoolGrades", Model)
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content" ng-if="class == null">
+    <h1 class="text-light">@Model.Subject.Name   @Model.SchoolClass.Name <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+
+    <div id="grades-window">
+        @Html.Partial("SchoolGrades", Model)
+    </div>
 </div>

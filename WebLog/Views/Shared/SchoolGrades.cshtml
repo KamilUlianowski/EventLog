@@ -1,52 +1,75 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.StudentGradesViewModel
 
-@foreach (var student in Model.SchoolClass.Students)
-{
-    <div class="row">
+<div ng-init="init(@Model.Subject.Id, @Model.SchoolClass.Id)">
+    <table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
+        <thead>
+            <tr>
+                <td class="sortable-column sort-asc" style="width: 100px">Uczeń</td>
+                <td class="sortable-column">Oceny</td>
+                <td class="sortable-column" style="width: 5px">Dodaj</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="class in classes">
+                <td class="mouse-pointer"><a ng-click="showClassDetail(class.Id)">{{class.Name}}</a></td>
+                <td>{{2+2}} {{class.Teacher.Surname}}</td>
+                <td>{{2+2}}</td>
+                <td ng-click="deleteClass(class.Id)" class="mouse-pointer"><a class="cross-icon"><span class="mif-cross icon mouse-pointer"></span></a></td>
+            </tr>
+        </tbody>
+    </table>
 
-        <div class="col-lg-2">
-            @(student.Name + " " + student.Surname)
-        </div>
+</div>
 
-        <div id="@("studentGrades" + @student.Id)" class="col-lg-4">
-            @foreach (var grade in Model.SchoolGrades.Where(x => x.Student.Id == student.Id))
-            {
-                <a>@((int)grade.Grade)</a>
-            }
-        </div>
-        <div class="col-lg-6">
+@*<script type="text/javascript">
+        function addGrade(id) {
+            var selectedGrade = $("#student" + id).val();
+            $("#studentGrades" + id).append("<a>" + selectedGrade + "</a>");
+        }
 
-            @using (Ajax.BeginForm("AddGrade", "Home", new { selectedStudent = @student.Id }, new AjaxOptions
-            {
-                HttpMethod = "POST",
-                OnSuccess = "addGrade(" + student.Id + ")"
+    </script>*@
 
 
-            }))
-            {
-                @Html.HiddenFor(x => x.Teacher.Id)
-                @Html.HiddenFor(x => x.Subject.Id)
-                @Html.HiddenFor(x => x.SchoolClass.Id)
+@*@foreach (var student in Model.SchoolClass.Students)
+    {
+        <div class="row">
 
-                <div class="form-inline">
-                    <div class="form-group">
-                        @Html.EnumDropDownListFor(x => x.NewGrade, "Ocena", new { @class = "form-control", type = "date", id = "student" + student.Id })
+            <div class="col-lg-2">
+                @(student.Name + " " + student.Surname)
+            </div>
+
+            <div id="@("studentGrades" + @student.Id)" class="col-lg-4">
+                @foreach (var grade in Model.SchoolGrades.Where(x => x.Student.Id == student.Id))
+                {
+                    <a>@((int)grade.Grade)</a>
+                }
+            </div>
+            <div class="col-lg-6">
+
+                @using (Ajax.BeginForm("AddGrade", "Home", new { selectedStudent = @student.Id }, new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "addGrade(" + student.Id + ")"
+
+
+                }))
+                {
+                    @Html.HiddenFor(x => x.Teacher.Id)
+                    @Html.HiddenFor(x => x.Subject.Id)
+                    @Html.HiddenFor(x => x.SchoolClass.Id)
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            @Html.EnumDropDownListFor(x => x.NewGrade, "Ocena", new { @class = "form-control", type = "date", id = "student" + student.Id })
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" onsubmit="addGrade(@student.Id)" value="@Global.Add">
+                        </div>
+
                     </div>
-
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" onsubmit="addGrade(@student.Id)" value="@Global.Add">
-                    </div>
-
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
-}
-<script type="text/javascript">
-    function addGrade(id) {
-        var selectedGrade = $("#student" + id).val();
-        $("#studentGrades" + id).append("<a>" + selectedGrade + "</a>");
-    }
-
-</script>
+    }*@

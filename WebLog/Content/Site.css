@@ -171,6 +171,22 @@
     margin: 10px 10px 10px 0;
 }
 
+.column-subject {
+    float: left;
+    margin-left: 7rem;
+}
+
+.class-name-picture {
+    float: left;
+    font-size: 10rem;
+    background-color: #aaaaaa;
+    padding: 10px 40px 30px 30px
+}
+
+.image-container-adds {
+    float: left;
+}
+
 .modal-header-adds {
     text-align: center;
 }
@@ -178,8 +194,15 @@
 .modal-label {
     display: inline-block;
     text-align: left;
-    width: 100px;
+    width: 180px;
 }
+
+.modal-label-class {
+    display: inline-block;
+    text-align: left;
+    width: 90px;
+}
+
 
 .modal-input-adds {
     margin-left: 10px;
@@ -220,4 +243,35 @@
 
 .cross-icon {
     margin-left: 15px;
+}
+
+.mouse-pointer :hover {
+    cursor: pointer;
+}
+
+.add-section {
+    width: 500px;
+}
+
+.sidebar-search-li {
+    margin-top: 20px;
+}
+
+.sidebar-search-form {
+    margin-left: 10px !important;
+}
+
+.sidebar-serach-form-submit {
+    float: right !important;
+    margin-right: 17px !important
+}
+
+.teacher-content-part {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.add-test-button {
+    margin-top: 1rem !important;
 }

@@ -1,51 +1,82 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.SubjectViewModels.SubjectSiteViewModel
-    
-<h1>@Model.Subject.Name</h1>
 
-<div class="col-lg-12">
-    @if (User.IsInRole("Teacher"))
-    {
-        <div class="col-lg-6">
-            <form action="~/Home/AddFile" method="post" enctype="multipart/form-data">
-                <input name="subjectId" value="@Model.Subject.Id" hidden />
-                <input type="file" name="file" />
-                <input type="submit" value="Wyślij plik" />
-            </form>
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content" ng-if="class == null">
+    <h1 class="text-light">@Model.Subject.Name <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
 
-            @using (Html.BeginForm("AddContent", "Home", FormMethod.Post))
-            {
-                @Html.HiddenFor(x => x.Subject.Id)
-                <div class="form-group">
-                    <label>@Global.Content: </label>
-                    @Html.TextAreaFor(x => x.Content, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Content)
-                </div>
-
-
-                <div class="form-group ">
-                    <input type="submit" class="btn btn-primary" value="@Global.SignIn">
-                </div>
-
-            }
-        </div>
-
-    }
-    @if (User.IsInRole("Student"))
-    {
-        <div class="col-lg-6">cos tu bedzie</div>
-    }
-    
-    <div class="col-lg-6">
-        
-        @foreach (var test in Model.Tests)
+    <div>
+        @if (User.IsInRole("Teacher"))
         {
-            <a class="row" href="~/Test/Detail/@test.Id">@test.Name</a>
+
+            <div class="teacher-content-part">
+                
+                <span>Klasy</span>
+
+                @foreach (var schoolClass in Model.Subject.SchoolClasses)
+                {
+                    using (Ajax.BeginForm("TeacherClass", "Home", new {subjectId = Model.Subject.Id, schoolClassId = schoolClass.Id}, new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "teacher-account-content"
+                    }))
+                    {
+
+                        <input type="submit" class="button primary" value="@schoolClass.Name"/>
+                        @*<a class="button primary" href="~/Home/TeacherClass?subjectId=@Model.Subject.Id&schoolClassId=@schoolClass.Id">
+                            @schoolClass.Name
+                        </a>*@
+                    }
+                }
+                <form action="~/Home/AddFile" method="post" enctype="multipart/form-data">
+                    <input name="subjectId" value="@Model.Subject.Id" hidden/>
+                    <input type="file" name="file"/>
+                    <input type="submit" value="Wyślij plik"/>
+                </form>
+
+                @using (Html.BeginForm("AddContent", "Home", FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.Subject.Id)
+                    <div>
+                        <label>@Global.Content: </label>
+                        @Html.TextAreaFor(x => x.Content, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(x => x.Content)
+                    </div>
+
+
+                    <div>
+                        <input type="submit" value="@Global.SignIn">
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="teacher-content-part">
+                
+                @foreach (var test in Model.Tests)
+                {
+                    <a class="button primary" href="~/Test/Detail/@test.Id">@test.Name</a><br/>
+                }
+
+                @if (User.IsInRole("Teacher"))
+                {
+                    <a href="~/Test/AddTest" class="button info add-test-button">@Global.AddTest</a>
+                }
+            </div>
+
         }
-        
-    @if (User.IsInRole("Teacher"))
-    {
-        <a href="~/Test/AddTest" class="btn btn-primary">@Global.AddTest</a>
-    }
+        @if (User.IsInRole("Student"))
+        {
+            <div>cos tu bedzie</div>
+        }
     </div>
+    
+    @foreach (var test in Model.Tests)
+    {
+        <a class="row" href="~/Test/Detail/@test.Id">@test.Name</a>
+    }
+
+
 </div>
+

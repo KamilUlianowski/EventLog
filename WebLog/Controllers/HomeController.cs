@@ -46,6 +46,11 @@ namespace WebLog.Controllers
             if (user == null)
                 return RedirectToAction("Index");
 
+            if (user.GetType() == typeof(Admin))
+            {
+                return RedirectToAction("Manage", "Admin");
+            }
+
             if (user.GetType() == typeof(Student))
             {
                 var student = _unitOfWork.Students.Get(user.Id);
@@ -91,7 +96,7 @@ namespace WebLog.Controllers
             if ((schoolClass == null) || (subject == null))
                 return RedirectToAction("Index");
 
-            return View(new StudentGradesViewModel(subject, schoolClass, teacher, schoolGrades));
+            return PartialView(new StudentGradesViewModel(subject, schoolClass, teacher, schoolGrades));
         }
 
         [HttpPost]
@@ -139,7 +144,7 @@ namespace WebLog.Controllers
         {
             var subject = _unitOfWork.Subjects.Get(id);
             var tests = _unitOfWork.Tests.GetTestsFromSubject(id).ToList();
-            return View(new SubjectSiteViewModel(subject, tests));
+            return PartialView(new SubjectSiteViewModel(subject, tests));
         }
 
         [HttpGet]

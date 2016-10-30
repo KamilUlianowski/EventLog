@@ -10,7 +10,6 @@ using WebLog.Core.ViewModels;
 
 namespace WebLog.Controllers
 {
-    [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
 
@@ -97,26 +96,26 @@ namespace WebLog.Controllers
         }
 
         [HttpGet]
-        public ActionResult SubjectDetail(int? id)
+        public ActionResult SubjectDetail(int? subjectId)
         {
-            if (id == null)
+            if (subjectId == null)
                 return RedirectToAction("Index", "Home");
 
-            var subject = _unitOfWork.Subjects.Get(id.Value);
+            var subject = _unitOfWork.Subjects.Get(subjectId.Value);
             var schoolClasses = _unitOfWork.Classes.GetAll().ToList();
             var teachers = _unitOfWork.Teachers.GetAll().ToList();
 
             if (subject == null)
                 RedirectToAction("Index", "Home");
 
-            return View(new SubjectDetailViewModel(subject, schoolClasses, teachers));
+            return PartialView(new SubjectDetailViewModel(subject, schoolClasses, teachers));
         }
 
         [HttpPost]
         public ActionResult AddOrRemoveSubjectToClass(int subjectId, int schoolClassId)
         {
 
-            _unitOfWork.Subjects.UpdateSubject(subjectId, schoolClassId);
+            _unitOfWork.Subjects.UpdateSubjectClasses(subjectId, schoolClassId);
             _unitOfWork.Complete();
 
             return RedirectToAction("Subjects");

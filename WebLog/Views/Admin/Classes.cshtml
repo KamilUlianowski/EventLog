@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content" ng-if="class == null">
     <h1 class="text-light">@Global.Classes <span class="mif-drive-eta place-right"></span></h1>
     <hr class="thin bg-grayLighter">
     <button data-toggle="modal" data-target="#myModal" class="button primary"><span class="mif-plus">  @Global.Create </span></button>
@@ -47,13 +47,64 @@
             </thead>
             <tbody>
                 <tr ng-repeat="class in classes">
-                    <td>{{class.Name}}</td>
-                    <td>{{class.Teacher.Name}} {{class.Teacher.Surnames}}</td>
+                    <td class="mouse-pointer"><a ng-click="showClassDetail(class.Id)">{{class.Name}}</a></td>
+                    <td>{{class.Teacher.Name}} {{class.Teacher.Surname}}</td>
                     <td>{{class.Students.length}}</td>
-                    <td ng-click="deleteClass(class.Id)"><a class="cross-icon"><span class="mif-cross icon"></span></a></td>
+                    <td ng-click="deleteClass(class.Id)" class="mouse-pointer"><a class="cross-icon"><span class="mif-cross icon mouse-pointer"></span></a></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
+</div>
+
+<div class="cell auto-size padding20 bg-white manage-content" ng-if="class">
+    <h1 class="text-light"> Klasa <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+    
+    <div class="row">
+        <div class="class-name-picture">
+            {{class.Name}}
+        </div>
+
+        <div class="column-subject">
+            <h2>Uczniowie</h2>
+            <ul>
+                <li ng-repeat="student in class.Students">
+                    <h4>
+                        <span class="modal-label">{{student.Name}} {{student.Surname}}</span>
+                        <a class="cross-icon mouse-pointer"><span class="mif-cross icon mouse-pointer" ng-click="deleteStudentFromClass(class.Id, student.Id)"></span></a>
+                    </h4>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="column-subject">
+            <h2>Wychowawca</h2>
+            <h4 ng-if="class.Teacher">
+                <span class="modal-label"> {{class.Teacher.Name}} {{class.Teacher.Surname}}</span>
+                <a ng-click="deleteTeacherFromClass(class.Id)" class="cross-icon mouse-pointer"><span class="mif-cross icon mouse-pointer"></span></a>
+            </h4>
+        </div>
+    </div>
+    
+    <div class="add-section">
+        <h2> Uczniowie</h2>
+        <ul>
+            <li class="mouse-pointer" ng-repeat="student in students" ng-click="addStudentToClass(class.Id, student.Id)">
+                {{student.Name}} {{student.Surname}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="add-section">
+        <h2>Nauczyciele</h2>
+        <ul>
+            <li class="mouse-pointer" ng-repeat="teacher in teachers" ng-click="addTeacherToClass(class.Id, teacher.Id)">
+                {{teacher.Name}} {{teacher.Surname}}
+            </li>
+        </ul>
+    </div>
+   
 </div>

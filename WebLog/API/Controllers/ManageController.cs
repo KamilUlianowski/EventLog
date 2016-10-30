@@ -56,24 +56,50 @@ namespace WebLog.API.Controllers
             return Ok(teachers);
         }
 
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult SubjectDetail([FromUri] int subjectId)
+        {
+            var subject = _unitOfWork.Subjects.Get(subjectId);
+
+            if (subject == null)
+                return NotFound();
+
+            return Ok(subject);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult ClassDetail([FromUri] int classId)
+        {
+            var schoolClass = _unitOfWork.Classes.Get(classId);
+
+            if (schoolClass == null)
+                return NotFound();
+
+            return Ok(schoolClass);
+        }
+
         [HttpPost]
         [Authorize]
         public IHttpActionResult AddSubject([FromBody] SubjectViewModel vm)
         {
-            _unitOfWork.Subjects.Add(new Subject(vm.Name, vm.Url));
+            var subject = new Subject(vm.Name, vm.Url);
+            _unitOfWork.Subjects.Add(subject);
             _unitOfWork.Complete();
 
-            return Ok();
+            return Ok(subject);
         }
 
         [HttpPost]
         [Authorize]
         public IHttpActionResult AddClass([FromUri] string name)
         {
-            _unitOfWork.Classes.Add(new SchoolClass(name));
+            var schoolClass = new SchoolClass(name);
+            _unitOfWork.Classes.Add(schoolClass);
             _unitOfWork.Complete();
 
-            return Ok();
+            return Ok(schoolClass);
         }
 
         [HttpPost]
@@ -105,5 +131,85 @@ namespace WebLog.API.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult DeleteStudentFromClass([FromBody] ClassViewModel vm)
+        {
+            _unitOfWork.Classes.RemoveStudent(vm.ClassId, vm.StudentId);
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult DeleteTeacherFromClass([FromBody] ClassViewModel vm)
+        {
+            _unitOfWork.Classes.RemoveTeacher(vm.ClassId);
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult AddStudentToClass([FromBody] ClassViewModel vm)
+        {
+            _unitOfWork.Classes.AddStudent(vm.ClassId, vm.StudentId);
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult AddTeacherToClass([FromBody] ClassViewModel vm)
+        {
+            _unitOfWork.Classes.AddTeacher(vm.ClassId, vm.TeacherId);
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult UpdateClassesSubject([FromBody] SubjectViewModel vm)
+        {
+            _unitOfWork.Subjects.UpdateSubjectClasses(vm.SubjectId, vm.ClassId);
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult UpdateTeacherSubject([FromBody] SubjectViewModel vm)
+        {
+
+            _unitOfWork.Subjects.UpdateSubjectTeachers(vm.SubjectId, vm.TeacherId);
+            _unitOfWork.Complete();
+            return Ok();
+        }
+
+        //[HttpPost]
+        //[Authorize]
+        //public IHttpActionResult AddClassToSubject([FromBody] SubjectViewModel vm)
+        //{
+        //    _unitOfWork.Subjects.UpdateSubjectClasses(vm.SubjectId, vm.ClassId);
+        //    _unitOfWork.Complete();
+
+        //    return Ok();
+        //}
+
+        //[HttpPost]
+        //[Authorize]
+        //public IHttpActionResult AddTeacherToSubject([FromBody] SubjectViewModel vm)
+        //{
+        //    _unitOfWork.Classes.AddTeacher(schoolClassViewModel.Id, schoolClassViewModel.SelectedTeacherId);
+        //    _unitOfWork.Complete();
+
+        //    return Ok();
+        //}
     }
 }

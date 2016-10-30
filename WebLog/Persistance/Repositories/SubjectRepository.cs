@@ -18,12 +18,12 @@ namespace WebLog.Persistance.Repositories
             _context = context;
         }
 
-        public void UpdateSubject(int subjectId, int schoolClassId)
+        public void UpdateSubjectClasses(int subjectId, int schoolClassId)
         {
             var subject = _context.Subjects.Include(x => x.SchoolClasses)
                                            .FirstOrDefault(x => x.Id == subjectId);
 
-            var schoolClass = _context.SchoolClass.Include(x => x.Subjects )
+            var schoolClass = _context.SchoolClass.Include(x => x.Subjects)
                 .FirstOrDefault(x => x.Id == schoolClassId);
 
             if (subject == null || schoolClass == null)
@@ -69,6 +69,13 @@ namespace WebLog.Persistance.Repositories
             return _context.Subjects.Include(x => x.SchoolClasses)
                 .Include(x => x.Teachers)
                 .FirstOrDefault(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        public override Subject Get(int id)
+        {
+            return _context.Subjects.Include(x => x.SchoolClasses)
+                .Include(x => x.Teachers)
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }

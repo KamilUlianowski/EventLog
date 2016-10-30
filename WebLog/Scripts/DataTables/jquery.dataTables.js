@@ -1,4 +1,4 @@
-/*! DataTables 1.10.12
+﻿/*! DataTables 1.10.12
  * ©2008-2015 SpryMedia Ltd - datatables.net/license
  */
 
@@ -3592,7 +3592,7 @@
 						sAttr = classes.sJUIFooter;
 					}
 	
-					/* The attribute can be in the format of "#id.class", "#id" or "class" This logic
+					/* The attribute can be in the format of "#id.class", "#subjectId" or "class" This logic
 					 * breaks the string into parts and applies them as needed
 					 */
 					if ( sAttr.indexOf('.') != -1 )
@@ -7862,7 +7862,7 @@
 			// but to select it using a CSS selector engine (like Sizzle or
 			// querySelect) it would need to need to be escaped for some characters.
 			// DataTables simplifies this for row selectors since you can select
-			// only a row. A # indicates an id any anything that follows is the id -
+			// only a row. A # indicates an id any anything that follows is the subjectId -
 			// unescaped.
 			if ( typeof sel === 'string' && sel.charAt(0) === '#' ) {
 				// get row index from id

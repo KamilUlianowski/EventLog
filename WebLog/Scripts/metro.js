@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Metro UI CSS v3.0.15 (http://metroui.org.ua)
  * Copyright 2012-2016 Sergey Pimenov
  * Licensed under MIT (http://metroui.org.ua/license.html)
@@ -6990,7 +6990,7 @@ $.widget( "metro.presenter" , {
 
         i = 0;
         $.each(actors, function(){
-            var actor = $(this), pos = {top: actor.data('position').split(",")[0], left: actor.data('position').split(",")[1]};//that._actor_positions[$(that._acts[that._currentAct]).attr('id')][actor.attr('id')];
+            var actor = $(this), pos = {top: actor.data('position').split(",")[0], left: actor.data('position').split(",")[1]};//that._actor_positions[$(that._acts[that._currentAct]).attr('id')][actor.attr('subjectId')];
             var actor_effect, actor_duration, actor_timeout, actor_easing;
 
             actor_effect = actor.data('effect') !== undefined ? actor.data('effect') : o.effect;
@@ -8373,7 +8373,7 @@ $.widget( "metro.tabcontrol" , {
             }
         });
 
-        if (o.saveState && element.attr('id') !== undefined && element.attr('id').trim() !== '') {
+        if (o.saveState && element.attr('id') !== undefined && element.attr('subjectId').trim() !== '') {
 
             var stored_target = window.localStorage.getItem(element.attr('id')+"-stored-tab");
             if (stored_target && stored_target !== 'undefined') {
@@ -8460,7 +8460,7 @@ $.widget( "metro.tabcontrol" , {
         o._current.tab.parent().addClass('active');
         o._current.frame.show();
 
-        if (o.saveState && element.attr('id') !== undefined && element.attr('id').trim() !== '') {
+        if (o.saveState && element.attr('id') !== undefined && element.attr('subjectId').trim() !== '') {
             window.localStorage.setItem(element.attr('id')+"-stored-tab", o._current.tab.attr('href'));
         }
     },
@@ -8818,7 +8818,7 @@ $.widget( "metro.treeview" , {
             checkbox.attr('name', parent.data('name'));
         }
         if (parent.data('id') !== undefined) {
-            checkbox.attr('id', parent.data('id'));
+            checkbox.attr('id', parent.data('subjectId'));
         }
         if (parent.data('checked') !== undefined) {
             checkbox.prop('checked', parent.data('checked'));
@@ -8847,7 +8847,7 @@ $.widget( "metro.treeview" , {
             checkbox.attr('name', parent.data('name'));
         }
         if (parent.data('id') !== undefined) {
-            checkbox.attr('id', parent.data('id'));
+            checkbox.attr('id', parent.data('subjectId'));
         }
         if (parent.data('checked') !== undefined) {
             checkbox.prop('checked', parent.data('checked'));
