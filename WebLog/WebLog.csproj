@@ -631,7 +631,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myAngular\ManageController.js" />
-    <Content Include="Scripts\myAngular\SchoolGradesController.js" />
+    <Content Include="Scripts\myAngular\TeacherController.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -667,7 +667,6 @@
     <Content Include="Views\Home\StudentAccount.cshtml" />
     <Content Include="Views\Home\ParentAccount.cshtml" />
     <Content Include="Views\Home\TeacherClass.cshtml" />
-    <Content Include="Views\Shared\SchoolGrades.cshtml" />
     <Content Include="Views\Summary\Index.cshtml" />
     <Content Include="Views\Shared\SummaryPartial.cshtml" />
     <Content Include="Views\Home\SignUpParent.cshtml" />
@@ -686,6 +685,8 @@
     <Content Include="Views\Admin\Teachers.cshtml" />
     <Content Include="Views\Admin\SubjectDetail.cshtml" />
     <Content Include="Views\Home\Subject.cshtml" />
+    <Content Include="Views\Home\StudentGrades.cshtml" />
+    <Content Include="Views\Home\StudentSubjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

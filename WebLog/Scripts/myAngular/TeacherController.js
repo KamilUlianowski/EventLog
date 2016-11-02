@@ -1,5 +1,6 @@
-﻿angular.module('mainModule', [])
-    .controller('SchoolGradesController',
+﻿var app = angular.module('mainModule');
+
+    app.controller('TeacherController',
         function ($scope, $http) {
 
 
@@ -18,6 +19,6 @@
 
                 getSchoolGrades(subId, classId);
             };
-            
+
 
         });

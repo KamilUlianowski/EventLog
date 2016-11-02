@@ -11,7 +11,22 @@
 //    });
 //});
 
+function addGrade(id) {
+    var selectedGrade = $("#student" + id).val();
+    $("#grades" + id).append(selectedGrade + "  ");
+};
+
+var closeModal = function () {
+    $('#myModal').modal('hide');
+}
+
 $(function () {
+
+    function addGrade(id) {
+        var selectedGrade = $("#student" + id).val();
+        $("#grades" + id).append(selectedGrade + "  ");
+    }
+
     var form = $(".login-form");
 
     form.css({

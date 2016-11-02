@@ -32,6 +32,12 @@ namespace WebLog.Persistance.Repositories
             return student;
         }
 
+        public Student GetStudent(string mail)
+        {
+            return _context.Students.Include(x => x.SchoolClass.Subjects)
+                .FirstOrDefault(x => x.Email.Equals(mail, StringComparison.OrdinalIgnoreCase));
+        }
+
         public override IEnumerable<Student> GetAll()
         {
             return _context.Students.Include(x => x.SchoolClass);

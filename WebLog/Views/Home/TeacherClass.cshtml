@@ -1,12 +1,109 @@
 ﻿@using Resources
+@using WebLog.Core.ViewModels
 @model WebLog.Core.ViewModels.StudentGradesViewModel
 
 
-<div class="cell auto-size padding20 bg-white manage-content" id="cell-content" ng-if="class == null">
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
     <h1 class="text-light">@Model.Subject.Name   @Model.SchoolClass.Name <span class="mif-drive-eta place-right"></span></h1>
     <hr class="thin bg-grayLighter">
 
     <div id="grades-window">
-        @Html.Partial("SchoolGrades", Model)
+        <div>
+            <table class="dataTable border bordered grade-table" data-role="datatable" data-auto-width="false" style="margin-top: 25px">
+                <thead>
+                    <tr>
+                        <td class="sortable-column sort-asc" style="width: 100px">Uczeń</td>
+                        <td class="sortable-column">Oceny</td>
+                        <td class="sortable-column" style="width: 5px">Nowa ocena</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model.SchoolClass.Students)
+                    {
+                        <tr>
+                            <td>@student.Name @student.Surname</td>
+                            <td id="@("grades" + student.Id)">
+                                @foreach (var grade in Model.SchoolGrades.Where(x => x.Student.Id == student.Id))
+                                {
+                                    @((int)grade.Grade + "  ")
+                                }
+                            </td>
+                            <td>
+                                @using (Ajax.BeginForm("AddGrade", "Home", new { selectedStudent = @student.Id }, new AjaxOptions
+                                {
+                                    HttpMethod = "POST"
+                                }))
+                                {
+                                    @Html.HiddenFor(x => x.Teacher.Id)
+                                    @Html.HiddenFor(x => x.Subject.Id)
+                                    @Html.HiddenFor(x => x.SchoolClass.Id)
+                                    <div class="form-group">
+                                        @Html.EnumDropDownListFor(x => x.NewGrade, "Ocena", new { @class = "form-control", type = "date", id = "student" + student.Id })
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" onclick="addGrade(@student.Id)" class="btn btn-primary" value="@Global.Add">
+                                    </div>
+
+
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+        @*@foreach (var student in Model.SchoolClass.Students)
+            {
+                <div class="row">
+
+                    <div class="col-lg-2">
+                        @(student.Name + " " + student.Surname)
+                    </div>
+
+                    <div id="@("studentGrades" + @student.Id)" class="col-lg-4">
+                        @foreach (var grade in Model.SchoolGrades.Where(x => x.Student.Id == student.Id))
+                        {
+                            <a>@((int)grade.Grade)</a>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+
+                        @using (Ajax.BeginForm("AddGrade", "Home", new { selectedStudent = @student.Id }, new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            OnSuccess = "addGrade(" + student.Id + ")"
+
+
+                        }))
+                        {
+                            @Html.HiddenFor(x => x.Teacher.Id)
+                            @Html.HiddenFor(x => x.Subject.Id)
+                            @Html.HiddenFor(x => x.SchoolClass.Id)
+
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    @Html.EnumDropDownListFor(x => x.NewGrade, "Ocena", new { @class = "form-control", type = "date", id = "student" + student.Id })
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" onsubmit="addGrade(@student.Id)" value="@Global.Add">
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            }*@
     </div>
 </div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/angular");
+    
+}

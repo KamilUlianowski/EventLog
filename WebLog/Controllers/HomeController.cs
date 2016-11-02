@@ -53,12 +53,12 @@ namespace WebLog.Controllers
 
             if (user.GetType() == typeof(Student))
             {
-                var student = _unitOfWork.Students.Get(user.Id);
-                var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
-                var advertisements = new List<Advertisement>();
-                if (student.SchoolClass != null)
-                    advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
-                return View("StudentAccount", new StudentAccountViewModel(student, schoolGrades, advertisements));
+                //var student = _unitOfWork.Students.Get(user.Id);
+                //var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
+                //var advertisements = new List<Advertisement>();
+                //if (student.SchoolClass != null)
+                //    advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
+                return View("StudentAccount");
             }
 
             if (user.GetType() == typeof(Teacher))
@@ -78,6 +78,20 @@ namespace WebLog.Controllers
 
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Student")]
+        public ActionResult StudentGrades()
+        {
+            var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
+            var student = _unitOfWork.Students.Get(user.Id);
+            var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
+            var advertisements = new List<Advertisement>();
+            if (student.SchoolClass != null)
+                advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
+
+            return PartialView(new StudentAccountViewModel(student, schoolGrades, advertisements));
         }
 
         [HttpGet]
@@ -140,11 +154,21 @@ namespace WebLog.Controllers
 
         [HttpGet]
         [Authorize]
+        public ActionResult StudentSubjects()
+        {
+            var student = _unitOfWork.Students.GetStudent(User.Identity.GetUserId());
+
+            return PartialView((Student) student);
+        }
+
+        [HttpGet]
+        [Authorize]
         public ActionResult Subject(int id)
         {
             var subject = _unitOfWork.Subjects.Get(id);
             var tests = _unitOfWork.Tests.GetTestsFromSubject(id).ToList();
-            return PartialView(new SubjectSiteViewModel(subject, tests));
+            var subjects = _unitOfWork.Subjects.GetAll().ToList();
+            return PartialView(new SubjectSiteViewModel(subject, tests, subjects));
         }
 
         [HttpGet]
@@ -153,7 +177,8 @@ namespace WebLog.Controllers
         {
             var subject = _unitOfWork.Subjects.Get(name);
             var tests = _unitOfWork.Tests.GetTestsFromSubject(subject.Id).ToList();
-            return View("Subject", new SubjectSiteViewModel(subject, tests));
+            var subjects = _unitOfWork.Subjects.GetAll().ToList();
+            return View("Subject", new SubjectSiteViewModel(subject, tests, subjects));
         }
 
         [HttpPost]
@@ -162,7 +187,8 @@ namespace WebLog.Controllers
         {
             _unitOfWork.Subjects.UpdateContent(vm.Subject.Id, vm.Content);
             _unitOfWork.Complete();
-            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(vm.Subject.Id)));
+            var subjects = _unitOfWork.Subjects.GetAll().ToList();
+            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(vm.Subject.Id), subjects));
         }
 
         [HttpPost]
@@ -182,7 +208,8 @@ namespace WebLog.Controllers
                 _unitOfWork.Files.Add(new SubjectFile(subject, finallyPath));
             }
             _unitOfWork.Complete();
-            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(subjectId)));
+            var subjects = _unitOfWork.Subjects.GetAll().ToList();
+            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(subjectId), subjects));
         }
 
         [HttpGet]

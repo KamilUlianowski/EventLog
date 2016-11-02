@@ -1,5 +1,6 @@
-﻿angular.module('mainModule', [])
-    .controller('ManageController',
+﻿var app = angular.module('mainModule');
+
+    app.controller('ManageController',
         function ($scope, $http) {
 
             $scope.items = ['subjects', 'classes', 'teachers', 'students'];

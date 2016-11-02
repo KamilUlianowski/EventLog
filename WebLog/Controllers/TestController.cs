@@ -9,6 +9,7 @@ using WebLog.Core;
 using WebLog.Core.Common;
 using WebLog.Core.Models;
 using WebLog.Core.Services;
+using WebLog.Core.ViewModels.SubjectViewModels;
 using WebLog.Core.ViewModels.TestsViewModels;
 
 namespace WebLog.Controllers
@@ -38,7 +39,7 @@ namespace WebLog.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddTest(NewTestViewModel vm)
+        public ActionResult AddTest(SubjectSiteViewModel vm)
         {
             var subject = _unitOfWork.Subjects.Get(vm.SelectedSubject);
 
@@ -49,7 +50,7 @@ namespace WebLog.Controllers
             _unitOfWork.Tests.Add(test);
             _unitOfWork.Complete();
 
-            return RedirectToAction("Detail", "Test", new { id = test.Id });
+            return RedirectToAction("Subject", "Home", new { id = vm.Subject.Id });
         }
 
         [HttpGet]

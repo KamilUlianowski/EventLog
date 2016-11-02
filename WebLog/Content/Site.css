@@ -275,3 +275,13 @@
 .add-test-button {
     margin-top: 1rem !important;
 }
+
+.grade-table {
+    width: 80% !important;
+    position: fixed !important;
+}
+
+.message-user {
+    font-size: 1.2rem !important;
+    margin-top: 7px !important;
+}

@@ -6,5 +6,6 @@ namespace WebLog.Core.Repositories
     public interface IStudentRepository : IRepository<Student>
     {
         User GetStudent(SignUpParentViewModel parentViewModel);
+        Student GetStudent(string mail);
     }
 }

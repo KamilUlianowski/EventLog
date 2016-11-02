@@ -6,32 +6,29 @@
     <hr class="thin bg-grayLighter">
 
     <div>
-        @if (User.IsInRole("Teacher"))
-        {
-
             <div class="teacher-content-part">
-                
+
                 <span>Klasy</span>
 
                 @foreach (var schoolClass in Model.Subject.SchoolClasses)
                 {
-                    using (Ajax.BeginForm("TeacherClass", "Home", new {subjectId = Model.Subject.Id, schoolClassId = schoolClass.Id}, new AjaxOptions
+                    using (Ajax.BeginForm("TeacherClass", "Home", new { subjectId = Model.Subject.Id, schoolClassId = schoolClass.Id }, new AjaxOptions
                     {
                         HttpMethod = "GET",
                         UpdateTargetId = "teacher-account-content"
                     }))
                     {
 
-                        <input type="submit" class="button primary" value="@schoolClass.Name"/>
+                        <input type="submit" class="button primary" value="@schoolClass.Name" />
                         @*<a class="button primary" href="~/Home/TeacherClass?subjectId=@Model.Subject.Id&schoolClassId=@schoolClass.Id">
-                            @schoolClass.Name
-                        </a>*@
+                                @schoolClass.Name
+                            </a>*@
                     }
                 }
                 <form action="~/Home/AddFile" method="post" enctype="multipart/form-data">
-                    <input name="subjectId" value="@Model.Subject.Id" hidden/>
-                    <input type="file" name="file"/>
-                    <input type="submit" value="Wyślij plik"/>
+                    <input name="subjectId" value="@Model.Subject.Id" hidden />
+                    <input type="file" name="file" />
+                    <input type="submit" value="Wyślij plik" />
                 </form>
 
                 @using (Html.BeginForm("AddContent", "Home", FormMethod.Post))
@@ -39,7 +36,7 @@
                     @Html.HiddenFor(x => x.Subject.Id)
                     <div>
                         <label>@Global.Content: </label>
-                        @Html.TextAreaFor(x => x.Content, new {@class = "form-control"})
+                        @Html.TextAreaFor(x => x.Content, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Content)
                     </div>
 
@@ -53,25 +50,20 @@
             </div>
 
             <div class="teacher-content-part">
-                
+
                 @foreach (var test in Model.Tests)
                 {
-                    <a class="button primary" href="~/Test/Detail/@test.Id">@test.Name</a><br/>
+                    <a class="button primary" href="~/Test/Detail/@test.Id">@test.Name</a><br />
                 }
 
                 @if (User.IsInRole("Teacher"))
                 {
-                    <a href="~/Test/AddTest" class="button info add-test-button">@Global.AddTest</a>
+                    <a data-toggle="modal" data-target="#myModal" class="button info add-test-button">@Global.AddTest</a>
                 }
             </div>
 
-        }
-        @if (User.IsInRole("Student"))
-        {
-            <div>cos tu bedzie</div>
-        }
     </div>
-    
+
     @foreach (var test in Model.Tests)
     {
         <a class="row" href="~/Test/Detail/@test.Id">@test.Name</a>
@@ -80,3 +72,52 @@
 
 </div>
 
+<div id="myModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header-adds">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nowy Przedmiot</h4>
+            </div>
+
+            @using (Ajax.BeginForm("AddTest", "Test", new AjaxOptions
+            {
+                HttpMethod = "Post",
+                UpdateTargetId = "teacher-account-content"
+            }))
+            {
+                @Html.HiddenFor(x => x.Subject.Id)
+                <div class="modal-body">
+                    <div>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "input-signin", @placeholder = @Global.NameOfTest })
+                        @Html.ValidationMessageFor(x => x.Name)
+                    </div>
+
+                    <div>
+                        @Html.TextBoxFor(x => x.Time, new { @class = "input-signin", @placeholder = @Global.TimeOfTest })
+                        @Html.ValidationMessageFor(x => x.Time)
+                    </div>
+                    <div class="form-group">
+                        @Html.DropDownListFor(model => model.SelectedSubject, Model.Subjects, new { @class = "form-control" })
+
+                    </div>
+
+                    <div>
+                        <div>
+                            <input type="submit" id="submit-signin" value="@Global.AddTest" onclick="closeModal()">
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+            <div class="modal-footer">
+                <button id="add-test-button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

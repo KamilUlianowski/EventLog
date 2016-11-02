@@ -22,7 +22,7 @@ namespace WebLog
                       "~/Scripts/angular*",
                       "~/Scripts/myAngular/MainController*",
                       "~/Scripts/myAngular/ManageController*",
-                      "~/Scripts/myAngular/SchoolGradesController*"
+                      "~/Scripts/myAngular/TeacherController*"
                        ));
 
 
