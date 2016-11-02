@@ -6,7 +6,7 @@
     <hr class="thin bg-grayLighter">
     @foreach (var subject in Model.SchoolClass.Subjects)
     {
-        <div class="image-container image-format-square mouse-pointer">
+        <div class="image-container image-format-square mouse-pointer"  onclick="GetSubjectDetail(@subject.Id)">
             <div class="frame img-wrap">
                 <img class="image-resize" src="@subject.ImagePath"/>
             </div>
@@ -14,5 +14,7 @@
                 <h2>@subject.Name</h2>
             </div>
         </div>
+
+
     }
 </div>

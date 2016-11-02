@@ -1,0 +1,23 @@
+﻿@using Resources
+@model WebLog.Core.Models.Subject
+
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
+    <h1 class="text-light">@Model.Name <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+    
+    <div class="image-container image-format-square mouse-pointer">
+        <div class="frame img-wrap">
+            <img class="image-resize" src="@Model.ImagePath" />
+        </div>
+        <div class="image-overlay">
+            <h2>@Model.Name</h2>
+        </div>
+    </div>
+    
+    @foreach (var test in Model.Tests)
+    {
+        <a class="row" href="~/Test/Detail/@test.Id">@test.Name</a>
+    }
+
+</div>
+

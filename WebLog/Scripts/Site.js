@@ -1,15 +1,17 @@
 ﻿//$.fn.datepicker.defaults.format = 'mm/dd/yyyy';
 
 
-//$(function () {
-//    $('#datetimepicker1').datepicker({
-//    });
-//});
+function GetSubjectDetail(id) {
+    $.ajax({
+        url: '"/Home/StudentSubjectDetail",',
+        data: { "subjectId": id },
+        type: 'GET',
 
-//$(function () {
-//    $('#datetimepicker2').datepicker({
-//    });
-//});
+        success: function (data) {
+            $('#student-account-content').html(data);
+        }
+    });
+}
 
 function addGrade(id) {
     var selectedGrade = $("#student" + id).val();

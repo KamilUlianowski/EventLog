@@ -316,6 +316,14 @@ namespace WebLog.Controllers
                 : View("Index");
         }
 
+        [HttpGet]
+        public ActionResult StudentSubjectDetail(int subjectId)
+        {
+            var subject = _unitOfWork.Subjects.Get(subjectId);
+
+            return PartialView(subject);
+        }
+
         [HttpPost]
         public ActionResult RemindPassword(string email)
         {
