@@ -293,12 +293,3 @@
 .app-bar-element {
     font-size: 20px !important;
 }
-
-.sticky
-{
-	width: 100%;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 100;
-}
