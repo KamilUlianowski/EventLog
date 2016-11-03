@@ -261,7 +261,7 @@
     margin-left: 10px !important;
 }
 
-.sidebar-serach-form-submit {
+.bar-serach-form-submit {
     float: right !important;
     margin-right: 17px !important
 }
@@ -284,4 +284,21 @@
 .message-user {
     font-size: 1.2rem !important;
     margin-top: 7px !important;
+}
+
+.bg-color-black {
+    background-color: black !important;
+}
+
+.app-bar-element {
+    font-size: 20px !important;
+}
+
+.sticky
+{
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
 }
