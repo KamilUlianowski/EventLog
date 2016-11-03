@@ -3,7 +3,7 @@
 
 function GetSubjectDetail(id) {
     $.ajax({
-        url: '"/Home/StudentSubjectDetail",',
+        url: "/Home/StudentSubjectDetail",
         data: { "subjectId": id },
         type: 'GET',
 

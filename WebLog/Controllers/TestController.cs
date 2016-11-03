@@ -93,7 +93,7 @@ namespace WebLog.Controllers
             if(schoolGrade == null)
                 return View(new SolveTestViewModel(test));
 
-            return View(new SolveTestViewModel(schoolGrade));
+            return PartialView(new SolveTestViewModel(schoolGrade));
 
         }
 

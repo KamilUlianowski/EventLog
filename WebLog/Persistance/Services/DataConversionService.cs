@@ -61,13 +61,13 @@ namespace WebLog.Persistance.Services
         {
             var maxPoints = listOfQuestions.Sum(x => x.Points);
             var gradingScale = new Dictionary<string, int>();
-            gradingScale.Add(0 + " - " + 0.3 * maxPoints + "p.", 1);
-            gradingScale.Add(0.3 * maxPoints + " - " + 0.5 * maxPoints + "p.", 2);
-            gradingScale.Add(0.5 * maxPoints + " - " + 0.65 * maxPoints + "p.", 3);
-            gradingScale.Add(0.65 * maxPoints + " - " + 0.8 * maxPoints + "p.", 4);
-            gradingScale.Add(0.8 * maxPoints + " - " + 0.9 * maxPoints + "p.", 5);
-            gradingScale.Add(0.91 * maxPoints + " - " + maxPoints + "p.", 6);
-
+            if (maxPoints == 0) return gradingScale;
+            gradingScale.Add(0 + " - " + 0.3*maxPoints + "p.", 1);
+            gradingScale.Add(0.3*maxPoints + " - " + 0.5*maxPoints + "p.", 2);
+            gradingScale.Add(0.5*maxPoints + " - " + 0.65*maxPoints + "p.", 3);
+            gradingScale.Add(0.65*maxPoints + " - " + 0.8*maxPoints + "p.", 4);
+            gradingScale.Add(0.8*maxPoints + " - " + 0.9*maxPoints + "p.", 5);
+            gradingScale.Add(0.91*maxPoints + " - " + maxPoints + "p.", 6);
             return gradingScale;
 
         }

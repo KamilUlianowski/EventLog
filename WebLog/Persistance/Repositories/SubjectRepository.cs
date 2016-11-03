@@ -56,6 +56,7 @@ namespace WebLog.Persistance.Repositories
         {
             var subject = _context.Subjects.Include(x => x.SchoolClasses)
                 .Include(x => x.Teachers)
+                .Include(x => x.Tests)
                 .FirstOrDefault(x => x.Id == subjectId);
 
             if (subject == null)
@@ -68,6 +69,7 @@ namespace WebLog.Persistance.Repositories
         {
             return _context.Subjects.Include(x => x.SchoolClasses)
                 .Include(x => x.Teachers)
+                .Include(x => x.Tests)
                 .FirstOrDefault(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
         }
 
@@ -75,6 +77,7 @@ namespace WebLog.Persistance.Repositories
         {
             return _context.Subjects.Include(x => x.SchoolClasses)
                 .Include(x => x.Teachers)
+                .Include(x => x.Tests)
                 .FirstOrDefault(x => x.Id == id);
         }
     }

@@ -53,7 +53,16 @@
 
                 @foreach (var test in Model.Tests)
                 {
-                    <a class="button primary" href="~/Test/Detail/@test.Id">@test.Name</a><br />
+                    using (Ajax.BeginForm("SolveTest", "Test", new { testId = test.Id }, new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "student-account-content"
+                    }))
+                    {
+                        <input class="button primary" type="submit" value="@test.Name"/>
+                         <a class="button primary" href="~/Test/Detail/@test.Id">@test.Name</a>
+                         <br/>
+                     }
                 }
 
                 @if (User.IsInRole("Teacher"))
