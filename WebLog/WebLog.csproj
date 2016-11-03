@@ -243,6 +243,10 @@
     <Compile Include="Core\Common\TestResult.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
+    <Compile Include="Migrations\201611031837041_update-database.cs" />
+    <Compile Include="Migrations\201611031837041_update-database.Designer.cs">
+      <DependentUpon>201611031837041_update-database.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -703,6 +707,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611031837041_update-database.resx">
+      <DependentUpon>201611031837041_update-database.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.pl.Designer.cs</LastGenOutput>
