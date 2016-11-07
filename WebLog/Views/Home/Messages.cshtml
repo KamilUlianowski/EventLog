@@ -1,7 +1,7 @@
 ﻿<div class="page-content" ng-app="mainModule" ng-controller="MainController">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
-            <div class="cell size-x200 sidebar" id="cell-sidebar">
+            <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
                 <ul class="sidebar">
                     <li class="mouse-pointer" ng-repeat="user in messages">
                         <a class="active" ng-click="showMessages(user.m_Item1)">
@@ -12,37 +12,60 @@
                             </div>
                         </a>
                     </li>
+                    @if (User.IsInRole("Parent"))
+                    {
+                        <li class="mouse-pointer">
+                            <div>
+                                <span class="mif-apps icon"></span>
+                                <select ng-change="changeTeacher(selected)" ng-options="teacher.Id as teacher.Name + ' ' + teacher.Surname for teacher in teachers track by teacher.Email" ng-model="selected"></select>
+                            </div>
+                        </li>
+                    }
                 </ul>
             </div>
-            <div id="content-messages">
+            <div id="content-messages" class="site-content">
                 
                 <div id="Posts" class="container">
                     <div class="row">
                         <div >
+                            @if (User.IsInRole("Parent"))
+                            {
+                                <div ng-if="selected > 0">
+                                    <h4>Leave a Comment:</h4>
+                                    <div>
+                                        <form ng-submit="sendNewMessage(newMessage)">
+                                            <input type="text" ng-model="newMessage"/>
+                                            <input type="submit"/>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            }
+
                             <section >
                                 <!-- First Comment -->
-                                    <article class="row" ng-repeat="message in myMessages">
+                                <article class="row" ng-repeat="message in myMessages">
+                                    <div>
                                         <div>
                                             <div>
-                                                <div>
-                                                    <header >
-                                                        <span><b>blabla</b> on</span><time ><i></i> 22222</time>
-                                                    </header>
-                                                    <div >
-                                                        <p>
-                                                           {{message}}
-                                                        </p>
-                                                    </div>
+                                                <header >
+                                                    <span><b>blabla</b> on</span><time ><i></i> 22222</time>
+                                                </header>
+                                                <div >
+                                                    <p>
+                                                        {{message.m_Item2}}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </article>
-                                <div  ng-if="myMessages">
+                                    </div>
+                                </article>
+                                <div ng-if="myMessages">
                                     <h4>Leave a Comment:</h4>
                                     <div>
                                         <form ng-submit="sendMessage(newMessage)">
-                                            <input type="text" ng-model="newMessage" />
-                                            <input type="submit" />
+                                            <input type="text" ng-model="newMessage"/>
+                                            <input type="submit"/>
                                         </form>
 
                                     </div>

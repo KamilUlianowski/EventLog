@@ -86,8 +86,10 @@ namespace WebLog.Persistance.Repositories
 
         public IEnumerable<SchoolClass> GetClasses(List<int> classesId)
         {
-           return _context.SchoolClass.Include(x => x.Teacher)
-                                .Where(x => classesId.Contains(x.Id));
+            return _context.SchoolClass.Include(x => x.Teacher)
+                 .Include(x => x.Subjects)
+                 .Include(x => x.Students.Select(y => y.Parent))
+                                 .Where(x => classesId.Contains(x.Id));
         }
 
         public void AddAdvertisement(int classId, Advertisement advertisement)

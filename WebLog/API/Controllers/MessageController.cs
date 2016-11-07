@@ -21,6 +21,13 @@ namespace WebLog.API.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult GetTeachers()
+        {
+            var teachers = _unitOfWork.Teachers.GetAll();
+            return Ok(teachers);
+        }
 
         [HttpGet]
         [Authorize]
@@ -44,9 +51,23 @@ namespace WebLog.API.Controllers
         {
             var userFrom = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
             var userTo = _unitOfWork.Users.GetUser(message.Email);
-            _unitOfWork.Messages.Add(new Message(userFrom, userTo, message.Text));
+            var newMessage = new Message(userFrom, userTo, message.Text);
+            _unitOfWork.Messages.Add(newMessage);
             _unitOfWork.Complete();
-            return Ok();
+            return Ok(newMessage);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult SendNewMessageToTeacher([FromBody] NewMessage message)
+        {
+            var userFrom = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
+            var userTo = _unitOfWork.Users.Get(message.Id);
+            var newMessage = new Message(userFrom, userTo, message.Text);
+            _unitOfWork.Messages.Add(newMessage);
+            _unitOfWork.Complete();
+            
+            return Ok(_unitOfWork.Messages.GetMessages(User.Identity.GetUserId()).ToList());
         }
     }
 }

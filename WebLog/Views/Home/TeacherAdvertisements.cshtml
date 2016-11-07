@@ -1,0 +1,59 @@
+﻿@using Resources
+@model WebLog.Core.ViewModels.TeacherAccountViewModel
+
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
+    <h1 class="text-light">Ogłoszenia <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+
+    @foreach (var adv in Model.Teacher.Advertisements)
+    {
+        <h4>@adv.Text</h4>
+    }
+
+        @using (Ajax.BeginForm("AddAdvertisement", "Home", new AjaxOptions
+            { HttpMethod = "POST", UpdateTargetId = "teacher-account-content" }))
+        {
+
+            <div>
+                <label>@Global.Text: </label>
+                @Html.TextAreaFor(x => x.Text)
+                @Html.ValidationMessageFor(x => x.Text)
+            </div>
+
+            <div>
+                <label>Przez Email: </label>
+                @Html.CheckBoxFor(x => x.ByEmail)
+                @Html.ValidationMessageFor(x => x.ByEmail)
+            </div>
+
+            <div>
+                <label>Przez stronę: </label>
+                @Html.CheckBoxFor(x => x.BySite)
+                @Html.ValidationMessageFor(x => x.BySite)
+            </div>
+
+            <div>
+                <label>Tylko dla rodziców: </label>
+                @Html.CheckBoxFor(x => x.OnlyForParents)
+                @Html.ValidationMessageFor(x => x.OnlyForParents)
+            </div>
+
+            @Html.HiddenFor(x => x.Teacher.Id)
+
+            foreach (var item in Model.Classes)
+            {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               name="SelectedClasses"
+                               value="@item.Value" /> @item.Text
+                        </label>
+                    </div>
+            }
+
+            <div>
+                <input type="submit" value="@Global.Send">
+            </div>
+        }
+        <span id="returnMessage"></span>
+</div>

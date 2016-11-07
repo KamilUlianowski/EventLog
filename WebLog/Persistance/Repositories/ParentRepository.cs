@@ -18,13 +18,13 @@ namespace WebLog.Persistance.Repositories
         {
             var parent = _context.Parents.FirstOrDefault(x => x.Id == parentId);
 
-            if (parent != null)
-                parent.Student = student;
+            if (parent != null && !parent.Students.Contains(student))
+                parent.Students.Add(student);
         }
 
         public override Parent Get(int id)
         {
-            return _context.Parents.Include(x => x.Student)
+            return _context.Parents.Include(x => x.Students)
                 .FirstOrDefault(x => x.Id == id);
         }
     }

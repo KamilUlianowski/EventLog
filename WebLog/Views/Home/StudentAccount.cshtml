@@ -1,6 +1,6 @@
-﻿@*@model WebLog.Core.ViewModels.StudentAccountViewModel
+﻿@model WebLog.Core.Models.Student
 
-    <h3>@(Model.Student.Name + " " + Model.Student.Surname)</h3>
+    @*<h3>@(Model.Student.Name + " " + Model.Student.Surname)</h3>
 
     <div class="col-lg-12">
         <div class="col-lg-8">
@@ -32,7 +32,7 @@
 <div class="page-content">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
-            <div class="cell size-x200 sidebar" id="cell-sidebar">
+            <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
                 <ul class="sidebar">
                     @using (Ajax.BeginForm("StudentGrades", "Home", new AjaxOptions
                     {
@@ -60,10 +60,23 @@
                         </li>
                     }
 
+                    @using (Ajax.BeginForm("StudentAdvertisements", "Home", new { classId = Model.SchoolClass.Id }, new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "student-account-content"
+                    }))
+                    {
+                        <li>
+                            <span class="mif-apps icon" style="font-size: 2rem"></span>
+                            @*<h4><span class="title">@subject.Name</span></h4>*@
+                            <input type="submit" class="title" value="Ogłoszenia" />
+                        </li>
+                    }
+
                 </ul>
             </div>
 
-            <div id="student-account-content" class="cell auto-size padding20 bg-white">
+            <div id="student-account-content" class="cell auto-size padding20 bg-white site-content">
             </div>
 
         </div>

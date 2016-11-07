@@ -14,104 +14,104 @@
 
 </head>
 <body>
- 
-        <div class="app-bar bg-color-black">
-            <a class="app-bar-element" href="~/Home/Index"><span class="mif-home mif-2x"></span> Home</a>
-            @*<span class="app-bar-divider"></span>*@
-            <ul class="app-bar-menu place-right navbar-adds">
-                @if (User.Identity.IsAuthenticated)
+
+    <div class="app-bar bg-color-black top-navbar">
+        <a class="app-bar-element" href="~/Home/Index"><span class="mif-home mif-2x"></span> Home</a>
+        @*<span class="app-bar-divider"></span>*@
+        <ul class="app-bar-menu place-right navbar-adds">
+            @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Admin"))
                 {
-                        <li><a href="~/Admin/Manage"> @Global.Manage</a></li>
-                    }
-                    if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
-                    {
-                        <li><a href="~/Summary/Index">@Global.Statistics</a></li>
-                    }
-
-                    if (User.IsInRole("Teacher") || User.IsInRole("Parent"))
-                    {
-                        <li><a href="~/Home/Messages"> @Global.Messages</a></li>
-                    }
-                    <li><a href="~/Home/MySchool">@Global.MySchool</a></li>
-                    <li><a href="~/Edit/Profile"> @Global.Profile</a></li>
-                    <li><a href="~/Home/LogOut"> @Global.Logout</a></li>
+                    <li><a href="~/Admin/Manage"> @Global.Manage</a></li>
                 }
-                else
+                if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
                 {
-                    <li><a href="~/Home/SignUp">@Global.SignUp</a></li>
-                    <li><a href="~/Home/SignIn">@Global.SignIn</a></li>
+                    <li><a href="~/Summary/Index">@Global.Statistics</a></li>
                 }
-                <li>
-                    <a href="" class="dropdown-toggle">Language</a>
-                    <ul class="d-menu" data-role="dropdown">
-                        <li><a onclick="changeLanguage('pl')">PL</a></li>
-                        <li><a onclick="changeLanguage('en')">EN</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+
+                if (User.IsInRole("Teacher") || User.IsInRole("Parent"))
+                {
+                    <li><a href="~/Home/Messages"> @Global.Messages</a></li>
+                }
+                <li><a href="~/Home/MySchool">@Global.MySchool</a></li>
+                <li><a href="~/Edit/Profile"> @Global.Profile</a></li>
+                <li><a href="~/Home/LogOut"> @Global.Logout</a></li>
+            }
+            else
+            {
+                <li><a href="~/Home/SignUp">@Global.SignUp</a></li>
+                <li><a href="~/Home/SignIn">@Global.SignIn</a></li>
+            }
+            <li>
+                <a href="" class="dropdown-toggle">Language</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li><a onclick="changeLanguage('pl')">PL</a></li>
+                    <li><a onclick="changeLanguage('en')">EN</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-adds">
+        @RenderBody()
+    </div>
 
 
-        @*<div>
-                <nav class="navbar navbar-inverse">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="~/Home/Index">@Global.SchoolRegister</a>
-                        </div>
-                        <ul class="nav navbar-nav navbar-right">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                if (User.IsInRole("Admin"))
-                                {
-                                    <li><a href="~/Admin/Manage"><span class="glyphicon glyphicon-edit"></span> @Global.Manage</a></li>
-                                }
-                                if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
-                                {
-                                    <li><a href="~/Summary/Index"><span class="glyphicon glyphicon-align-left"></span> @Global.Statistics</a></li>
-                                }
-
-                                if (User.IsInRole("Teacher") || User.IsInRole("Parent"))
-                                {
-                                    <li><a href="~/Home/Messages"><span class="glyphicon glyphicon-envelope"></span> @Global.Messages</a></li>
-                                }
-                                <li><a href="~/Home/MySchool"><span class="glyphicon glyphicon-briefcase"></span> @Global.MySchool</a></li>
-                                <li><a href="~/Edit/Profile"><span class="glyphicon glyphicon-user"></span> @Global.Profile</a></li>
-                                <li><a href="~/Home/LogOut"><span class="glyphicon glyphicon-log-out"></span> @Global.Logout</a></li>
-
-                            }
-                            else
-                            {
-                                <li><a href="~/Home/SignUp"><span class="glyphicon glyphicon-user"></span> @Global.SignUp</a></li>
-                                <li><a href="~/Home/SignIn"><span class="glyphicon glyphicon-log-in"></span> @Global.SignIn</a></li>
-                            }
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-book"></span> @Global.Language<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a onclick="changeLanguage('pl')">PL</a></li>
-                                    <li><a onclick="changeLanguage('en')">EN</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
+    @*<div>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="~/Home/Index">@Global.SchoolRegister</a>
                     </div>
-                </nav>
-            </div>*@
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li><a href="~/Admin/Manage"><span class="glyphicon glyphicon-edit"></span> @Global.Manage</a></li>
+                            }
+                            if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                            {
+                                <li><a href="~/Summary/Index"><span class="glyphicon glyphicon-align-left"></span> @Global.Statistics</a></li>
+                            }
 
-        <div class="content-adds">
-            @RenderBody()
-        </div>
+                            if (User.IsInRole("Teacher") || User.IsInRole("Parent"))
+                            {
+                                <li><a href="~/Home/Messages"><span class="glyphicon glyphicon-envelope"></span> @Global.Messages</a></li>
+                            }
+                            <li><a href="~/Home/MySchool"><span class="glyphicon glyphicon-briefcase"></span> @Global.MySchool</a></li>
+                            <li><a href="~/Edit/Profile"><span class="glyphicon glyphicon-user"></span> @Global.Profile</a></li>
+                            <li><a href="~/Home/LogOut"><span class="glyphicon glyphicon-log-out"></span> @Global.Logout</a></li>
 
-        @Scripts.Render("~/bundles/jquery")
-        @*@Scripts.Render("~/bundles/bootstrap")*@
-        @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/bundles/ownScript")
-        @Scripts.Render("~/bundles/metro")
-        @RenderSection("scripts", required: false)
+                        }
+                        else
+                        {
+                            <li><a href="~/Home/SignUp"><span class="glyphicon glyphicon-user"></span> @Global.SignUp</a></li>
+                            <li><a href="~/Home/SignIn"><span class="glyphicon glyphicon-log-in"></span> @Global.SignIn</a></li>
+                        }
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-book"></span> @Global.Language<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a onclick="changeLanguage('pl')">PL</a></li>
+                                <li><a onclick="changeLanguage('en')">EN</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ownScript")
+    @Scripts.Render("~/bundles/metro")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
 

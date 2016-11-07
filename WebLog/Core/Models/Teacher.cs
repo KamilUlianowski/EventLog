@@ -12,11 +12,14 @@ namespace WebLog.Core.Models
     public class Teacher : User
     {
         public ICollection<Subject> Subjects { get; set; }
-
+        public ICollection<SchoolClass> SchoolClasses { get; set; }
+        public ICollection<Advertisement> Advertisements { get; set; }
 
         public Teacher()
         {
             Subjects = new List<Subject>();
+            SchoolClasses = new List<SchoolClass>();
+            Advertisements= new List<Advertisement>();
         }
 
         public Teacher(SignUpViewModel signUpViewModel) : base(signUpViewModel)

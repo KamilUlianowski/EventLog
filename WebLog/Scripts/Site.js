@@ -1,10 +1,27 @@
 ﻿//$.fn.datepicker.defaults.format = 'mm/dd/yyyy';
 
+function resetForm() {
+    $("#adv-form")[0].reset();
+    $("#returnMessage").text("@Global.MessageSent");
+
+}
 
 function GetSubjectDetail(id) {
     $.ajax({
         url: "/Home/StudentSubjectDetail",
         data: { "subjectId": id },
+        type: 'GET',
+
+        success: function (data) {
+            $('#student-account-content').html(data);
+        }
+    });
+}
+
+function GetTestResult(id) {
+    $.ajax({
+        url: "/Test/SolveTest",
+        data: { "testId": id },
         type: 'GET',
 
         success: function (data) {

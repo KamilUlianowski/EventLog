@@ -16,7 +16,7 @@
             @foreach (var dict in Model.DictGrades)
             {
                 <tr>
-                    <td> <a href="~/Home/SubjectName?name=@dict.Key"><h4>@dict.Key</h4></a> </td>
+                    <td> <h4>@dict.Key</h4></td>
                     <td>
                         @foreach (var grade in dict.Value)
                 {

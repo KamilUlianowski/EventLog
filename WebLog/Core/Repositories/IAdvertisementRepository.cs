@@ -10,5 +10,6 @@ namespace WebLog.Core.Repositories
     public interface IAdvertisementRepository : IRepository<Advertisement>
     {
         IEnumerable<Advertisement> GetAdvertisements(int schoolClassId);
+        IEnumerable<Advertisement> GetAdvertisements(Teacher teacher);
     }
 }

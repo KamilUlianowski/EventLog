@@ -12,6 +12,7 @@ namespace WebLog.Core.Models
     public class Student : User
     {
         public SchoolClass SchoolClass { get; set; }
+        public Parent Parent { get; set; }
 
         public Student()
         {

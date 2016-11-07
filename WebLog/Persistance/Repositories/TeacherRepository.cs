@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using WebLog.Core.Models;
@@ -17,13 +18,25 @@ namespace WebLog.Persistance.Repositories
 
         public override IEnumerable<Teacher> GetAll()
         {
-            return _context.Teachers.Include(x => x.Subjects);
+            return _context.Teachers.Include(x => x.Subjects)
+                .Include(x => x.Advertisements)
+                .Include(x => x.SchoolClasses);
+        }
+
+        public Teacher GetTeacher(string mail)
+        {
+            return _context.Teachers.Include(x => x.Subjects)
+                .Include(x => x.Advertisements)
+                .Include(x => x.SchoolClasses)
+                .FirstOrDefault(x => x.Email.Equals(mail, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public override Teacher Get(int id)
         {
             return _context.Teachers.Include(x => x.Subjects.Select(y => y.SchoolClasses))
-                                    .FirstOrDefault(x => x.Id == id);
+                .Include(x => x.Advertisements)
+                .Include(x => x.SchoolClasses)
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }

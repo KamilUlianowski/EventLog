@@ -11,7 +11,7 @@
 <div class="page-content" ng-app="mainModule" ng-controller="ManageController" ng-switch="selection">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
-            <div class="cell size-x200 sidebar" id="cell-sidebar">
+            <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
                 <ul class="sidebar">
                     <li id="choice0" ng-click="changeActive(0)">
                         <a class="active" href="#">
@@ -46,25 +46,26 @@
 
                 </ul>
             </div>
+            <div class="site-content">
+                <div ng-switch-when="subjects">
+                    <div ng-include="'Subjects'">
 
-            <div ng-switch-when="subjects">
-                <div ng-include="'Subjects'">
-
+                    </div>
                 </div>
-            </div>
-            <div ng-switch-when="classes">
-                <div ng-include="'classes'">
+                <div ng-switch-when="classes">
+                    <div ng-include="'classes'">
 
+                    </div>
                 </div>
-            </div>
-            <div ng-switch-when="students">
-                <div ng-include="'students'">
+                <div ng-switch-when="students">
+                    <div ng-include="'students'">
 
+                    </div>
                 </div>
-            </div>
-            <div ng-switch-when="teachers">
-                <div ng-include="'teachers'">
+                <div ng-switch-when="teachers">
+                    <div ng-include="'teachers'">
 
+                    </div>
                 </div>
             </div>
         </div>

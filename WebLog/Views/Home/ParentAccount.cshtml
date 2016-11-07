@@ -1,7 +1,40 @@
 ﻿@model WebLog.Core.ViewModels.UserAccountsViewModels.ParentAccountViewModel
 
+@Styles.Render("~/Content/bootstrap-modal")
+@Styles.Render("~/Content/jquery-datatables")
 
-<div class="container">
+<div class="page-content">
+    <div class="flex-grid no-responsive-future" style="height: 100%;">
+        <div class="row" style="height: 100%">
+            <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
+                <ul class="sidebar">
+                    @foreach (var student in Model.Parent.Students)
+                    {
+                        using (Ajax.BeginForm("StudentGrades", "Home", new { studentId = student.Id }, new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "parent-account-content"
+                        }))
+                        {
+                             <li>
+                                 <span class="mif-apps icon" style="font-size: 2rem"></span>
+                                 @*<h4><span class="title">@subject.Name</span></h4>*@
+                                 <input type="submit" class="title" value="@(student.Name + " " + student.Surname)"/>
+                             </li>
+                         }
+                    }
+
+                </ul>
+            </div>
+
+            <div id="parent-account-content" class="cell auto-size padding20 bg-white site-content">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
     <div class="col-lg-8">
         <h3>@(Model.Parent.Student.Name + " " + Model.Parent.Student.Surname)</h3>
 
@@ -16,7 +49,12 @@
             </div>
         }
     </div>
-    <div class="col-lg-4">
-        @Html.Partial("RequestToTeacher", Model)
-    </div>
-</div>
+</div>*@
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/angular");
+    @Scripts.Render("~/bundles/bootstrap-modal");
+    @Scripts.Render("~/bundles/jquery-datatables")
+
+}

@@ -15,6 +15,7 @@ namespace WebLog.Core.ViewModels.UserAccountsViewModels
         public Dictionary<string, List<SchoolGrade>> DictGrades { get; set; }
         public IList<SelectListItem> Teachers { get; set; }
         public int SelectedTeacher { get; set; }
+        public List<Student> Students { get; set; }
         public string Message { get; set; }
 
         public ParentAccountViewModel()
@@ -26,6 +27,15 @@ namespace WebLog.Core.ViewModels.UserAccountsViewModels
         {
             Parent = parent;
             SchoolGrades = schoolGrades;
+            DictGrades = ConvertHelper.StudentSchoolGrades(SchoolGrades);
+            Teachers =
+                teachers.Select(x => new SelectListItem { Text = x.Name + " " + x.Surname, Value = x.Id.ToString() })
+                    .ToList();
+        }
+
+        public ParentAccountViewModel(Parent parent, List<Teacher> teachers)
+        {
+            Parent = parent;
             DictGrades = ConvertHelper.StudentSchoolGrades(SchoolGrades);
             Teachers =
                 teachers.Select(x => new SelectListItem { Text = x.Name + " " + x.Surname, Value = x.Id.ToString() })

@@ -40,11 +40,15 @@
 .content-adds {
     height: 100%;
     width: 100%;
+
 }
 
 .page-content {
     height: 100%;
     width: 100%;
+    float: left;
+    margin-top: 3.15rem !important;
+
 }
 
 #Wrapper {
@@ -135,10 +139,6 @@
     overflow: hidden;
     white-space: nowrap;
     z-index: 9999999;
-}
-
-#content-messages {
-    margin-left: 180px;
 }
 
 .sign-up-adds {
@@ -234,7 +234,7 @@
 
 .manage-content {
     width: 100%;
-    position: fixed;
+    position: absolute;
 }
 
 .manage-table {
@@ -292,4 +292,22 @@
 
 .app-bar-element {
     font-size: 20px !important;
+}
+
+.left-sidebar {
+    position: fixed !important;
+    width: 12rem !important;
+    height: 100% !important;
+    z-index: 999;
+}
+
+.top-navbar {
+    position: fixed !important;
+    width: 100%;
+    height: 3.4rem;
+    z-index: 999;
+}
+
+.site-content {
+    margin-left: 12.5rem;
 }

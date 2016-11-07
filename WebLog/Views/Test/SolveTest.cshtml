@@ -1,10 +1,15 @@
 ﻿
+
 @using Resources
 @model WebLog.Core.ViewModels.TestsViewModels.SolveTestViewModel
 
 @if (Model.Grade != null)
 {
-    <h1>Już wypełniłeś ten test, twoja ocena to @((int)Model.Grade.Grade)</h1>
+    <div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
+        <h1 class="text-light">@Model.Name <span class="mif-drive-eta place-right"></span></h1>
+        <hr class="thin bg-grayLighter">
+        <h1>Twoja ocena to @((int)Model.Grade.Grade)</h1>
+    </div>
 }
 else
 {
@@ -20,13 +25,14 @@ else
         <a data-toggle="modal" data-target="#MyModalTest" class="buttonTest a-learning-check div-link">Rozpocznij test</a>
     </div>
 
+
+    
     <div id="MyModalTest" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="container">
                     <div class="modal-header">
                         <div class="modal-window-text-header">
-                            <div class="countdown col-sm-12" style="float: none">
+                            <div class="countdown row" style="float: none">
                                 <span id="clock" class="text-left"></span>
                                 <div id="QuestionNumber" class="text-right" style="float : right"></div>
 
@@ -63,10 +69,8 @@ else
                 </div>
             </div>
         </div>
-    </div>
 
 
-    @section Scripts {
 
         @Scripts.Render("~/bundles/countdown")
 
@@ -148,7 +152,8 @@ else
                                 url: "/Test/SaveTestResult",
                                 data: { result: selectedAnswers, testId: @Model.TestId },
                                 success: function(msg) {
-                                    window.location.assign("/Test/SolveTest/" + @Model.TestId);
+                                    $('#MyModalTest').modal('toggle');
+                                    GetTestResult(@Model.TestId);
 
                                 },
                                 error: function(e) {
@@ -192,4 +197,3 @@ else
 
         </script>
     }
-}

@@ -4,6 +4,6 @@ namespace WebLog.Core.Repositories
 {
     public interface ITeacherRepository : IRepository<Teacher>
     {
-
+        Teacher GetTeacher(string mail);
     }
 }

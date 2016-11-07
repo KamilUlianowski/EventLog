@@ -16,7 +16,16 @@
     
     @foreach (var test in Model.Tests)
     {
-        <a class="row" href="~/Test/Detail/@test.Id">@test.Name</a>
+
+        using (Ajax.BeginForm("SolveTest", "Test", new { testId = test.Id}, new AjaxOptions
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "student-account-content"
+        }))
+        {
+                <input type="submit" class="title" value="@test.Name" />
+        }
+
     }
 
 </div>

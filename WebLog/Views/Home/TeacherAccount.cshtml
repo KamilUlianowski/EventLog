@@ -7,7 +7,7 @@
 <div class="page-content">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
-            <div class="cell size-x200 sidebar" id="cell-sidebar">
+            <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
                 <ul class="sidebar">
                     @foreach (var subject in Model.Teacher.Subjects)
                     {
@@ -24,11 +24,24 @@
                             </li>
                         }
                     }
+                    
+                    @using (Ajax.BeginForm("TeacherAdvertisements", "Home", new AjaxOptions
+                    {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "teacher-account-content"
+                    }))
+                    {
+                    <li>
+                        <span class="mif-apps icon" style="font-size: 2rem"></span>
+                        @*<h4><span class="title">@subject.Name</span></h4>*@
+                        <input type="submit" class="title" value="Ogłoszenia" />
+                    </li>
+                    }
 
                 </ul>
             </div>
             
-            <div id="teacher-account-content" class="cell auto-size padding20 bg-white" >
+            <div id="teacher-account-content" class="cell auto-size padding20 bg-white site-content" >
             </div>
           
         </div>

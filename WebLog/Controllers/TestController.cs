@@ -91,9 +91,9 @@ namespace WebLog.Controllers
             var schoolGrade = _unitOfWork.SchoolGrades.GetGradeFromTest(user, test);
 
             if(schoolGrade == null)
-                return View(new SolveTestViewModel(test));
+                return PartialView(new SolveTestViewModel(test));
 
-            return PartialView(new SolveTestViewModel(schoolGrade));
+            return PartialView(new SolveTestViewModel(schoolGrade, test));
 
         }
 

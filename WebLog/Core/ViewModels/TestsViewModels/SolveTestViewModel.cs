@@ -29,9 +29,10 @@ namespace WebLog.Core.ViewModels.TestsViewModels
             GradingScale = new DataConversionService().GetGradingScale(test.Questions);
         }
 
-        public SolveTestViewModel( SchoolGrade grade)
+        public SolveTestViewModel( SchoolGrade grade, Test test)
         {
             Grade = grade;
+            Name = test.Name;
         }
     }
 }

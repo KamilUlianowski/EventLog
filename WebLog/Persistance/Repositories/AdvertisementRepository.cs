@@ -38,6 +38,13 @@ namespace WebLog.Persistance.Repositories
                 .Where(x => x.Classes.Any(c => c.Id == id));
         }
 
+        public IEnumerable<Advertisement> GetAdvertisements(Teacher teacher)
+        {
+            return _context.Advertisements.Include(x => x.Teacher)
+                .Include(x => x.Classes)
+                .Where(x => x.Teacher.Id == teacher.Id);
+        }
+
         public IEnumerable<Advertisement> GetAdvertisements(List<int> advertisementsId)
         {
             return _context.Advertisements.Include(x => x.Teacher)

@@ -11,11 +11,11 @@ namespace WebLog.Core.Models
     [Table("Parent")]
     public class Parent : User
     {
-        public Student Student { get; set; }
+        public ICollection<Student> Students;
 
         public Parent()
         {
-
+            //Students = new List<Student>();
         }
 
         public Parent(SignUpViewModel signUpViewModel) : base(signUpViewModel)

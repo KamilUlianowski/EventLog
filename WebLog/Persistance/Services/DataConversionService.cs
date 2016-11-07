@@ -30,11 +30,16 @@ namespace WebLog.Persistance.Services
             var numbers = result.Split(',').Select(Int32.Parse).ToList();
             var dict = new Dictionary<int, int>();
 
-            for (int i = 0; i < numbers.Count; i += 2)
-                dict.Add(numbers[i], numbers[i + 1]);
-
+            try
+            {
+                for (int i = 0; i < numbers.Count; i += 2)
+                    dict.Add(numbers[i], numbers[i + 1]);
+            }
+            catch
+            {
+                // ignored
+            }
             return dict;
-
         }
 
         public int GetResult(Dictionary<int, int> dict, int testId)

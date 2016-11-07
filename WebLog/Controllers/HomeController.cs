@@ -53,12 +53,8 @@ namespace WebLog.Controllers
 
             if (user.GetType() == typeof(Student))
             {
-                //var student = _unitOfWork.Students.Get(user.Id);
-                //var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
-                //var advertisements = new List<Advertisement>();
-                //if (student.SchoolClass != null)
-                //    advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
-                return View("StudentAccount");
+                var student = _unitOfWork.Students.Get(user.Id);
+                return View("StudentAccount", student);
             }
 
             if (user.GetType() == typeof(Teacher))
@@ -71,9 +67,8 @@ namespace WebLog.Controllers
             if (user.GetType() == typeof(Parent))
             {
                 var parent = _unitOfWork.Parents.Get(user.Id);
-                var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(parent.Student.Id);
                 var teachers = _unitOfWork.Teachers.GetAll().ToList();
-                return View("ParentAccount", new ParentAccountViewModel(parent, schoolGrades, teachers));
+                return View("ParentAccount", new ParentAccountViewModel(parent, teachers));
             }
 
 
@@ -81,11 +76,16 @@ namespace WebLog.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Student")]
-        public ActionResult StudentGrades()
+        public ActionResult StudentGrades(int? studentId = null)
         {
-            var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
-            var student = _unitOfWork.Students.Get(user.Id);
+            Student student = null;
+            if (studentId == null)
+            {
+                var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
+                student = _unitOfWork.Students.Get(user.Id);
+            }
+            else
+                student = _unitOfWork.Students.Get(studentId.Value);
             var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
             var advertisements = new List<Advertisement>();
             if (student.SchoolClass != null)
@@ -98,7 +98,7 @@ namespace WebLog.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult TeacherClass(int? subjectId, int? schoolClassId)
         {
-            var teacher = (Teacher) _unitOfWork.Users.GetUser(User.Identity.GetUserId());
+            var teacher = (Teacher)_unitOfWork.Users.GetUser(User.Identity.GetUserId());
 
             if ((subjectId == null) || (schoolClassId == null) || (teacher == null))
                 return RedirectToAction("Index");
@@ -148,17 +148,15 @@ namespace WebLog.Controllers
         [Authorize]
         public ActionResult Messages()
         {
-            var messages = _unitOfWork.Messages.GetMessages(User.Identity.GetUserId()).ToList();
-            return View(new MessageViewModel(User.Identity.GetUserId(), messages));
+            return View(new MessageViewModel(User.Identity.GetUserId(),
+                _unitOfWork.Messages.GetMessages(User.Identity.GetUserId()).ToList()));
         }
 
         [HttpGet]
         [Authorize]
         public ActionResult StudentSubjects()
         {
-            var student = _unitOfWork.Students.GetStudent(User.Identity.GetUserId());
-
-            return PartialView((Student) student);
+            return PartialView((Student)_unitOfWork.Students.GetStudent(User.Identity.GetUserId()));
         }
 
         [HttpGet]
@@ -245,7 +243,7 @@ namespace WebLog.Controllers
                 if (user == null)
                     return RedirectToAction("Index", "Error", "Wystapil nieoczekiwany blad");
 
-                return RedirectToAction("SignUpParent", "Home", new {parentId = user.Id});
+                return RedirectToAction("SignUpParent", "Home", new { parentId = user.Id });
             }
 
             return RedirectToAction("Index", "Home");
@@ -280,11 +278,11 @@ namespace WebLog.Controllers
 
             if (student != null)
             {
-                _unitOfWork.Parents.AddChildren(parentViewModel.ParentId, (Student) student);
+                _unitOfWork.Parents.AddChildren(parentViewModel.ParentId, (Student)student);
                 _unitOfWork.Complete();
             }
             else
-                return RedirectToAction("Index", "Error", new {message = "Coś poszło nie tak"});
+                return RedirectToAction("Index", "Error", new { message = "Coś poszło nie tak" });
 
 
             return RedirectToAction("Index", "Home");
@@ -330,13 +328,43 @@ namespace WebLog.Controllers
             _unitOfWork.Users.UpdateToken(email);
             _unitOfWork.Complete();
             _iMailService.RemindOrChangePassword(email, _unitOfWork.Users.GetUser(email).Token);
-            return RedirectToAction("Confirm", new {message = "Wysłano maila"});
+            return RedirectToAction("Confirm", new { message = "Wysłano maila" });
+        }
+
+        [HttpGet]
+        public ActionResult StudentAdvertisements(int classId)
+        {
+            return PartialView(_unitOfWork.Advertisements.GetAdvertisements(classId).ToList());
+        }
+
+        [HttpGet]
+        public ActionResult TeacherAdvertisements()
+        {
+            var teacher = _unitOfWork.Teachers.GetTeacher(User.Identity.GetUserId());
+            if (teacher == null) return PartialView(new TeacherAccountViewModel());
+            return PartialView(new TeacherAccountViewModel(teacher));
+        }
+
+        [HttpPost]
+        public ActionResult AddAdvertisement(TeacherAccountViewModel viewModel)
+        {
+            var classes = _unitOfWork.Classes.GetClasses(viewModel.SelectedClasses.ToList()).ToList();
+            viewModel.Teacher = _unitOfWork.Teachers.Get(viewModel.Teacher.Id);
+            var advertisement = new Advertisement(viewModel.Text, viewModel.Teacher, classes, viewModel.OnlyForParents, viewModel.BySite);
+            _unitOfWork.Advertisements.Add(advertisement);
+
+            _unitOfWork.Complete();
+
+            if (viewModel.ByEmail)
+                _iMailService.SendAdvertisement(advertisement, viewModel.OnlyForParents);
+
+            return RedirectToAction("TeacherAdvertisements");
         }
 
         [HttpGet]
         public ActionResult Confirm(string message)
         {
-            return View((object) message);
+            return View((object)message);
         }
     }
 }
