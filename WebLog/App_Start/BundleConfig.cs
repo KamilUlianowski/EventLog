@@ -19,10 +19,12 @@ namespace WebLog
                       "~/Scripts/jquery.countdown*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                      "~/Scripts/angular*",
-                      "~/Scripts/myAngular/MainController*",
-                      "~/Scripts/myAngular/ManageController*",
-                      "~/Scripts/myAngular/TeacherController*"
+                      "~/Scripts/angular.js",
+                      "~/Scripts/MyAngular/mainModule.js*",
+                      "~/Scripts/MyAngular/Services/WebLog.js*",
+                      "~/Scripts/MyAngular/Controllers/MessageController*",
+                      "~/Scripts/MyAngular/Controllers/ManageController*",
+                      "~/Scripts/MyAngular/Controllers/TeacherController*"
                        ));
 
 

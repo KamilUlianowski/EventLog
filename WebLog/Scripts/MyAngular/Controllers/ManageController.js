@@ -1,7 +1,7 @@
 ﻿var app = angular.module('mainModule');
 
 app.controller('ManageController',
-    function ($scope, $http) {
+    function ($scope, $http, WebLog) {
 
         $scope.items = ['subjects', 'classes', 'teachers', 'students', 'advertisements'];
         $scope.selection = $scope.items[1];
@@ -37,62 +37,43 @@ app.controller('ManageController',
         }
 
         var getSubjects = function () {
-            return $http.get("/api/manage/GetSubjects")
-                .then(onSubjects);
+            WebLog.getSubjects().then(function (response) {
+                $scope.subjects = response.data;
+            });
         };
 
         var getClasses = function () {
-            return $http.get("/api/manage/GetClasses")
-              .then(onClasses);
+            WebLog.getClasses().then(function(response) {
+                $scope.classes = response.data;
+            });
         }
 
         var getTeachers = function () {
-            return $http.get("/api/manage/GetTeachers")
-              .then(onTeachers);
+            WebLog.getTeachers().then(function(response) {
+                $scope.teachers = response.data;
+            });
         }
 
         var getStudents = function () {
-            return $http.get("/api/manage/GetStudents")
-              .then(onStudents);
+            WebLog.getStudents().then(function (response) {
+                $scope.students = response.data;
+            });;
         }
-      
+
 
         var getMainAdvertisements = function () {
-            return $http.get("/api/manage/GetMainAdvertisements")
-           .then(onAdvertisements);
-        }
-
-        var onSubjects = function (response) {
-            $scope.subjects = response.data;
-        };
-
-        var onClasses = function (response) {
-            $scope.classes = response.data;
-        }
-
-        var onTeachers = function (response) {
-            $scope.teachers = response.data;
-        };
-
-        var onStudents = function (response) {
-            $scope.students = response.data;
-        };
-
-        var onAdvertisements = function(response) {
-            $scope.advertisements = response.data;
+            WebLog.getMainAdvertisements().then(function (response) {
+                $scope.advertisements = response.data;
+            });;
         }
 
         var onSubject = function (response) {
             $scope.subject = response.data;
         }
 
-        var onClass = function (response) {
-            $scope.class = response.data;
-        }
-
         $scope.sendRatingSummary = function () {
             if (confirm('Czy napewno chcesz wysłać zestawienie ocen?')) {
-                return $http.post("/api/manage/SendRatingSummary");
+                WebLog.sendRatingSummary();
             }
         }
 
@@ -114,7 +95,7 @@ app.controller('ManageController',
             if (confirm('Are you sure you want to delete this?')) {
                 var i = searchSubject(num);
                 $scope.subjects.splice(i, 1);
-                return $http.post("/api/manage/deletesubject", num);
+                WebLog.deleteSubject(num);
             };
 
         };
@@ -125,7 +106,7 @@ app.controller('ManageController',
             if (confirm('Are you sure you want to delete this?')) {
                 var i = searchClass(num);
                 $scope.classes.splice(i, 1);
-                return $http.post("/api/manage/DeleteClass", num);
+                WebLog.deleteClass(num);
             };
 
         };
@@ -134,7 +115,7 @@ app.controller('ManageController',
             if (confirm('Are you sure you want to delete this?')) {
                 var i = searchById($scope.subject.SchoolClasses, classId);
                 $scope.subject.SchoolClasses.splice(i, 1);
-                return $http.post("/api/manage/UpdateClassesSubject", JSON.stringify({ SubjectId: subjectId, ClassId: classId }));
+                WebLog.deleteClassFromSubject(subjectId, classId);
             };
         }
 
@@ -142,7 +123,7 @@ app.controller('ManageController',
             if (confirm('Are you sure you want to delete this?')) {
                 var i = searchById($scope.subject.Teachers, teacherId);
                 $scope.subject.Teachers.splice(i, 1);
-                return $http.post("/api/manage/UpdateTeacherSubject", JSON.stringify({ SubjectId: subjectId, TeacherId: teacherId }));
+                WebLog.deleteTeacherFromSubject(subjectId, teacherId);
             };
         }
 
@@ -150,38 +131,49 @@ app.controller('ManageController',
             if (confirm('Are you sure you want to delete this?')) {
                 var i = searchById($scope.class.Students, studentId);
                 $scope.class.Students.splice(i, 1);
-                return $http.post("/api/manage/DeleteStudentFromClass", JSON.stringify({ ClassId: classId, StudentId: studentId }));
+                WebLog.deleteStudentFromClass(classId, studentId);
             };
         }
 
         $scope.deleteTeacherFromClass = function (classId) {
             if (confirm('Are you sure you want to delete this?')) {
                 $scope.class.Teacher = null;
-                return $http.post("/api/manage/DeleteTeacherFromClass", JSON.stringify({ ClassId: classId }));
+                WebLog.deleteTeacherFromClass(classId);
             };
         }
 
         $scope.showSubjectDetail = function (subjectId) {
-            return $http.get("/api/manage/SubjectDetail?subjectId=" + subjectId)
-              .then(onSubject);
+            WebLog.showSubjectDetail(subjectId).then(function(response) {
+                $scope.subject = response.data;
+            });
         }
 
         $scope.showClassDetail = function (classId) {
-            return $http.get("/api/manage/ClassDetail?classId=" + classId)
-              .then(onClass);
+            WebLog.showClassDetail(classId).then(function(response) {
+                $scope.class = response.data;
+            });
         }
 
 
         $scope.addSubject = function (name, url) {
-            $http.post("/api/manage/addSubject", JSON.stringify({ Name: name, Url: url })).then(addSubjectResponse);
+            WebLog.addSubject(name, url).then(function(response) {
+                $scope.subjects.push(response.data);
+                angular.element('#myModal').modal('hide');
+            });
         };
 
         $scope.addClass = function (name) {
-            $http.post("/api/manage/addClass?name=" + name).then(addClassResponse);
+            WebLog.addClass(name).then(function(response) {
+                $scope.classes.push(response.data);
+                angular.element('#myModal').modal('hide');
+            });
         };
 
-        $scope.addAdvertisement = function(textAdv) {
-            $http.post("/api/manage/AddMainAdvertisement", JSON.stringify({ Text: textAdv })).then(addAdvertisementResponse);
+        $scope.addAdvertisement = function (textAdv) {
+            WebLog.addAdvertisement(textAdv).then(function(response) {
+                $scope.advertisements.push(response.data);
+                angular.element('#myModal').modal('hide');
+            });
         }
 
         $scope.addClassToSubject = function (subjectId, classId) {
@@ -189,8 +181,7 @@ app.controller('ManageController',
             if (searchById($scope.subject.SchoolClasses, $scope.classes[i].Id) == -1) {
                 $scope.subject.SchoolClasses.push($scope.classes[i]);
             }
-
-            return $http.post("/api/manage/UpdateClassesSubject", JSON.stringify({ SubjectId: subjectId, ClassId: classId }));
+            WebLog.addClassToSubject(subjectId, classId);
         }
 
         $scope.addTeacherToSubject = function (subjectId, teacherId) {
@@ -198,7 +189,7 @@ app.controller('ManageController',
             if (searchById($scope.subject.Teachers, $scope.teachers[i].Id) == -1) {
                 $scope.subject.Teachers.push($scope.teachers[i]);
             }
-            return $http.post("/api/manage/UpdateTeacherSubject", JSON.stringify({ SubjectId: subjectId, TeacherId: teacherId }));
+            WebLog.addTeacherToSubject(subjectId, teacherId);
         }
 
         $scope.addStudentToClass = function (classId, studentId) {
@@ -206,32 +197,14 @@ app.controller('ManageController',
             if (searchById($scope.class.Students, $scope.students[i].Id) == -1) {
                 $scope.class.Students.push($scope.students[i]);
             }
-
-            return $http.post("/api/manage/AddStudentToClass", JSON.stringify({ ClassId: classId, StudentId: studentId }));
+            WebLog.addStudentToClass(classId, studentId);
         }
 
 
         $scope.addTeacherToClass = function (classId, teacherId) {
             var i = searchById($scope.teachers, teacherId);
             $scope.class.Teacher = $scope.teachers[i];
-
-            return $http.post("/api/manage/AddTeacherToClass", JSON.stringify({ ClassId: classId, TeacherId: teacherId }));
-        }
-
-
-        var addClassResponse = function (response) {
-            $scope.classes.push(response.data);
-            angular.element('#myModal').modal('hide');
-        }
-
-        var addSubjectResponse = function (response) {
-            $scope.subjects.push(response.data);
-            angular.element('#myModal').modal('hide');
-        }
-
-        var addAdvertisementResponse = function(response) {
-            $scope.advertisements.push(response.data);
-            angular.element('#myModal').modal('hide');
+            WebLog.addTeacherToClass(classId, teacherId);
         }
 
         getSubjects();

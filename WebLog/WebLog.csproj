@@ -523,6 +523,8 @@
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap-only-modal.js" />
@@ -602,7 +604,7 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\metro.js" />
     <Content Include="Scripts\metro.min.js" />
-    <Content Include="Scripts\myAngular\MainController.js" />
+    <Content Include="Scripts\MyAngular\Controllers\MessageController.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -616,6 +618,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -630,8 +633,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\myAngular\ManageController.js" />
-    <Content Include="Scripts\myAngular\TeacherController.js" />
+    <Content Include="Scripts\MyAngular\Controllers\ManageController.js" />
+    <Content Include="Scripts\MyAngular\Controllers\TeacherController.js" />
+    <Content Include="Scripts\MyAngular\mainModule.js" />
+    <Content Include="Scripts\MyAngular\Services\WebLog.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -695,6 +700,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\MyAngular\Directives\" />
+    <Folder Include="Scripts\MyAngular\Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

@@ -13,7 +13,7 @@
 
 
 </head>
-<body>
+<body ng-app="mainModule" >
 
     <div class="app-bar bg-color-black top-navbar">
         <a class="app-bar-element" href="~/Home/Index"><span class="mif-home mif-2x"></span> Home</a>
@@ -109,6 +109,7 @@
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/angular");
     @Scripts.Render("~/bundles/ownScript")
     @Scripts.Render("~/bundles/metro")
     @RenderSection("scripts", required: false)

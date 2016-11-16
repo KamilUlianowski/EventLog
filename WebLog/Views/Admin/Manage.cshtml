@@ -2,13 +2,7 @@
 
 @Styles.Render("~/Content/bootstrap-modal")
 @Styles.Render("~/Content/jquery-datatables")
-@*<div class="row">
-        <a class="btn btn-primary" href="~/Admin/Subjects">@Global.Subjects</a>
-        <a class="btn btn-primary" href="~/Admin/SchoolClasses">@Global.Classes</a>
-    </div>*@
-
-<!-- Link to open the modal -->
-<div ng-app="mainModule" ng-controller="ManageController" ng-switch="selection">
+<div ng-switch="selection" ng-controller="ManageController">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
             <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
@@ -86,7 +80,7 @@
 
 @section Scripts {
 
-    @Scripts.Render("~/bundles/angular")
+    @*@Scripts.Render("~/bundles/angular")*@
     @Scripts.Render("~/bundles/bootstrap-modal")
     @Scripts.Render("~/bundles/jquery-datatables")
 
