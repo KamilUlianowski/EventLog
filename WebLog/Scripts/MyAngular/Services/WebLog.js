@@ -1,5 +1,9 @@
 ﻿angular.module('mainModule').factory('WebLog', function ($http) {
 
+    var getMessages = function () {
+        return $http.get("/api/message/GetMessages");
+    };
+
     var getSubjects = function () {
         return $http.get("/api/manage/GetSubjects");
     };
@@ -14,6 +18,10 @@
 
     var getStudents = function () {
         return $http.get("/api/manage/GetStudents");
+    }
+
+    var getSchoolGrades = function(subjectId, schoolClassId) {
+        return $http.get("/api/teacher/GetSchoolGrades", { SubjectId: subjectId, SchoolClassId: schoolClassId });
     }
 
     var getMainAdvertisements = function () {
@@ -85,6 +93,14 @@
     }
 
 
+    var sendMessage = function (message, email) {
+        $http.post("/api/message/sendMessage", JSON.stringify({ Email: email, Text: message }));
+    }
+
+     var scopesendNewMessage = function (message, toId) {
+        $http.post("/api/message/SendNewMessageToTeacher", JSON.stringify({ Id: toId, Text: message }));
+    }
+
 
 
     return {
@@ -107,7 +123,10 @@
         addClassToSubject: addClassToSubject,
         addTeacherToSubject: addTeacherToSubject,
         addStudentToClass: addStudentToClass,
-        addTeacherToClass: addTeacherToClass
+        addTeacherToClass: addTeacherToClass,
+        getMessages: getMessages,
+        sendMessage: sendMessage,
+        getSchoolGrades: getSchoolGrades
 
 
     };

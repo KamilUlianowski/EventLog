@@ -1,16 +1,12 @@
 ﻿var app = angular.module('mainModule');
 
     app.controller('TeacherController',
-        function ($scope, $http) {
-
-
-            var saveGrades = function (response) {
-                $scope.grades = response.data();
-            }
+        function ($scope, $http, WebLog) {
 
             var getSchoolGrades = function (subjectId, schoolClassId) {
-                return $http.get("/api/teacher/GetSchoolGrades", { SubjectId: subjectId, SchoolClassId: schoolClassId })
-                    .then(saveGrades);
+                WebLog.getSchoolGrades(subjectId, schoolClassId).then(function(response) {
+                    $scope.grades = response.data();
+                    });
             }
 
             $scope.init = function (subId, classId) {
@@ -19,6 +15,5 @@
 
                 getSchoolGrades(subId, classId);
             };
-
 
         });

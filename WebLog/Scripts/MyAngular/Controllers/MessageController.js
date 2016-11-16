@@ -1,5 +1,5 @@
 ﻿angular.module('mainModule').controller('MessageController',
-        function ($scope, $http) {
+        function ($scope, $http, WebLog) {
 
             var currentPerson = "";
 
@@ -12,23 +12,18 @@
             }
 
             var getMessages = function () {
-                return $http.get("/api/message/GetMessages")
-                    .then(onMessages);
+                WebLog.getMessages().then(function (response) {
+                    $scope.messages = response.data;
+                });
             };
 
-            var onMessages = function (response) {
-                $scope.messages = response.data;
-            }
 
             var getTeachers = function () {
-                return $http.get("/api/message/GetTeachers")
-                   .then(onTeachers);
+                WebLog.getTeachers().then(function (response) {
+                    $scope.teachers = response.data;
+                    $scope.selected = $scope.teachers[0].Email;
+                });
             }
-
-            var onTeachers = function (response) {
-                $scope.teachers = response.data;
-                $scope.selected = $scope.teachers[0].Email;
-            };
 
             $scope.changeTeacher = function (teacherId) {
                 $scope.selected = teacherId;
@@ -43,12 +38,13 @@
 
             $scope.sendMessage = function (message) {
                 $scope.myMessages.push({ m_Item1: $scope.myMessages[$scope.myMessages.length - 1].m_Item1 + 1000, m_Item2: message });
-                $http.post("/api/message/sendMessage", JSON.stringify({ Email: currentPerson.m_Item2, Text: message }));
+                WebLog.sendMessage(message, currentPerson.m_Item2);
             }
 
             $scope.sendNewMessage = function (message) {
-                $http.post("/api/message/SendNewMessageToTeacher", JSON.stringify({ Id: $scope.selected, Text: message }))
-                .then(onMessages);
+                WebLog.sendNewMessage(message, $scope.selected).then(function(response) {
+                    $scope.messages = response.data;
+                });
             }
 
             getMessages();
