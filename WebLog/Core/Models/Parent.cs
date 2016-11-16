@@ -11,7 +11,7 @@ namespace WebLog.Core.Models
     [Table("Parent")]
     public class Parent : User
     {
-        public ICollection<Student> Students;
+        public ICollection<Student> MyChildrens { get; set; }
 
         public Parent()
         {

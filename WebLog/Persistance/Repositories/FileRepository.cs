@@ -17,6 +17,13 @@ namespace WebLog.Persistance.Repositories
             _context = context;
         }
 
+        public override void Add(SubjectFile entity)
+        {
+            if (_context.Files.Any(x => x.Subject.Id == entity.Subject.Id && x.Path == entity.Path)) return;
+
+            _context.Files.Add(entity);
+        }
+
         public override SubjectFile Get(int id)
         {
             return _context.Files.Include(x => x.Subject)
@@ -25,7 +32,7 @@ namespace WebLog.Persistance.Repositories
 
         public override IEnumerable<SubjectFile> GetAll()
         {
-            return _context.Files.Include(x => x.Id);
+            return _context.Files.Include(x => x.Subject);
         }
     }
 }

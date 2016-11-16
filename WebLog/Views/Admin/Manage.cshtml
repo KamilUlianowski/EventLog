@@ -8,7 +8,7 @@
     </div>*@
 
 <!-- Link to open the modal -->
-<div class="page-content" ng-app="mainModule" ng-controller="ManageController" ng-switch="selection">
+<div ng-app="mainModule" ng-controller="ManageController" ng-switch="selection">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
             <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
@@ -43,6 +43,13 @@
                             <span class="counter">{{students.length}}</span>
                         </a>
                     </li>
+                    <li id="choice4" ng-click="changeActive(4)">
+                        <a href="#">
+                            <span class="mif-users icon"></span>
+                            <span class="title">Advertisements</span>
+                            <span class="counter">{{advertisements.length}}</span>
+                        </a>
+                    </li>
 
                 </ul>
             </div>
@@ -64,6 +71,11 @@
                 </div>
                 <div ng-switch-when="teachers">
                     <div ng-include="'teachers'">
+
+                    </div>
+                </div>
+                <div ng-switch-when="advertisements">
+                    <div ng-include="'advertisements'">
 
                     </div>
                 </div>

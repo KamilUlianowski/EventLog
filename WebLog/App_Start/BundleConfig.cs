@@ -40,10 +40,11 @@ namespace WebLog
             bundles.Add(new StyleBundle("~/Content/jquery-datatables").Include(
                 "~/Content/DataTables/css/jquery.dataTables.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-form").Include(
+              "~/Scripts/jquery.form.js"));
 
-
-bundles.Add(new ScriptBundle("~/bundles/ownScript").Include(
-                "~/Scripts/Site.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ownScript").Include(
+                            "~/Scripts/Site.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/bootstrap-modal").Include(

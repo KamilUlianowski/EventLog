@@ -7,7 +7,10 @@
     
     @foreach (var adv in Model)
     {
-        <h4>@adv.Text</h4>
+        if (adv.Visible)
+        {
+            <h4>@adv.Text</h4>
+        }
     }
     
 

@@ -13,6 +13,7 @@ namespace WebLog.Core.Models
     {
         public SchoolClass SchoolClass { get; set; }
         public Parent Parent { get; set; }
+        public ICollection<SchoolGrade> SchoolGrades { get; set; }
 
         public Student()
         {

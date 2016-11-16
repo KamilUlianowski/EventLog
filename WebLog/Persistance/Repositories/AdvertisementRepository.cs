@@ -35,7 +35,7 @@ namespace WebLog.Persistance.Repositories
 
             return _context.Advertisements.Include(x => x.Teacher)
                 .Include(x => x.Classes)
-                .Where(x => x.Classes.Any(c => c.Id == id));
+                .Where(x => x.Classes.Any(c => c.Id == id) && x.Visible);
         }
 
         public IEnumerable<Advertisement> GetAdvertisements(Teacher teacher)
@@ -43,6 +43,11 @@ namespace WebLog.Persistance.Repositories
             return _context.Advertisements.Include(x => x.Teacher)
                 .Include(x => x.Classes)
                 .Where(x => x.Teacher.Id == teacher.Id);
+        }
+
+        public IEnumerable<Advertisement> GetMainAdvertisements()
+        {
+            return _context.Advertisements.Where(x => x.MainPage);
         }
 
         public IEnumerable<Advertisement> GetAdvertisements(List<int> advertisementsId)

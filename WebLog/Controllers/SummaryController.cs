@@ -36,9 +36,9 @@ namespace WebLog.Controllers
             if (summaryViewModel.SelectedSubject != null)
                 schoolGrades = schoolGrades.Where(x => x.Subject.Id == summaryViewModel.SelectedSubject);
             if (summaryViewModel.StartDate != null && summaryViewModel.StartDate.Value.Year > 2000)
-                schoolGrades = schoolGrades.Where(x => x.Date > summaryViewModel.StartDate);
+                schoolGrades = schoolGrades.Where(x => x.Date >= summaryViewModel.StartDate);
             if (summaryViewModel.EndDate != null && summaryViewModel.EndDate.Value.Year > 2000)
-                schoolGrades = schoolGrades.Where(x => x.Date < summaryViewModel.EndDate);
+                schoolGrades = schoolGrades.Where(x => x.Date <= summaryViewModel.EndDate);
 
             return PartialView("SummaryPartial", ConvertHelper.SummaryGrades(schoolGrades.ToList()));
         }

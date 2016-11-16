@@ -11,5 +11,6 @@ namespace WebLog.Core.Repositories
     {
         IEnumerable<Advertisement> GetAdvertisements(int schoolClassId);
         IEnumerable<Advertisement> GetAdvertisements(Teacher teacher);
+        IEnumerable<Advertisement> GetMainAdvertisements();
     }
 }

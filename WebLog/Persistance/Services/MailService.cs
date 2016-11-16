@@ -79,5 +79,32 @@ namespace WebLog.Persistance.Services
                 }
             }
         }
+
+        public void SendRatingSummary(List<Student> students)
+        {
+
+            foreach (var student in students)
+            {
+                var dict = new Dictionary<string, List<int>>();
+
+                foreach (var schoolGrade in student.SchoolGrades)
+                {
+                    if (dict.ContainsKey(schoolGrade.Subject.Name))
+                        dict[schoolGrade.Subject.Name].Add((int) schoolGrade.Grade);
+                    else
+                        dict.Add(schoolGrade.Subject.Name, new List<int>() {(int) schoolGrade.Grade});
+                }
+
+                var message = new StringBuilder();
+                message.Append(student.Name + " " + student.Surname + "  Zestawienie ocen \n\n" );
+                foreach (var subject in dict)
+                {
+                    message.Append(subject.Key + ": ");
+                    message.Append(string.Join(",", subject.Value));
+                }
+
+                Send(message.ToString(), student.Parent.Email, "Zestawienie ocen");
+            }         
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace WebLog.Core.Services
     {
         void RemindOrChangePassword(string email, string password);
         void SendAdvertisement(Advertisement advertisement, bool onlyForParents = false);
+        void SendRatingSummary(List<Student> students);
     }
 }

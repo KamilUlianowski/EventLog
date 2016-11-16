@@ -242,22 +242,6 @@
     <Compile Include="Core\Common\TestResult.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
-    <Compile Include="Migrations\201611051457295_parentAccount.cs" />
-    <Compile Include="Migrations\201611051457295_parentAccount.Designer.cs">
-      <DependentUpon>201611051457295_parentAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611071217194_testss.cs" />
-    <Compile Include="Migrations\201611071217194_testss.Designer.cs">
-      <DependentUpon>201611071217194_testss.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611072143573_updateDatabasexxx.cs" />
-    <Compile Include="Migrations\201611072143573_updateDatabasexxx.Designer.cs">
-      <DependentUpon>201611072143573_updateDatabasexxx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611072252030_updateDatabasexxx8.cs" />
-    <Compile Include="Migrations\201611072252030_updateDatabasexxx8.Designer.cs">
-      <DependentUpon>201611072252030_updateDatabasexxx8.cs</DependentUpon>
-    </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -635,6 +619,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.countdown.js" />
     <Content Include="Scripts\jquery.countdown.min.js" />
@@ -705,6 +690,8 @@
     <Content Include="Views\Test\SolveTest.cshtml" />
     <Content Include="Views\Home\StudentAdvertisements.cshtml" />
     <Content Include="Views\Home\TeacherAdvertisements.cshtml" />
+    <Content Include="Views\Admin\Advertisements.cshtml" />
+    <Content Include="Views\Shared\CustomMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -720,18 +707,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611051457295_parentAccount.resx">
-      <DependentUpon>201611051457295_parentAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611071217194_testss.resx">
-      <DependentUpon>201611071217194_testss.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611072143573_updateDatabasexxx.resx">
-      <DependentUpon>201611072143573_updateDatabasexxx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611072252030_updateDatabasexxx8.resx">
-      <DependentUpon>201611072252030_updateDatabasexxx8.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.pl.Designer.cs</LastGenOutput>

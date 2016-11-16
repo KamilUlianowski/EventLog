@@ -45,6 +45,11 @@ namespace WebLog.Controllers
             return PartialView();
         }
 
+        public ActionResult Advertisements()
+        {
+            return PartialView();
+        }
+
         public ActionResult SchoolClasses()
         {
             return View(new ManageViewModel(

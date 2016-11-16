@@ -20,18 +20,20 @@
                     {
 
                         <input type="submit" class="button primary" value="@schoolClass.Name" />
-                        @*<a class="button primary" href="~/Home/TeacherClass?subjectId=@Model.Subject.Id&schoolClassId=@schoolClass.Id">
-                                @schoolClass.Name
-                            </a>*@
+          
                     }
                 }
-                <form action="~/Home/AddFile" method="post" enctype="multipart/form-data">
-                    <input name="subjectId" value="@Model.Subject.Id" hidden />
-                    <input type="file" name="file" />
-                    <input type="submit" value="Wyślij plik" />
-                </form>
+                
+                    <form action="~/Home/AddFile" method="post" enctype="multipart/form-data">
+                        <input name="subjectId" value="@Model.Subject.Id" hidden/>
+                        <input type="file" name="file"/>
+                        <input type="submit" value="Wyślij plik"/>
+                    </form>
 
-                @using (Html.BeginForm("AddContent", "Home", FormMethod.Post))
+                @using (Ajax.BeginForm("AddContent", "Home", new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                }))
                 {
                     @Html.HiddenFor(x => x.Subject.Id)
                     <div>
@@ -129,4 +131,4 @@
         </div>
 
     </div>
-</div>
+</div>}

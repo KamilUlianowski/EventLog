@@ -7,18 +7,20 @@ using System.Web.Http;
 using WebLog.API.ViewModels;
 using WebLog.Core;
 using WebLog.Core.Models;
+using WebLog.Core.Services;
 
 namespace WebLog.API.Controllers
 {
     public class ManageController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMailService _mailService;
 
-        public ManageController(IUnitOfWork unitOfWork)
+        public ManageController(IUnitOfWork unitOfWork, IMailService mailService)
         {
             _unitOfWork = unitOfWork;
+            _mailService = mailService;
         }
-
 
         [HttpGet]
         [Authorize]
@@ -54,6 +56,26 @@ namespace WebLog.API.Controllers
             var teachers = _unitOfWork.Teachers.GetAll();
 
             return Ok(teachers);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult GetMainAdvertisements()
+        {
+            var advertisements = _unitOfWork.Advertisements.GetMainAdvertisements().ToList();
+
+            return Ok(advertisements);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult AddMainAdvertisement([FromBody] NewMessage vm)
+        {
+            var advertisement = new Advertisement(vm.Text, true);
+            _unitOfWork.Advertisements.Add(advertisement);
+            _unitOfWork.Complete();
+
+            return Ok(advertisement);
         }
 
         [HttpGet]
@@ -189,6 +211,16 @@ namespace WebLog.API.Controllers
 
             _unitOfWork.Subjects.UpdateSubjectTeachers(vm.SubjectId, vm.TeacherId);
             _unitOfWork.Complete();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult SendRatingSummary()
+        {
+            var students = _unitOfWork.Students.GetAll().ToList();
+            _mailService.SendRatingSummary(students);
+
             return Ok();
         }
 

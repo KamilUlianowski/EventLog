@@ -29902,7 +29902,7 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * @description
  * The `ngShow` directive shows or hides the given HTML element based on the expression
  * provided to the `ngShow` attribute. The element is shown or hidden by removing or adding
- * the `.ng-hide` CSS class onto the element. The `.ng-hide` CSS class is predefined
+ * the `.ng-hide` CSS class onto the element. The `.ng-visible` CSS class is predefined
  * in AngularJS and sets the display style to none (using an !important flag).
  * For CSP mode please add `angular-csp.css` to your html file (see {@link ng.directive:ngCsp ngCsp}).
  *
@@ -29920,7 +29920,7 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  *
  * ## Why is !important used?
  *
- * You may be wondering why !important is used for the `.ng-hide` CSS class. This is because the `.ng-hide` selector
+ * You may be wondering why !important is used for the `.ng-hide` CSS class. This is because the `.ng-visible` selector
  * can be easily overridden by heavier selectors. For example, something as simple
  * as changing the display style on a HTML list item would make hidden elements appear visible.
  * This also becomes a bigger issue when dealing with CSS frameworks.
@@ -29932,12 +29932,12 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * ### Overriding `.ng-hide`
  *
  * By default, the `.ng-hide` class will style the element with `display: none!important`. If you wish to change
- * the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-hide`
- * class CSS. Note that the selector that needs to be used is actually `.ng-hide:not(.ng-hide-animate)` to cope
+ * the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-visible`
+ * class CSS. Note that the selector that needs to be used is actually `.ng-hide:not(.ng-visible-animate)` to cope
  * with extra animation classes that can be added.
  *
  * ```css
- * .ng-hide:not(.ng-hide-animate) {
+ * .ng-hide:not(.ng-visible-animate) {
  *   /&#42; this is just another form of hiding an element &#42;/
  *   display: block!important;
  *   position: absolute;
@@ -29959,7 +29959,7 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * //
  * //a working example can be found at the bottom of this page
  * //
- * .my-element.ng-hide-add, .my-element.ng-hide-remove {
+ * .my-element.ng-hide-add, .my-element.ng-visible-remove {
  *   /&#42; this is required as of 1.3x to properly
  *      apply all styling in a show/hide animation &#42;/
  *   transition: 0s linear all;
@@ -29972,9 +29972,9 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  * }
  *
  * .my-element.ng-hide-add { ... }
- * .my-element.ng-hide-add.ng-hide-add-active { ... }
+ * .my-element.ng-hide-add.ng-visible-add-active { ... }
  * .my-element.ng-hide-remove { ... }
- * .my-element.ng-hide-remove.ng-hide-remove-active { ... }
+ * .my-element.ng-hide-remove.ng-visible-remove-active { ... }
  * ```
  *
  * Keep in mind that, as of AngularJS version 1.3, there is no need to change the display
@@ -30019,7 +30019,7 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
         background: white;
       }
 
-      .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+      .animate-show.ng-hide-add, .animate-show.ng-visible-remove {
         transition: all linear 0.5s;
       }
 
@@ -30078,13 +30078,13 @@ var ngShowDirective = ['$animate', function($animate) {
  * @description
  * The `ngHide` directive shows or hides the given HTML element based on the expression
  * provided to the `ngHide` attribute. The element is shown or hidden by removing or adding
- * the `ng-hide` CSS class onto the element. The `.ng-hide` CSS class is predefined
+ * the `ng-hide` CSS class onto the element. The `.ng-visible` CSS class is predefined
  * in AngularJS and sets the display style to none (using an !important flag).
  * For CSP mode please add `angular-csp.css` to your html file (see {@link ng.directive:ngCsp ngCsp}).
  *
  * ```html
  * <!-- when $scope.myValue is truthy (element is hidden) -->
- * <div ng-hide="myValue" class="ng-hide"></div>
+ * <div ng-hide="myValue" class="ng-visible"></div>
  *
  * <!-- when $scope.myValue is falsy (element is visible) -->
  * <div ng-hide="myValue"></div>
@@ -30096,7 +30096,7 @@ var ngShowDirective = ['$animate', function($animate) {
  *
  * ## Why is !important used?
  *
- * You may be wondering why !important is used for the `.ng-hide` CSS class. This is because the `.ng-hide` selector
+ * You may be wondering why !important is used for the `.ng-hide` CSS class. This is because the `.ng-visible` selector
  * can be easily overridden by heavier selectors. For example, something as simple
  * as changing the display style on a HTML list item would make hidden elements appear visible.
  * This also becomes a bigger issue when dealing with CSS frameworks.
@@ -30108,7 +30108,7 @@ var ngShowDirective = ['$animate', function($animate) {
  * ### Overriding `.ng-hide`
  *
  * By default, the `.ng-hide` class will style the element with `display: none!important`. If you wish to change
- * the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-hide`
+ * the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-visible`
  * class in CSS:
  *
  * ```css
@@ -30133,14 +30133,14 @@ var ngShowDirective = ['$animate', function($animate) {
  * //
  * //a working example can be found at the bottom of this page
  * //
- * .my-element.ng-hide-add, .my-element.ng-hide-remove {
+ * .my-element.ng-hide-add, .my-element.ng-visible-remove {
  *   transition: 0.5s linear all;
  * }
  *
  * .my-element.ng-hide-add { ... }
- * .my-element.ng-hide-add.ng-hide-add-active { ... }
+ * .my-element.ng-hide-add.ng-visible-add-active { ... }
  * .my-element.ng-hide-remove { ... }
- * .my-element.ng-hide-remove.ng-hide-remove-active { ... }
+ * .my-element.ng-hide-remove.ng-visible-remove-active { ... }
  * ```
  *
  * Keep in mind that, as of AngularJS version 1.3, there is no need to change the display
@@ -30169,7 +30169,7 @@ var ngShowDirective = ['$animate', function($animate) {
       </div>
       <div>
         Hide:
-        <div class="check-element animate-hide" ng-hide="checked">
+        <div class="check-element animate-hide" ng-visible="checked">
           <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
         </div>
       </div>
@@ -30187,7 +30187,7 @@ var ngShowDirective = ['$animate', function($animate) {
         background: white;
       }
 
-      .animate-hide.ng-hide {
+      .animate-hide.ng-visible {
         line-height: 0;
         opacity: 0;
         padding: 0 10px;
@@ -31765,4 +31765,4 @@ $provide.value("$locale", {
 
 })(window);
 
-!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
+!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-visible-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');

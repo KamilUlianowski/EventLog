@@ -4,7 +4,7 @@
 @Styles.Render("~/Content/bootstrap-modal")
 @Styles.Render("~/Content/jquery-datatables")
 
-<div class="page-content">
+<div>
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
             <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
@@ -113,5 +113,4 @@ new AjaxOptions { HttpMethod = "POST", OnFailure = "onFailure", OnSuccess = "res
     @Scripts.Render("~/bundles/angular");
     @Scripts.Render("~/bundles/bootstrap-modal");
     @Scripts.Render("~/bundles/jquery-datatables")
-
 }

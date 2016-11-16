@@ -20,6 +20,8 @@ namespace WebLog.Persistance.Repositories
         public override Student Get(int id)
         {
             return _context.Students.Include(x => x.SchoolClass)
+                                 .Include(x => x.SchoolGrades)
+                                 .Include(x => x.Parent)
                                 .FirstOrDefault(x => x.Id == id);
         }
 
@@ -35,12 +37,16 @@ namespace WebLog.Persistance.Repositories
         public Student GetStudent(string mail)
         {
             return _context.Students.Include(x => x.SchoolClass.Subjects)
+                                                 .Include(x => x.SchoolGrades)
+                                                 .Include(x => x.Parent)
                 .FirstOrDefault(x => x.Email.Equals(mail, StringComparison.OrdinalIgnoreCase));
         }
 
         public override IEnumerable<Student> GetAll()
         {
-            return _context.Students.Include(x => x.SchoolClass);
+            return _context.Students.Include(x => x.SchoolClass)
+                .Include(x => x.Parent)
+                .Include(x => x.SchoolGrades.Select(y => y.Subject));
         }
     }
 }

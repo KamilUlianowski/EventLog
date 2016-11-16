@@ -32,7 +32,7 @@ namespace WebLog.Controllers
         }
 
         public ActionResult Index()
-        {
+        {      
             return View();
         }
 
@@ -181,12 +181,11 @@ namespace WebLog.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Teacher")]
-        public ActionResult AddContent(SubjectSiteViewModel vm)
+        public void AddContent(SubjectSiteViewModel vm)
         {
             _unitOfWork.Subjects.UpdateContent(vm.Subject.Id, vm.Content);
             _unitOfWork.Complete();
             var subjects = _unitOfWork.Subjects.GetAll().ToList();
-            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(vm.Subject.Id), subjects));
         }
 
         [HttpPost]
@@ -194,7 +193,7 @@ namespace WebLog.Controllers
         public ActionResult AddFile(int subjectId, HttpPostedFileBase file)
         {
             var directory = AppDomain.CurrentDomain.BaseDirectory + @"SubjectFiles\\";
-            if ((file == null) || (file.ContentLength <= 0)) return View("Index");
+            if ((file == null) || (file.ContentLength <= 0)) return View("~/Views/Shared/CustomMessage.cshtml", (object)"Wystąpił nieoczekiwany błąd"); ;
 
             var fileName = Path.GetFileName(file.FileName);
 
@@ -206,8 +205,8 @@ namespace WebLog.Controllers
                 _unitOfWork.Files.Add(new SubjectFile(subject, finallyPath));
             }
             _unitOfWork.Complete();
-            var subjects = _unitOfWork.Subjects.GetAll().ToList();
-            return View("Subject", new SubjectSiteViewModel(_unitOfWork.Subjects.Get(subjectId), subjects));
+
+            return View("~/Views/Shared/CustomMessage.cshtml", (object)"Plik wgrany na serwer");
         }
 
         [HttpGet]

@@ -1,0 +1,43 @@
+﻿@using Resources
+<div id="myModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header-adds">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nowy Przedmiot</h4>
+            </div>
+
+            <form ng-submit="addAdvertisement(textAdvertisement)">
+                <div class="modal-body">
+                    <label class="modal-label">Nazwa</label>
+                    <div class="input-control text">
+                        <textarea ng-model="textAdvertisement"></textarea>
+                    </div><br /><br />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="button primary modal-submit-adds">@Global.Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content" ng-if="class == null">
+    <h1 class="text-light">Ogłoszenia <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+    <button data-toggle="modal" data-target="#myModal" class="button primary"><span class="mif-plus">  @Global.Create </span></button>
+    <button ng-click="sendRatingSummary()" class="button primary"><span class="mif-plus"> Wyślij zestawienie ocen </span></button>
+
+    <hr class="thin bg-grayLighter">
+    
+    <div ng-repeat="adv in advertisements">
+        {{adv.Text}}
+    </div>
+
+</div>

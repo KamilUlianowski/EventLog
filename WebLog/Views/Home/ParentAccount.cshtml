@@ -3,12 +3,12 @@
 @Styles.Render("~/Content/bootstrap-modal")
 @Styles.Render("~/Content/jquery-datatables")
 
-<div class="page-content">
+<div>
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
             <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
                 <ul class="sidebar">
-                    @foreach (var student in Model.Parent.Students)
+                    @foreach (var student in Model.Parent.MyChildrens)
                     {
                         using (Ajax.BeginForm("StudentGrades", "Home", new { studentId = student.Id }, new AjaxOptions
                         {
