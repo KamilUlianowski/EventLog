@@ -12,7 +12,7 @@
             <form ng-submit="addAdvertisement(textAdvertisement)">
                 <div class="modal-body">
                     <label class="modal-label">Nazwa</label>
-                    <div class="input-control text">
+                    <div>
                         <textarea ng-model="textAdvertisement"></textarea>
                     </div><br /><br />
 
@@ -35,9 +35,19 @@
     <button ng-click="sendRatingSummary()" class="button primary"><span class="mif-plus"> Wyślij zestawienie ocen </span></button>
 
     <hr class="thin bg-grayLighter">
-    
-    <div ng-repeat="adv in advertisements">
-        {{adv.Text}}
-    </div>
 
+    <div class="grid">
+        <div class="row cells12">
+            <div class="cell colspan3 " ng-repeat="adv in advertisements">
+                    <div class="panel">
+                        <div class="heading">
+                            <span class="title">Panel Title</span>
+                        </div>
+                        <div class="content adv-text">
+                            {{adv.Text}}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
 </div>

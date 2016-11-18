@@ -158,50 +158,50 @@ namespace WebLog.API.Controllers
         [Authorize]
         public IHttpActionResult DeleteStudentFromClass([FromBody] ClassViewModel vm)
         {
-            _unitOfWork.Classes.RemoveStudent(vm.ClassId, vm.StudentId);
+           var student =  _unitOfWork.Classes.RemoveStudent(vm.ClassId, vm.StudentId);
             _unitOfWork.Complete();
 
-            return Ok();
+            return Ok(student);
         }
 
         [HttpPost]
         [Authorize]
         public IHttpActionResult DeleteTeacherFromClass([FromBody] ClassViewModel vm)
         {
-            _unitOfWork.Classes.RemoveTeacher(vm.ClassId);
+           var schoolClass =  _unitOfWork.Classes.RemoveTeacher(vm.ClassId);
             _unitOfWork.Complete();
 
-            return Ok();
+            return Ok(schoolClass);
         }
 
         [HttpPost]
         [Authorize]
         public IHttpActionResult AddStudentToClass([FromBody] ClassViewModel vm)
         {
-            _unitOfWork.Classes.AddStudent(vm.ClassId, vm.StudentId);
+            var schoolClass = _unitOfWork.Classes.AddStudent(vm.ClassId, vm.StudentId);
             _unitOfWork.Complete();
 
-            return Ok();
+            return Ok(schoolClass);
         }
 
         [HttpPost]
         [Authorize]
         public IHttpActionResult AddTeacherToClass([FromBody] ClassViewModel vm)
         {
-            _unitOfWork.Classes.AddTeacher(vm.ClassId, vm.TeacherId);
+           var schoolClass = _unitOfWork.Classes.AddTeacher(vm.ClassId, vm.TeacherId);
             _unitOfWork.Complete();
 
-            return Ok();
+            return Ok(schoolClass);
         }
 
         [HttpPost]
         [Authorize]
         public IHttpActionResult UpdateClassesSubject([FromBody] SubjectViewModel vm)
         {
-            _unitOfWork.Subjects.UpdateSubjectClasses(vm.SubjectId, vm.ClassId);
+           var subject = _unitOfWork.Subjects.UpdateSubjectClasses(vm.SubjectId, vm.ClassId);
             _unitOfWork.Complete();
 
-            return Ok();
+            return Ok(subject);
         }
 
         [HttpPost]
@@ -209,9 +209,9 @@ namespace WebLog.API.Controllers
         public IHttpActionResult UpdateTeacherSubject([FromBody] SubjectViewModel vm)
         {
 
-            _unitOfWork.Subjects.UpdateSubjectTeachers(vm.SubjectId, vm.TeacherId);
+            var subject =_unitOfWork.Subjects.UpdateSubjectTeachers(vm.SubjectId, vm.TeacherId);
             _unitOfWork.Complete();
-            return Ok();
+            return Ok(subject);
         }
 
         [HttpPost]
@@ -223,25 +223,5 @@ namespace WebLog.API.Controllers
 
             return Ok();
         }
-
-        //[HttpPost]
-        //[Authorize]
-        //public IHttpActionResult AddClassToSubject([FromBody] SubjectViewModel vm)
-        //{
-        //    _unitOfWork.Subjects.UpdateSubjectClasses(vm.SubjectId, vm.ClassId);
-        //    _unitOfWork.Complete();
-
-        //    return Ok();
-        //}
-
-        //[HttpPost]
-        //[Authorize]
-        //public IHttpActionResult AddTeacherToSubject([FromBody] SubjectViewModel vm)
-        //{
-        //    _unitOfWork.Classes.AddTeacher(schoolClassViewModel.Id, schoolClassViewModel.SelectedTeacherId);
-        //    _unitOfWork.Complete();
-
-        //    return Ok();
-        //}
     }
 }

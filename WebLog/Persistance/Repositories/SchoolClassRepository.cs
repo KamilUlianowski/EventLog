@@ -46,41 +46,49 @@ namespace WebLog.Persistance.Repositories
             _context.SchoolClass.Add(new SchoolClass(classViewModel.Name));
         }
 
-        public void AddStudent(int schoolClassId, int studentId)
+        public SchoolClass AddStudent(int schoolClassId, int studentId)
         {
-            var schoolClass = _context.SchoolClass.FirstOrDefault(x => x.Id == schoolClassId);
+            var schoolClass = Get(schoolClassId);
             var student = _context.Students.FirstOrDefault(x => x.Id == studentId);
 
             if (schoolClass != null && student != null)
                 schoolClass.Students.Add(student);
 
+            return schoolClass;
+
         }
 
-        public void AddTeacher(int schoolClassId, int teacherId)
+        public SchoolClass AddTeacher(int schoolClassId, int teacherId)
         {
-            var schoolClass = _context.SchoolClass.FirstOrDefault(x => x.Id == schoolClassId);
+            var schoolClass = Get(schoolClassId);
             var teacher = _context.Teachers.FirstOrDefault(x => x.Id == teacherId);
 
             if (schoolClass != null && teacher != null)
                 schoolClass.Teacher = teacher;
+
+            return schoolClass;
         }
 
-        public void RemoveStudent(int schooClassId, int studentId)
+        public SchoolClass RemoveStudent(int schooClassId, int studentId)
         {
-            var schoolClass = _context.SchoolClass.FirstOrDefault(x => x.Id == schooClassId);
+            var schoolClass = Get(schooClassId);
             var student = _context.Students.FirstOrDefault(x => x.Id == studentId);
 
             if (schoolClass != null && student != null)
                 schoolClass.Students.Remove(student);
 
+
+            return schoolClass;
         }
 
-        public void RemoveTeacher(int schooClassId)
+        public SchoolClass RemoveTeacher(int schooClassId)
         {
-            var schoolClass = _context.SchoolClass.Include(x => x.Teacher).FirstOrDefault(x => x.Id == schooClassId);
+            var schoolClass = Get(schooClassId);
 
             if (schoolClass != null)
                 schoolClass.Teacher = null;
+
+            return schoolClass;
 
         }
 
@@ -92,20 +100,14 @@ namespace WebLog.Persistance.Repositories
                                  .Where(x => classesId.Contains(x.Id));
         }
 
-        public void AddAdvertisement(int classId, Advertisement advertisement)
+        public SchoolClass AddAdvertisement(int classId, Advertisement advertisement)
         {
             var schoolClass = Get(classId);
 
             schoolClass?.Advertisements.Add(advertisement);
-        }
 
-        //public SchoolClass GetClass(int teacherId, int subjectId)
-        //{
-        //    return _context.SchoolClass.Include(x => x.Subjects)
-        //                                .Include(x => x.Teacher)
-        //                                .FirstOrDefault(x => x.Teacher.Id == teacherId &&
-        //                                                x.Subjects.Contains())
-        //}
+            return schoolClass;
+        }
 
         public IEnumerable<SchoolClass> GetTeacherClasses(Teacher teacher)
         {

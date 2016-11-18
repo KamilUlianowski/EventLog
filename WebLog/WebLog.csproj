@@ -242,6 +242,10 @@
     <Compile Include="Core\Common\TestResult.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
+    <Compile Include="Migrations\201611180028023_sfs.cs" />
+    <Compile Include="Migrations\201611180028023_sfs.Designer.cs">
+      <DependentUpon>201611180028023_sfs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -660,14 +664,11 @@
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Admin\Manage.cshtml" />
-    <Content Include="Views\Admin\AddClass.cshtml" />
-    <Content Include="Views\Admin\SchoolClassDetail.cshtml" />
     <Content Include="Views\Edit\Profile.cshtml" />
     <Content Include="Views\Home\RemindPassword.cshtml" />
     <Content Include="Views\Home\Confirm.cshtml" />
     <Content Include="Views\Admin\Subjects.cshtml" />
     <Content Include="Views\Admin\SchoolClasses.cshtml" />
-    <Content Include="Views\Admin\AddSubject.cshtml" />
     <Content Include="Views\Home\TeacherAccount.cshtml" />
     <Content Include="Views\Home\StudentAccount.cshtml" />
     <Content Include="Views\Home\ParentAccount.cshtml" />
@@ -687,7 +688,6 @@
     <Content Include="Views\Admin\Classes.cshtml" />
     <Content Include="Views\Admin\Students.cshtml" />
     <Content Include="Views\Admin\Teachers.cshtml" />
-    <Content Include="Views\Admin\SubjectDetail.cshtml" />
     <Content Include="Views\Home\Subject.cshtml" />
     <Content Include="Views\Home\StudentGrades.cshtml" />
     <Content Include="Views\Home\StudentSubjects.cshtml" />
@@ -714,6 +714,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611180028023_sfs.resx">
+      <DependentUpon>201611180028023_sfs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.pl.Designer.cs</LastGenOutput>

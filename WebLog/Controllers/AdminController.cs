@@ -56,38 +56,6 @@ namespace WebLog.Controllers
                         _unitOfWork.Classes.GetAll().ToList()));
         }
 
-        [HttpGet]
-        public ActionResult AddClass()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddClass(SchoolClassViewModel schoolViewModel)
-        {
-            if (schoolViewModel == null)
-                return RedirectToAction("Index", "Home");
-
-            _unitOfWork.Classes.Add(schoolViewModel);
-            _unitOfWork.Complete();
-            return RedirectToAction("SchoolClasses", "Admin");
-        }
-
-        [HttpGet]
-        public ActionResult AddSubject()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddSubject(NewSubjectViewModel newSubjectViewModel)
-        {
-            _unitOfWork.Subjects.Add(new Subject(newSubjectViewModel.Name));
-            _unitOfWork.Complete();
-            return RedirectToAction("Subjects");
-
-        }
-
 
         [HttpGet]
         public ActionResult SchoolClassDetail(int? id)
@@ -115,60 +83,6 @@ namespace WebLog.Controllers
 
             return PartialView(new SubjectDetailViewModel(subject, schoolClasses, teachers));
         }
-
-        [HttpPost]
-        public ActionResult AddOrRemoveSubjectToClass(int subjectId, int schoolClassId)
-        {
-
-            _unitOfWork.Subjects.UpdateSubjectClasses(subjectId, schoolClassId);
-            _unitOfWork.Complete();
-
-            return RedirectToAction("Subjects");
-        }
-
-        [HttpPost]
-        public ActionResult AddOrRemoveSubjectTeacher(int subjectId, int teacherId)
-        {
-
-            _unitOfWork.Subjects.UpdateSubjectTeachers(subjectId, teacherId);
-            _unitOfWork.Complete();
-
-            return RedirectToAction("Subjects");
-        }
-
-        [HttpPost]
-        public ActionResult AddStudentToClass(SchoolClassViewModel schoolClassViewModel)
-        {
-            _unitOfWork.Classes.AddStudent(schoolClassViewModel.Id, schoolClassViewModel.SelectedStudentId);
-            _unitOfWork.Complete();
-            return RedirectToAction("SchoolClassDetail", "Admin", new { id = schoolClassViewModel.Id });
-        }
-
-        [HttpPost]
-        public ActionResult AddTeacherToClass(SchoolClassViewModel schoolClassViewModel)
-        {
-            _unitOfWork.Classes.AddTeacher(schoolClassViewModel.Id, schoolClassViewModel.SelectedTeacherId);
-            _unitOfWork.Complete();
-            return RedirectToAction("SchoolClassDetail", "Admin", new { id = schoolClassViewModel.Id });
-        }
-
-        [HttpPost]
-        public ActionResult DeleteStudent(SchoolClassViewModel schoolClassViewModel)
-        {
-            _unitOfWork.Classes.RemoveStudent(schoolClassViewModel.Id, schoolClassViewModel.SelectedStudentId);
-            _unitOfWork.Complete();
-            return RedirectToAction("SchoolClassDetail", "Admin", new { id = schoolClassViewModel.Id });
-        }
-
-        [HttpPost]
-        public ActionResult DeleteTeacher(SchoolClassViewModel schoolClassViewModel)
-        {
-            _unitOfWork.Classes.RemoveTeacher(schoolClassViewModel.Id);
-            _unitOfWork.Complete();
-            return RedirectToAction("SchoolClassDetail", "Admin", new { id = schoolClassViewModel.Id });
-        }
-
-
 
     }
 }

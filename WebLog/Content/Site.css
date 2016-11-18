@@ -227,7 +227,7 @@
 }
 
 .manage-content {
-    width: 100%;
+    width: 80%;
     position: absolute;
 }
 
@@ -305,3 +305,14 @@
 .site-content {
     margin-left: 12.5rem;
 }
+
+.block-classes-manage {
+    width: 40%;
+    height: 40%;
+    float: left;
+}
+
+.adv-text {
+    padding: 0.5rem;
+}
+

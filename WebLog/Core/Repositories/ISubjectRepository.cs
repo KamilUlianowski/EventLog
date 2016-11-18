@@ -9,8 +9,8 @@ namespace WebLog.Core.Repositories
 {
     public interface ISubjectRepository : IRepository<Subject>
     {
-        void UpdateSubjectClasses(int subjectId, int schoolClassId);
-        void UpdateSubjectTeachers(int subjectId, int teacherId);
+        Subject UpdateSubjectClasses(int subjectId, int schoolClassId);
+        Subject UpdateSubjectTeachers(int subjectId, int teacherId);
         void UpdateContent(int subjectId, string content);
         Subject Get(string name);
         

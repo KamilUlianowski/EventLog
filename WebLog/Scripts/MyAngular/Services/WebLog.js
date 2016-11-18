@@ -97,7 +97,7 @@
         $http.post("/api/message/sendMessage", JSON.stringify({ Email: email, Text: message }));
     }
 
-     var scopesendNewMessage = function (message, toId) {
+     var sendNewMessage = function (message, toId) {
         $http.post("/api/message/SendNewMessageToTeacher", JSON.stringify({ Id: toId, Text: message }));
     }
 
@@ -126,7 +126,8 @@
         addTeacherToClass: addTeacherToClass,
         getMessages: getMessages,
         sendMessage: sendMessage,
-        getSchoolGrades: getSchoolGrades
+        getSchoolGrades: getSchoolGrades,
+        sendNewMessage: sendNewMessage
 
 
     };

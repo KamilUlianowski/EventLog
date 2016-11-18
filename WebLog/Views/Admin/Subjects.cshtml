@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<div class="cell auto-size padding20 bg-white manage-content" id="cell-content" ng-if="subject == null">
+<div class="cell auto-size padding20 bg-white" id="cell-content" ng-if="subject == null">
     <h1 class="text-light">@Global.Subjects <span class="mif-drive-eta place-right"></span></h1>
     <hr class="thin bg-grayLighter">
     <button data-toggle="modal" data-target="#myModal" class="button primary"><span class="mif-plus">  @Global.Create </span></button>
@@ -57,57 +57,102 @@
 <div class="cell auto-size padding20 bg-white manage-content" ng-if="subject">
     <h1 class="text-light"> {{subject.Name}} <span class="mif-drive-eta place-right"></span></h1>
     <hr class="thin bg-grayLighter">
-    <div class="image-container image-format-square mouse-pointer image-container-adds">
-        <div class="frame img-wrap">
-            <img class="image-resize" ng-src="{{subject.ImagePath}}"/>
+    
+    <div class="grid">
+        <div class="row cells12">
+            <div class="cell colspan6">
+                <span>Dodaj klase</span>
+                <select ng-model="selectedClass" ng-options="class as class.Name for class in otherClasses" ng-change="addClassToSubject(subject.Id, selectedClass.Id)">
+                    <option value="">Klasa</option>
+                </select>
+
+                <h2>Klasy</h2>
+                <table class="dataTable border bordered managed-table" data-auto-width="true">
+                    <thead>
+                    <tr>
+                        <td class="sortable-column sort-asc">Klasa</td>
+                        <td style="width: 50px;">Usuń</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="class in subject.SchoolClasses">
+                        <td>{{class.Name}}</td>
+                        <td>
+                            <a class="cross-icon mouse-pointer"><span class="mif-cross icon mouse-pointer" ng-click="deleteClassFromSubject(subject.Id, class.Id)"></span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cell colspan6">
+                <span>Dodaj nauczyciela</span>
+                <select ng-model="selectedTeacher" ng-options="teacher as teacher.Name for teacher in otherTeachers" ng-change="addTeacherToSubject(subject.Id, selectedTeacher.Id)">
+                    <option value="">Nauczyciel</option>
+                </select>
+                <h2>Nauczyciele</h2>
+                <table class="dataTable border bordered managed-table" data-auto-width="true">
+                    <thead>
+                    <tr>
+                        <td class="sortable-column sort-asc">Nauczyciel</td>
+                        <td style="width: 50px;">Usuń</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="teacher in subject.Teachers">
+                        <td>{{teacher.Name}} {{teacher.Surname}}</td>
+                        <td>
+                            <a class="cross-icon mouse-pointer"><span class="mif-cross icon mouse-pointer" ng-click="deleteTeacherFromSubject(subject.Id, teacher.Id)"></span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="image-overlay">
-            <h2>{{subject.Name}}</h2>
-        </div>
     </div>
     
-    <div class="column-subject">
-        <h2>Klasy</h2>
-        <ul>
-            <li ng-repeat="class in subject.SchoolClasses">
-                <h3>
-                    <span class="modal-label-class"> {{class.Name}}</span>
-                    <a class="cross-icon mouse-pointer" ng-click="deleteClassFromSubject(subject.Id, class.Id)"><span class="mif-cross icon mouse-pointer"></span></a>
-                </h3>
-            </li>
-        </ul>
-    </div>
-    
-
-    <div class="column-subject">
-        <h2>Nauczyciele</h2>
-        <ul>
-            <li ng-repeat="teacher in subject.Teachers">
-                <h3>
-                    <span class="modal-label" >{{teacher.Name}} {{teacher.Surname}}</span>
-                    <a class="cross-icon mouse-pointer" ng-click="deleteTeacherFromSubject(subject.Id, teacher.Id)"><span class="mif-cross icon mouse-pointer"></span></a>
-                </h3>
-
-            </li>
-        </ul>
-    </div>
-    
-    <div class="add-section">
-        <h2 > Klasy</h2>
-        <ul>
-            <li class="mouse-pointer" ng-repeat="class in classes" ng-click="addClassToSubject(subject.Id, class.Id)">
-                {{class.Name}}
-            </li>
-        </ul>
-    </div>
-    
-    <div class="add-section">
-        <h2 >Nauczyciele</h2>
-        <ul>
-            <li class="mouse-pointer" ng-repeat="teacher in teachers" ng-click="addTeacherToSubject(subject.Id, teacher.Id)">
-                {{teacher.Name}} {{teacher.Surname}}
-            </li>
-        </ul>
-    </div>
-
 </div>
+
+<script>
+    $('.managed-table').dataTable({
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": false,
+        "bInfo": false
+    });
+
+</script>
+
+
+@*<div class="grid">
+    <div class="row cells2">
+        <div class="cell">
+            <div class="add-section">
+                <h2> Klasy</h2>
+                <ul>
+                    <li class="mouse-pointer" ng-repeat="class in otherClasses" ng-click="addClassToSubject(subject.Id, class.Id)">
+                        {{class.Name}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cell">
+            <div class="add-section">
+                <h2>Nauczyciele</h2>
+                <ul>
+                    <li class="mouse-pointer" ng-repeat="teacher in otherTeachers" ng-click="addTeacherToSubject(subject.Id, teacher.Id)">
+                        {{teacher.Name}} {{teacher.Surname}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@*<div class="image-container image-format-square mouse-pointer image-container-adds">
+    <div class="frame img-wrap">
+        <img class="image-resize" ng-src="{{subject.ImagePath}}" />
+    </div>
+    <div class="image-overlay">
+        <h2>{{subject.Name}}</h2>
+    </div>
+</div>*@

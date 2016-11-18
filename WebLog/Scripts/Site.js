@@ -5,7 +5,6 @@ function resetForm() {
     $("#returnMessage").text("@Global.MessageSent");
 
 }
-
 function GetSubjectDetail(id) {
     $.ajax({
         url: "/Home/StudentSubjectDetail",

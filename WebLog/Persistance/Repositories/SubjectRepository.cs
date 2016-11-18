@@ -18,38 +18,42 @@ namespace WebLog.Persistance.Repositories
             _context = context;
         }
 
-        public void UpdateSubjectClasses(int subjectId, int schoolClassId)
+        public Subject UpdateSubjectClasses(int subjectId, int schoolClassId)
         {
-            var subject = _context.Subjects.Include(x => x.SchoolClasses)
+            var subject = _context.Subjects.Include(x => x.SchoolClasses).Include(x => x.Teachers)
                                            .FirstOrDefault(x => x.Id == subjectId);
 
             var schoolClass = _context.SchoolClass.Include(x => x.Subjects)
                 .FirstOrDefault(x => x.Id == schoolClassId);
 
             if (subject == null || schoolClass == null)
-                return;
+                return subject;
 
             if (schoolClass.Subjects.Contains(subject))
                 schoolClass.Subjects.Remove(subject);
             else
                 schoolClass.Subjects.Add(subject);
+
+            return subject;
         }
 
-        public void UpdateSubjectTeachers(int subjectId, int teacherId)
+        public Subject UpdateSubjectTeachers(int subjectId, int teacherId)
         {
-            var subject = _context.Subjects.Include(x => x.Teachers)
+            var subject = _context.Subjects.Include(x => x.Teachers).Include(x => x.SchoolClasses)
                                           .FirstOrDefault(x => x.Id == subjectId);
 
             var teacher = _context.Teachers.Include(x => x.Subjects)
                 .FirstOrDefault(x => x.Id == teacherId);
 
             if (subject == null || teacher == null)
-                return;
+                return subject;
 
             if (teacher.Subjects.Contains(subject))
                 teacher.Subjects.Remove(subject);
             else
                 teacher.Subjects.Add(subject);
+
+            return subject;
         }
 
         public void UpdateContent(int subjectId, string content)

@@ -12,8 +12,9 @@ namespace WebLog.Core.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(300)]
+        [MaxLength(1000)]
         public string Text { get; set; }
+        public string Title { get; set; }
         public bool Visible { get; set; }
         public bool MainPage { get; set; }
         public bool OnlyForParents { get; set; }

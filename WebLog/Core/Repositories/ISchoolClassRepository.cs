@@ -11,12 +11,12 @@ namespace WebLog.Core.Repositories
     public interface ISchoolClassRepository : IRepository<SchoolClass>
     {
         void Add(SchoolClassViewModel classViewModel);
-        void AddStudent(int schoolClassId, int userId);
-        void AddTeacher(int schoolClassId, int userId);
-        void RemoveStudent(int schoolId, int studentId);
-        void RemoveTeacher(int schoolId);
+        SchoolClass AddStudent(int schoolClassId, int userId);
+        SchoolClass AddTeacher(int schoolClassId, int userId);
+        SchoolClass RemoveStudent(int schoolId, int studentId);
+        SchoolClass RemoveTeacher(int schoolId);
         IEnumerable<SchoolClass> GetClasses(List<int> classesId);
-        void AddAdvertisement(int classId, Advertisement advertisement);
+        SchoolClass AddAdvertisement(int classId, Advertisement advertisement);
         //SchoolClass GetClass(int teacherId, int subjectId);
         IEnumerable<SchoolClass> GetTeacherClasses(Teacher teacher);
     }
