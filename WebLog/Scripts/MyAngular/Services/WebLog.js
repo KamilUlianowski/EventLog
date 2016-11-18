@@ -71,8 +71,8 @@
         return $http.post("/api/manage/addClass?name=" + name);
     };
 
-    var addAdvertisement = function (textAdv) {
-        return $http.post("/api/manage/AddMainAdvertisement", JSON.stringify({ Text: textAdv }));
+    var addAdvertisement = function (titleAdv, textAdv) {
+        return $http.post("/api/manage/AddMainAdvertisement", JSON.stringify({Title:titleAdv, Text: textAdv }));
     }
 
     var addClassToSubject = function (subjectId, classId) {

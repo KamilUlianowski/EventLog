@@ -36,6 +36,16 @@ namespace WebLog.Core.Models
             Date = DateTime.Now;
         }
 
+        public Advertisement(string text, string title, bool mainPage = false)
+        {
+            Text = text;
+            Visible = true;
+            MainPage = mainPage;
+            OnlyForParents = false;
+            Date = DateTime.Now;
+            Title = title;
+        }
+
         public Advertisement(string text, Teacher teacher, List<SchoolClass> classes, bool forParents, bool visible = false)
         {
             Text = "Wiadomość od : " + teacher.Name + " " + teacher.Surname + "\n\n" +text;

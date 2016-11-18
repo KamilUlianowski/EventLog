@@ -71,7 +71,7 @@ namespace WebLog.API.Controllers
         [Authorize]
         public IHttpActionResult AddMainAdvertisement([FromBody] NewMessage vm)
         {
-            var advertisement = new Advertisement(vm.Text, true);
+            var advertisement = new Advertisement(vm.Text,vm.Title, true);
             _unitOfWork.Advertisements.Add(advertisement);
             _unitOfWork.Complete();
 

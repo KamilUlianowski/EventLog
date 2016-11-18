@@ -218,8 +218,8 @@ app.controller('ManageController',
             });
         };
 
-        $scope.addAdvertisement = function (textAdv) {
-            WebLog.addAdvertisement(textAdv).then(function (response) {
+        $scope.addAdvertisement = function (titleAdv, textAdv) {
+            WebLog.addAdvertisement(titleAdv, textAdv).then(function (response) {
                 $scope.advertisements.push(response.data);
                 angular.element('#myModal').modal('hide');
             });

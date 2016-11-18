@@ -4,17 +4,21 @@
     <div class="modal-dialog">
 
         <div class="modal-content">
-            <div class="modal-header modal-header-adds">
+            <div class="modal-header mowdal-header-adds">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Nowy Przedmiot</h4>
             </div>
 
-            <form ng-submit="addAdvertisement(textAdvertisement)">
+            <form ng-submit="addAdvertisement(titleAdvertisement, textAdvertisement)">
                 <div class="modal-body">
+                    
+                    <label class="modal-label">Tytuł</label>
+                    <input required type="text" ng-model="titleAdvertisement" /><br /><br/>
+
                     <label class="modal-label">Nazwa</label>
                     <div>
                         <textarea ng-model="textAdvertisement"></textarea>
-                    </div><br /><br />
+                    </div><br/><br/>
 
                 </div>
                 <div class="modal-footer">
@@ -35,13 +39,10 @@
     <button ng-click="sendRatingSummary()" class="button primary"><span class="mif-plus"> Wyślij zestawienie ocen </span></button>
 
     <hr class="thin bg-grayLighter">
-
-    <div class="grid">
-        <div class="row cells12">
-            <div class="cell colspan3 " ng-repeat="adv in advertisements">
+            <div class="tile tile-wide" data-role="tile" ng-repeat="adv in advertisements">
                     <div class="panel">
                         <div class="heading">
-                            <span class="title">Panel Title</span>
+                            <span class="title">{{adv.Title}}</span>
                         </div>
                         <div class="content adv-text">
                             {{adv.Text}}
@@ -49,5 +50,3 @@
                     </div>
             </div>
         </div>
-    </div>
-</div>

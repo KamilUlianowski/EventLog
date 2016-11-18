@@ -314,5 +314,6 @@
 
 .adv-text {
     padding: 0.5rem;
+    word-wrap: break-word;
 }
 
