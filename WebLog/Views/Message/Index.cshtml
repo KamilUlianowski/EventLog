@@ -33,8 +33,8 @@
                                 <div ng-if="selected > 0">
                                     <h4>Leave a Comment:</h4>
                                     <div>
-                                        <form ng-submit="sendNewMessage(newMessage)">
-                                            <input type="text" ng-model="newMessage"/>
+                                        <form ng-submit="sendNewMessage(formInputs.newMessage)">
+                                            <input type="text" ng-model="formInputs.newMessage"/>
                                             <input type="submit"/>
                                         </form>
 
@@ -44,7 +44,7 @@
 
                             <section >
                                 <!-- First Comment -->
-                                <article class="row" ng-repeat="message in myMessages">
+                                <article class="row" ng-repeat="message in myMessages" ng-if="message">
                                     <div>
                                         <div>
                                             <div>
@@ -63,8 +63,8 @@
                                 <div ng-if="myMessages">
                                     <h4>Leave a Comment:</h4>
                                     <div>
-                                        <form ng-submit="sendMessage(newMessage)">
-                                            <input type="text" ng-model="newMessage"/>
+                                        <form ng-submit="sendMessage(formInputs.newMessage)">
+                                            <input type="text" ng-model="formInputs.newMessage"/>
                                             <input type="submit"/>
                                         </form>
 

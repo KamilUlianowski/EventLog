@@ -29,7 +29,7 @@
                                 }
                             </td>
                             <td>
-                                @using (Ajax.BeginForm("AddGrade", "Home", new { selectedStudent = @student.Id }, new AjaxOptions
+                                @using (Ajax.BeginForm("AddGrade", "Teacher", new { selectedStudent = @student.Id }, new AjaxOptions
                                 {
                                     HttpMethod = "POST"
                                 }))
@@ -53,50 +53,6 @@
             </table>
 
         </div>
-
-
-        @*@foreach (var student in Model.SchoolClass.Students)
-            {
-                <div class="row">
-
-                    <div class="col-lg-2">
-                        @(student.Name + " " + student.Surname)
-                    </div>
-
-                    <div id="@("studentGrades" + @student.Id)" class="col-lg-4">
-                        @foreach (var grade in Model.SchoolGrades.Where(x => x.Student.Id == student.Id))
-                        {
-                            <a>@((int)grade.Grade)</a>
-                        }
-                    </div>
-                    <div class="col-lg-6">
-
-                        @using (Ajax.BeginForm("AddGrade", "Home", new { selectedStudent = @student.Id }, new AjaxOptions
-                        {
-                            HttpMethod = "POST",
-                            OnSuccess = "addGrade(" + student.Id + ")"
-
-
-                        }))
-                        {
-                            @Html.HiddenFor(x => x.Teacher.Id)
-                            @Html.HiddenFor(x => x.Subject.Id)
-                            @Html.HiddenFor(x => x.SchoolClass.Id)
-
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    @Html.EnumDropDownListFor(x => x.NewGrade, "Ocena", new { @class = "form-control", type = "date", id = "student" + student.Id })
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-primary" onsubmit="addGrade(@student.Id)" value="@Global.Add">
-                                </div>
-
-                            </div>
-                        }
-                    </div>
-                </div>
-            }*@
     </div>
 </div>
 

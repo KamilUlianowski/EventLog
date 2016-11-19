@@ -12,7 +12,7 @@
 
                 @foreach (var schoolClass in Model.Subject.SchoolClasses)
                 {
-                    using (Ajax.BeginForm("TeacherClass", "Home", new { subjectId = Model.Subject.Id, schoolClassId = schoolClass.Id }, new AjaxOptions
+                    using (Ajax.BeginForm("TeacherClass", "Teacher", new { subjectId = Model.Subject.Id, schoolClassId = schoolClass.Id }, new AjaxOptions
                     {
                         HttpMethod = "GET",
                         UpdateTargetId = "teacher-account-content"
@@ -30,7 +30,7 @@
                         <input type="submit" value="Wyślij plik"/>
                     </form>
 
-                @using (Ajax.BeginForm("AddContent", "Home", new AjaxOptions
+                @using (Ajax.BeginForm("AddContent", "Teacher", new AjaxOptions
                 {
                     HttpMethod = "POST",
                 }))

@@ -10,7 +10,7 @@
                 <ul class="sidebar">
                     @foreach (var student in Model.Parent.MyChildrens)
                     {
-                        using (Ajax.BeginForm("StudentGrades", "Home", new { studentId = student.Id }, new AjaxOptions
+                        using (Ajax.BeginForm("StudentGrades", "Student", new { studentId = student.Id }, new AjaxOptions
                         {
                             HttpMethod = "GET",
                             UpdateTargetId = "parent-account-content"
@@ -33,23 +33,6 @@
         </div>
     </div>
 </div>
-
-@*<div class="container">
-    <div class="col-lg-8">
-        <h3>@(Model.Parent.Student.Name + " " + Model.Parent.Student.Surname)</h3>
-
-        @foreach (var dict in Model.DictGrades)
-        {
-            <div class="row">
-                <h4>@dict.Key</h4>
-                @foreach (var grade in dict.Value)
-                {
-                    <a>@grade.Grade</a>
-                }
-            </div>
-        }
-    </div>
-</div>*@
 
 @section Scripts {
 

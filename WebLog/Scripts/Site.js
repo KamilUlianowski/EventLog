@@ -7,7 +7,7 @@ function resetForm() {
 }
 function GetSubjectDetail(id) {
     $.ajax({
-        url: "/Home/StudentSubjectDetail",
+        url: "/Student/StudentSubjectDetail",
         data: { "subjectId": id },
         type: 'GET',
 

@@ -54,7 +54,8 @@ namespace WebLog.API.Controllers
             var newMessage = new Message(userFrom, userTo, message.Text);
             _unitOfWork.Messages.Add(newMessage);
             _unitOfWork.Complete();
-            return Ok(newMessage);
+
+            return GetMessages();
         }
 
         [HttpPost]
@@ -66,8 +67,8 @@ namespace WebLog.API.Controllers
             var newMessage = new Message(userFrom, userTo, message.Text);
             _unitOfWork.Messages.Add(newMessage);
             _unitOfWork.Complete();
-            
-            return Ok(_unitOfWork.Messages.GetMessages(User.Identity.GetUserId()).ToList());
+
+            return GetMessages();
         }
     }
 }

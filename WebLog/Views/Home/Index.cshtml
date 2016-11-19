@@ -1,6 +1,15 @@
-﻿<div ng-controller="ManageController">
-    <div ng-repeat="adv in advertisements">
-        {{adv.Text}}
+﻿<h1 style="text-align: center;">Ogłoszenia</h1>
+<hr class="thin bg-grayLighter">
+<div ng-controller="ManageController">
+    <div class="tile tile-wide" data-role="tile" ng-repeat="adv in advertisements">
+        <div class="panel">
+            <div class="heading">
+                <span class="title">{{adv.Title}}</span>
+            </div>
+            <div class="content adv-text">
+                {{adv.Text}}
+            </div>
+        </div>
     </div>
 </div>
 

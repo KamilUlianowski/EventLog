@@ -12,7 +12,6 @@ using WebLog.Core.Models;
 using WebLog.Core.Services;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.AuthViewModels;
-using WebLog.Core.ViewModels.SubjectViewModels;
 using WebLog.Core.ViewModels.UserAccountsViewModels;
 using ChangePasswordViewModel = WebLog.Core.ViewModels.AuthViewModels.ChangePasswordViewModel;
 
@@ -40,96 +39,24 @@ namespace WebLog.Controllers
         [Authorize]
         public ActionResult MySchool() // brzydka metoda, może do poprawy
         {
-            var a = 5;
             var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
 
             if (user == null)
                 return RedirectToAction("Index");
 
             if (user.GetType() == typeof(Admin))
-            {
                 return RedirectToAction("Manage", "Admin");
-            }
 
             if (user.GetType() == typeof(Student))
-            {
-                var student = _unitOfWork.Students.Get(user.Id);
-                return View("StudentAccount", student);
-            }
+                return RedirectToAction("StudentAccount", "Student");
 
             if (user.GetType() == typeof(Teacher))
-            {
-                var teacher = _unitOfWork.Teachers.Get(user.Id);
-                var schoolClasses = _unitOfWork.Classes.GetAll().ToList();
-                return View("TeacherAccount", new TeacherAccountViewModel(teacher, schoolClasses));
-            }
+                return RedirectToAction("TeacherAccount", "Teacher");
 
             if (user.GetType() == typeof(Parent))
-            {
-                var parent = _unitOfWork.Parents.Get(user.Id);
-                var teachers = _unitOfWork.Teachers.GetAll().ToList();
-                return View("ParentAccount", new ParentAccountViewModel(parent, teachers));
-            }
-
+                return RedirectToAction("ParentAccount", "Parent");
 
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public ActionResult StudentGrades(int? studentId = null)
-        {
-            Student student = null;
-            if (studentId == null)
-            {
-                var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
-                student = _unitOfWork.Students.Get(user.Id);
-            }
-            else
-                student = _unitOfWork.Students.Get(studentId.Value);
-            var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
-            var advertisements = new List<Advertisement>();
-            if (student.SchoolClass != null)
-                advertisements = _unitOfWork.Advertisements.GetAdvertisements(student.SchoolClass.Id).ToList();
-
-            return PartialView(new StudentAccountViewModel(student, schoolGrades, advertisements));
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Teacher")]
-        public ActionResult TeacherClass(int? subjectId, int? schoolClassId)
-        {
-            var teacher = (Teacher)_unitOfWork.Users.GetUser(User.Identity.GetUserId());
-
-            if ((subjectId == null) || (schoolClassId == null) || (teacher == null))
-                return RedirectToAction("Index");
-
-            var schoolClass = _unitOfWork.Classes.Get(schoolClassId.Value);
-            var subject = _unitOfWork.Subjects.Get(subjectId.Value);
-            var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(subjectId.Value, schoolClassId.Value).ToList();
-
-            if ((schoolClass == null) || (subject == null))
-                return RedirectToAction("Index");
-
-            return PartialView(new StudentGradesViewModel(subject, schoolClass, teacher, schoolGrades));
-        }
-
-        [HttpPost]
-        [Authorize]
-        public void SendMessage(MessageViewModel vm, string userToEmail)
-        {
-            var userFrom = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
-            var userTo = _unitOfWork.Users.GetUser(userToEmail);
-
-            _unitOfWork.Messages.Add(new Message(userFrom, userTo, vm.Message));
-            _unitOfWork.Complete();
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Teacher")]
-        public void AddGrade(StudentGradesViewModel vm, int selectedStudent)
-        {
-            _unitOfWork.SchoolGrades.AddGrade(vm.NewGrade, vm.Teacher.Id, vm.Subject.Id, selectedStudent);
-            _unitOfWork.Complete();
         }
 
         [HttpPost]
@@ -142,71 +69,6 @@ namespace WebLog.Controllers
             _unitOfWork.Complete();
 
             return RedirectToAction("MySchool");
-        }
-
-        [HttpGet]
-        [Authorize]
-        public ActionResult Messages()
-        {
-            return View(new MessageViewModel(User.Identity.GetUserId(),
-                _unitOfWork.Messages.GetMessages(User.Identity.GetUserId()).ToList()));
-        }
-
-        [HttpGet]
-        [Authorize]
-        public ActionResult StudentSubjects()
-        {
-            return PartialView((Student)_unitOfWork.Students.GetStudent(User.Identity.GetUserId()));
-        }
-
-        [HttpGet]
-        [Authorize]
-        public ActionResult Subject(int id)
-        {
-            var subject = _unitOfWork.Subjects.Get(id);
-            var tests = _unitOfWork.Tests.GetTestsFromSubject(id).ToList();
-            var subjects = _unitOfWork.Subjects.GetAll().ToList();
-            return PartialView(new SubjectSiteViewModel(subject, tests, subjects));
-        }
-
-        [HttpGet]
-        [Authorize]
-        public ActionResult SubjectName(string name)
-        {
-            var subject = _unitOfWork.Subjects.Get(name);
-            var tests = _unitOfWork.Tests.GetTestsFromSubject(subject.Id).ToList();
-            var subjects = _unitOfWork.Subjects.GetAll().ToList();
-            return View("Subject", new SubjectSiteViewModel(subject, tests, subjects));
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Teacher")]
-        public void AddContent(SubjectSiteViewModel vm)
-        {
-            _unitOfWork.Subjects.UpdateContent(vm.Subject.Id, vm.Content);
-            _unitOfWork.Complete();
-            var subjects = _unitOfWork.Subjects.GetAll().ToList();
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Teacher")]
-        public ActionResult AddFile(int subjectId, HttpPostedFileBase file)
-        {
-            var directory = AppDomain.CurrentDomain.BaseDirectory + @"SubjectFiles\\";
-            if ((file == null) || (file.ContentLength <= 0)) return View("~/Views/Shared/CustomMessage.cshtml", (object)"Wystąpił nieoczekiwany błąd"); ;
-
-            var fileName = Path.GetFileName(file.FileName);
-
-            if (fileName != null)
-            {
-                var finallyPath = Path.Combine(directory, fileName);
-                file.SaveAs(finallyPath);
-                var subject = _unitOfWork.Subjects.Get(subjectId);
-                _unitOfWork.Files.Add(new SubjectFile(subject, finallyPath));
-            }
-            _unitOfWork.Complete();
-
-            return View("~/Views/Shared/CustomMessage.cshtml", (object)"Plik wgrany na serwer");
         }
 
         [HttpGet]
@@ -313,14 +175,6 @@ namespace WebLog.Controllers
                 : View("Index");
         }
 
-        [HttpGet]
-        public ActionResult StudentSubjectDetail(int subjectId)
-        {
-            var subject = _unitOfWork.Subjects.Get(subjectId);
-
-            return PartialView(subject);
-        }
-
         [HttpPost]
         public ActionResult RemindPassword(string email)
         {
@@ -328,36 +182,6 @@ namespace WebLog.Controllers
             _unitOfWork.Complete();
             _iMailService.RemindOrChangePassword(email, _unitOfWork.Users.GetUser(email).Token);
             return RedirectToAction("Confirm", new { message = "Wysłano maila" });
-        }
-
-        [HttpGet]
-        public ActionResult StudentAdvertisements(int classId)
-        {
-            return PartialView(_unitOfWork.Advertisements.GetAdvertisements(classId).ToList());
-        }
-
-        [HttpGet]
-        public ActionResult TeacherAdvertisements()
-        {
-            var teacher = _unitOfWork.Teachers.GetTeacher(User.Identity.GetUserId());
-            if (teacher == null) return PartialView(new TeacherAccountViewModel());
-            return PartialView(new TeacherAccountViewModel(teacher));
-        }
-
-        [HttpPost]
-        public ActionResult AddAdvertisement(TeacherAccountViewModel viewModel)
-        {
-            var classes = _unitOfWork.Classes.GetClasses(viewModel.SelectedClasses.ToList()).ToList();
-            viewModel.Teacher = _unitOfWork.Teachers.Get(viewModel.Teacher.Id);
-            var advertisement = new Advertisement(viewModel.Text, viewModel.Teacher, classes, viewModel.OnlyForParents, viewModel.BySite);
-            _unitOfWork.Advertisements.Add(advertisement);
-
-            _unitOfWork.Complete();
-
-            if (viewModel.ByEmail)
-                _iMailService.SendAdvertisement(advertisement, viewModel.OnlyForParents);
-
-            return RedirectToAction("TeacherAdvertisements");
         }
 
         [HttpGet]

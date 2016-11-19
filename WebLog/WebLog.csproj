@@ -239,12 +239,20 @@
     <Compile Include="API\ViewModels\NewMessage.cs" />
     <Compile Include="API\ViewModels\SchoolGradesViewModel.cs" />
     <Compile Include="API\ViewModels\SubjectViewModel.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\ParentController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Core\Common\TestResult.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
     <Compile Include="Migrations\201611180028023_sfs.cs" />
     <Compile Include="Migrations\201611180028023_sfs.Designer.cs">
       <DependentUpon>201611180028023_sfs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611181946138_ss.cs" />
+    <Compile Include="Migrations\201611181946138_ss.Designer.cs">
+      <DependentUpon>201611181946138_ss.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
@@ -669,16 +677,16 @@
     <Content Include="Views\Home\Confirm.cshtml" />
     <Content Include="Views\Admin\Subjects.cshtml" />
     <Content Include="Views\Admin\SchoolClasses.cshtml" />
-    <Content Include="Views\Home\TeacherAccount.cshtml" />
-    <Content Include="Views\Home\StudentAccount.cshtml" />
-    <Content Include="Views\Home\ParentAccount.cshtml" />
-    <Content Include="Views\Home\TeacherClass.cshtml" />
+    <Content Include="Views\Teacher\TeacherAccount.cshtml" />
+    <Content Include="Views\Student\StudentAccount.cshtml" />
+    <Content Include="Views\Parent\ParentAccount.cshtml" />
+    <Content Include="Views\Teacher\TeacherClass.cshtml" />
     <Content Include="Views\Summary\Index.cshtml" />
     <Content Include="Views\Shared\SummaryPartial.cshtml" />
     <Content Include="Views\Home\SignUpParent.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Shared\RequestToTeacher.cshtml" />
-    <Content Include="Views\Home\Messages.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\AddTest.cshtml" />
@@ -688,13 +696,13 @@
     <Content Include="Views\Admin\Classes.cshtml" />
     <Content Include="Views\Admin\Students.cshtml" />
     <Content Include="Views\Admin\Teachers.cshtml" />
-    <Content Include="Views\Home\Subject.cshtml" />
-    <Content Include="Views\Home\StudentGrades.cshtml" />
-    <Content Include="Views\Home\StudentSubjects.cshtml" />
-    <Content Include="Views\Home\StudentSubjectDetail.cshtml" />
+    <Content Include="Views\Teacher\Subject.cshtml" />
+    <Content Include="Views\Student\StudentGrades.cshtml" />
+    <Content Include="Views\Student\StudentSubjects.cshtml" />
+    <Content Include="Views\Student\StudentSubjectDetail.cshtml" />
     <Content Include="Views\Test\SolveTest.cshtml" />
-    <Content Include="Views\Home\StudentAdvertisements.cshtml" />
-    <Content Include="Views\Home\TeacherAdvertisements.cshtml" />
+    <Content Include="Views\Student\StudentAdvertisements.cshtml" />
+    <Content Include="Views\Teacher\TeacherAdvertisements.cshtml" />
     <Content Include="Views\Admin\Advertisements.cshtml" />
     <Content Include="Views\Shared\CustomMessage.cshtml" />
   </ItemGroup>
@@ -716,6 +724,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611180028023_sfs.resx">
       <DependentUpon>201611180028023_sfs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611181946138_ss.resx">
+      <DependentUpon>201611181946138_ss.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

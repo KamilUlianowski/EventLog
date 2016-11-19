@@ -2,6 +2,7 @@
         function ($scope, $http, WebLog) {
 
             var currentPerson = "";
+            $scope.formInputs = {}
 
             var getPerson = function (user) {
                 for (var i = 0; i < $scope.messages.length; i++) {
@@ -37,13 +38,18 @@
             }
 
             $scope.sendMessage = function (message) {
-                $scope.myMessages.push({ m_Item1: $scope.myMessages[$scope.myMessages.length - 1].m_Item1 + 1000, m_Item2: message });
-                WebLog.sendMessage(message, currentPerson.m_Item2);
+                WebLog.sendMessage(message, currentPerson.m_Item2).then(function (response) {
+                    $scope.messages = response.data;
+                    $scope.formInputs.newMessage = "";
+                });
             }
 
             $scope.sendNewMessage = function (message) {
                 WebLog.sendNewMessage(message, $scope.selected).then(function(response) {
                     $scope.messages = response.data;
+                    $scope.formInputs.newMessage = "";
+                    $scope.showMessages(currentPerson.m_Item1);
+
                 });
             }
 

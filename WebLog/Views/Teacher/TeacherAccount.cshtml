@@ -1,0 +1,57 @@
+﻿@using Resources
+@model WebLog.Core.ViewModels.TeacherAccountViewModel
+    
+@Styles.Render("~/Content/bootstrap-modal")
+@Styles.Render("~/Content/jquery-datatables")
+
+<div>
+    <div class="flex-grid no-responsive-future" style="height: 100%;">
+        <div class="row" style="height: 100%">
+            <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
+                <ul class="sidebar">
+                    @foreach (var subject in Model.Teacher.Subjects)
+                    {
+                        using (Ajax.BeginForm("Subject", "Teacher", new { id = subject.Id}, new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "teacher-account-content"
+                        }))
+                        {
+                            <li>
+                                    <span class="mif-apps icon" style="font-size: 2rem"></span>
+                                    @*<h4><span class="title">@subject.Name</span></h4>*@
+                                    <input type="submit" class="title" value="@subject.Name" />
+                            </li>
+                        }
+                    }
+                    
+                    @using (Ajax.BeginForm("TeacherAdvertisements", "Teacher", new AjaxOptions
+                    {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "teacher-account-content"
+                    }))
+                    {
+                    <li>
+                        <span class="mif-apps icon" style="font-size: 2rem"></span>
+                        @*<h4><span class="title">@subject.Name</span></h4>*@
+                        <input type="submit" class="title" value="Ogłoszenia" />
+                    </li>
+                    }
+
+                </ul>
+            </div>
+            
+            <div id="teacher-account-content" class="cell auto-size padding20 bg-white site-content" >
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/angular");
+    @Scripts.Render("~/bundles/bootstrap-modal");
+    @Scripts.Render("~/bundles/jquery-datatables")
+}

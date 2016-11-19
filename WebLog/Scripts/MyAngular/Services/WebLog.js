@@ -94,11 +94,11 @@
 
 
     var sendMessage = function (message, email) {
-        $http.post("/api/message/sendMessage", JSON.stringify({ Email: email, Text: message }));
+        return $http.post("/api/message/sendMessage", JSON.stringify({ Email: email, Text: message }));
     }
 
      var sendNewMessage = function (message, toId) {
-        $http.post("/api/message/SendNewMessageToTeacher", JSON.stringify({ Id: toId, Text: message }));
+      return $http.post("/api/message/SendNewMessageToTeacher", JSON.stringify({ Id: toId, Text: message }));
     }
 
 
