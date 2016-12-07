@@ -15,6 +15,9 @@
             var getMessages = function () {
                 WebLog.getMessages().then(function (response) {
                     $scope.messages = response.data;
+                    if (currentPerson != "") {
+                        $scope.showMessages(currentPerson.m_Item1);
+                    }
                 });
             };
 
@@ -39,16 +42,13 @@
 
             $scope.sendMessage = function (message) {
                 WebLog.sendMessage(message, currentPerson.m_Item2).then(function (response) {
-                    $scope.messages = response.data;
-                    $scope.formInputs.newMessage = "";
+                    getMessages();
                 });
             }
 
             $scope.sendNewMessage = function (message) {
                 WebLog.sendNewMessage(message, $scope.selected).then(function(response) {
-                    $scope.messages = response.data;
-                    $scope.formInputs.newMessage = "";
-                    $scope.showMessages(currentPerson.m_Item1);
+                    getMessages();
 
                 });
             }

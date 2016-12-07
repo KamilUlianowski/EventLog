@@ -91,14 +91,14 @@ namespace WebLog.Core.Common
                 var userFrom = message.UserFrom.Name + " " + message.UserFrom.Surname;
                 var userTo = message.UserTo.Name + " " + message.UserTo.Surname;
 
-                if (message.UserFrom.Email != mail)
+                if (message.UserFrom.Email.ToLower() != mail.ToLower())
                 {
                     if (conMessages.Any(x => x.Item1 == userFrom))
                         conMessages.FirstOrDefault(x => x.Item1 == userFrom).Item3.Add(new Tuple<int, string>(message.Id,message.Text));
                     else
                         conMessages.Add(new Tuple<string,string, List<Tuple<int,string>>>(userFrom, message.UserFrom.Email, new List<Tuple<int, string>> { new Tuple<int, string>(message.Id, message.Text) }));
                 }
-                else if (message.UserTo.Email != mail)
+                else if (message.UserTo.Email.ToLower() != mail.ToLower())
                 {
                     if (conMessages.Any(x => x.Item1 == userTo))
                         conMessages.FirstOrDefault(x => x.Item1 == userTo).Item3.Add(new Tuple<int, string>(message.Id, message.Text));

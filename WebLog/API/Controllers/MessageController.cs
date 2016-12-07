@@ -38,6 +38,8 @@ namespace WebLog.API.Controllers
             return Ok(convMessages);
         }
 
+
+
         [HttpGet]
         [Authorize]
         public IHttpActionResult GetEmail()
@@ -55,7 +57,7 @@ namespace WebLog.API.Controllers
             _unitOfWork.Messages.Add(newMessage);
             _unitOfWork.Complete();
 
-            return GetMessages();
+            return Ok();
         }
 
         [HttpPost]
@@ -68,7 +70,7 @@ namespace WebLog.API.Controllers
             _unitOfWork.Messages.Add(newMessage);
             _unitOfWork.Complete();
 
-            return GetMessages();
+            return Ok();
         }
     }
 }
