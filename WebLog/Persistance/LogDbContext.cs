@@ -4,7 +4,7 @@ namespace WebLog.Core.Models
 {
     public class LogDbContext : DbContext
     {
-        public LogDbContext() : base("LogWeb2")
+        public LogDbContext() : base("LogWeb3")
         {
             
         }

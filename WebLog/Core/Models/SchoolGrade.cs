@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using WebLog.Core.Common;
+using WebLog.Core.Observer;
 
 namespace WebLog.Core.Models
 {
-    public class SchoolGrade
+    public class SchoolGrade : ISchoolGrade
     {
         public int Id { get; set; }
 
@@ -42,6 +43,11 @@ namespace WebLog.Core.Models
             Student = student;
             Subject = subject;
             Date = DateTime.Now;
+        }
+
+        public void NotifyObserver()
+        {
+            Student.SendNotice();
         }
     }
 }

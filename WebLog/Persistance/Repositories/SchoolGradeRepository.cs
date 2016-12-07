@@ -46,12 +46,13 @@ namespace WebLog.Persistance.Repositories
         {
             var teacher = _context.Teachers.FirstOrDefault(x => x.Id == teacherId);
             var subject = _context.Subjects.FirstOrDefault(x => x.Id == subjectId);
-            var student = _context.Students.FirstOrDefault(x => x.Id == studentId);
+            var student = _context.Students.Include(x => x.Parent).FirstOrDefault(x => x.Id == studentId);
 
             if (teacher == null || subject == null || student == null)
                 return;
-
-            _context.SchoolGrades.Add(new SchoolGrade(grade, teacher, student, subject));
+            var schoolGrade = new SchoolGrade(grade, teacher, student, subject);
+            _context.SchoolGrades.Add(schoolGrade);
+            schoolGrade.NotifyObserver();
         }
 
         public SchoolGrade GetGradeFromTest(User user, Test test)

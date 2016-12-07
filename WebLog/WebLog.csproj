@@ -243,18 +243,20 @@
     <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Core\Common\Mail.cs" />
     <Compile Include="Core\Common\TestResult.cs" />
+    <Compile Include="Core\Observer\ISchoolGrade.cs" />
+    <Compile Include="Core\Observer\IStudent.cs" />
+    <Compile Include="Core\Services\INoticeService.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
-    <Compile Include="Migrations\201611180028023_sfs.cs" />
-    <Compile Include="Migrations\201611180028023_sfs.Designer.cs">
-      <DependentUpon>201611180028023_sfs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611181946138_ss.cs" />
-    <Compile Include="Migrations\201611181946138_ss.Designer.cs">
-      <DependentUpon>201611181946138_ss.cs</DependentUpon>
+    <Compile Include="Migrations\201612071143237_init.cs" />
+    <Compile Include="Migrations\201612071143237_init.Designer.cs">
+      <DependentUpon>201612071143237_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
+    <Compile Include="Persistance\Services\NoticeToAllService.cs" />
+    <Compile Include="Persistance\Services\NoticeToParentsService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -708,6 +710,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Start\App_Data\" />
     <Folder Include="Scripts\MyAngular\Directives\" />
     <Folder Include="Scripts\MyAngular\Filters\" />
   </ItemGroup>
@@ -722,11 +725,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611180028023_sfs.resx">
-      <DependentUpon>201611180028023_sfs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611181946138_ss.resx">
-      <DependentUpon>201611181946138_ss.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612071143237_init.resx">
+      <DependentUpon>201612071143237_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

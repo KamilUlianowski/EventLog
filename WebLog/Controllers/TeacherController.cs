@@ -17,12 +17,11 @@ namespace WebLog.Controllers
     public class TeacherController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMailService _mailService;
+        private INoticeService _noticeService;
 
-        public TeacherController(IUnitOfWork unitOfWork, IMailService mailService)
+        public TeacherController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mailService = mailService;
         }
 
         public ActionResult TeacherAccount()
@@ -101,15 +100,20 @@ namespace WebLog.Controllers
         [HttpPost]
         public ActionResult AddAdvertisement(TeacherAccountViewModel viewModel)
         {
+            if(viewModel.SelectedClasses == null) return RedirectToAction("TeacherAdvertisements");
             var classes = _unitOfWork.Classes.GetClasses(viewModel.SelectedClasses.ToList()).ToList();
             viewModel.Teacher = _unitOfWork.Teachers.Get(viewModel.Teacher.Id);
             var advertisement = new Advertisement(viewModel.Text, viewModel.Teacher, classes, viewModel.OnlyForParents, viewModel.BySite);
             _unitOfWork.Advertisements.Add(advertisement);
-
             _unitOfWork.Complete();
 
-            if (viewModel.ByEmail)
-                _mailService.SendAdvertisement(advertisement, viewModel.OnlyForParents);
+            if (!viewModel.ByEmail) return RedirectToAction("TeacherAdvertisements");
+
+            if(viewModel.OnlyForParents)
+                _noticeService = new NoticeToParentsService();
+            else
+                _noticeService = new NoticeToAllService();
+            _noticeService.SendNotice(advertisement);
 
             return RedirectToAction("TeacherAdvertisements");
         }

@@ -79,7 +79,6 @@ namespace WebLog.Persistance.Services
                 }
             }
         }
-
         public void SendRatingSummary(List<Student> students)
         {
 

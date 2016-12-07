@@ -67,9 +67,11 @@ app.controller('ManageController',
                 }
             }
 
-            position2 = searchById(restOfTeachers, schoolClass.Teacher.Id);
-            if (position2 != -2) {
-                restOfTeachers.splice(position2, 1);
+            if (schoolClass.Teacher != undefined)  {
+                position2 = searchById(restOfTeachers, schoolClass.Teacher.Id);
+                if (position2 != -2) {
+                    restOfTeachers.splice(position2, 1);
+                }
             }
 
             $scope.restOfStudents = restOfStudents;

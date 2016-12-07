@@ -176,11 +176,11 @@ namespace WebLog.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemindPassword(string email)
+        public ActionResult RemindPassword(string user_login)
         {
-            _unitOfWork.Users.UpdateToken(email);
+            _unitOfWork.Users.UpdateToken(user_login);
             _unitOfWork.Complete();
-            _iMailService.RemindOrChangePassword(email, _unitOfWork.Users.GetUser(email).Token);
+            _iMailService.RemindOrChangePassword(user_login, _unitOfWork.Users.GetUser(user_login).Token);
             return RedirectToAction("Confirm", new { message = "Wysłano maila" });
         }
 
