@@ -317,3 +317,6 @@
     word-wrap: break-word;
 }
 
+.background-message {
+    background-color:yellow;
+}
