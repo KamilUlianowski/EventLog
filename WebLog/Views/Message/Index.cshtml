@@ -3,55 +3,50 @@
         <div class="row" style="height: 100%">
             <div class="cell size-x200 sidebar left-sidebar" id="cell-sidebar">
                 <ul class="sidebar">
-                    <li class="mouse-pointer" ng-repeat="user in messages">
-                        <a class="active" ng-click="showMessages(user.m_Item1)">
-                            @*{{ user.m_Item1 }}>*@
-                            <div>
-                                <span class="mif-apps icon"></span>
-                                <span class="counter message-user">{{ user.m_Item1 }}</span>
-                            </div>
-                        </a>
+                    <li class="mouse-pointer li-person-message" ng-repeat="user in messages" ng-click="showMessages(user.m_Item1)">
+                        <label class="mouse-pointer counter message-user">{{ user.m_Item1 }}</label>
                     </li>
                     @if (User.IsInRole("Parent"))
                     {
-                        <li class="mouse-pointer">
+                        <li class="mouse-pointer ">
                             <div>
-                                <span class="mif-apps icon"></span>
-                                <select ng-change="changeTeacher(selected)" ng-options="teacher.Id as teacher.Name + ' ' + teacher.Surname for teacher in teachers track by teacher.Email" ng-model="selected"></select>
+                                <select ng-change="changeTeacher(selected)" style="margin-left: 20px; margin-top: 15px;"
+                                        ng-options="teacher.Id as teacher.Name + ' ' + teacher.Surname for teacher in teachers track by teacher.Email" 
+                                        ng-model="selected"></select>
                             </div>
                         </li>
                     }
                 </ul>
             </div>
             <div id="content-messages" class="site-content">
-                
+
                 <div id="Posts" class="container">
                     <div class="row">
-                        <div >
+                        <div>
                             @if (User.IsInRole("Parent"))
                             {
                                 <div ng-if="selected > 0">
                                     <h4>Leave a Comment:</h4>
                                     <div>
                                         <form ng-submit="sendNewMessage(formInputs.newMessage)">
-                                            <input type="text" ng-model="formInputs.newMessage"/>
-                                            <input type="submit"/>
+                                            <input type="text" ng-model="formInputs.newMessage" />
+                                            <input type="submit" />
                                         </form>
 
                                     </div>
                                 </div>
                             }
 
-                            <section >
+                            <section>
                                 <!-- First Comment -->
-                                <article class="row" ng-repeat="message in myMessages" ng-if="message">
+                                <article class="row" ng-repeat="message in myMessages" ng-if="message" ng-class="{'my-message': message.m_Item3 === false}">
                                     <div>
                                         <div>
                                             <div>
-                                                <header >
-                                                    <span><b>blabla</b> on</span><time ><i></i> 22222</time>
+                                                <header>
+                                                    <span><b>{{message.m_Item5}}</b> on </span><time><i></i>{{message.m_Item4 | date:'yyyy-MM-dd HH:mm'}}</time>
                                                 </header>
-                                                <div >
+                                                <div>
                                                     <p>
                                                         {{message.m_Item2}}
                                                     </p>
@@ -64,8 +59,8 @@
                                     <h4>Leave a Comment:</h4>
                                     <div>
                                         <form ng-submit="sendMessage(formInputs.newMessage)">
-                                            <input type="text" ng-model="formInputs.newMessage"/>
-                                            <input type="submit"/>
+                                            <input type="text" ng-model="formInputs.newMessage" />
+                                            <input type="submit" />
                                         </form>
 
                                     </div>

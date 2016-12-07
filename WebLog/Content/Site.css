@@ -239,7 +239,7 @@
     margin-left: 15px;
 }
 
-.mouse-pointer :hover {
+.mouse-pointer {
     cursor: pointer;
 }
 
@@ -277,7 +277,7 @@
 
 .message-user {
     font-size: 1.2rem !important;
-    margin-top: 7px !important;
+    margin-left: 20px;
 }
 
 .bg-color-black {
@@ -317,3 +317,10 @@
     word-wrap: break-word;
 }
 
+.li-person-message {
+    padding-top: 15px;
+}
+
+.my-message {
+    background-color: #D2D5DD;
+}

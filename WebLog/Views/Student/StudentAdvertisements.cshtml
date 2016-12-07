@@ -9,7 +9,16 @@
     {
         if (adv.Visible)
         {
-            <h4>@adv.Text</h4>
+            <div class="tile tile-wide" data-role="tile" ng-repeat="adv in advertisements">
+                <div class="panel">
+                    <div class="heading">
+                        <span class="title">@adv.Title</span>
+                    </div>
+                    <div class="content adv-text">
+                        @adv.Text
+                    </div>
+                </div>
+            </div>
         }
     }
     

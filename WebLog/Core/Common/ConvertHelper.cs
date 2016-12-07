@@ -83,9 +83,9 @@ namespace WebLog.Core.Common
             return viewMessages;
         }
 
-        public static List<Tuple<string, string, List<Tuple<int,string>>>> GetConvertedMessages(List<Message> messages, string mail)
+        public static List<Tuple<string, string, List<Tuple<int,string, bool, DateTime, string>>>> GetConvertedMessages(List<Message> messages, string mail)
         {
-            var conMessages = new List<Tuple<string, string, List<Tuple<int, string>>>>();
+            var conMessages = new List<Tuple<string, string, List<Tuple<int, string, bool, DateTime, string>>>>();
             foreach (var message in messages)
             {
                 var userFrom = message.UserFrom.Name + " " + message.UserFrom.Surname;
@@ -94,16 +94,22 @@ namespace WebLog.Core.Common
                 if (message.UserFrom.Email.ToLower() != mail.ToLower())
                 {
                     if (conMessages.Any(x => x.Item1 == userFrom))
-                        conMessages.FirstOrDefault(x => x.Item1 == userFrom).Item3.Add(new Tuple<int, string>(message.Id,message.Text));
+                        conMessages.FirstOrDefault(x => x.Item1 == userFrom).Item3.Add(new Tuple<int, string, bool, DateTime, string>
+                            (message.Id,message.Text, false, message.SendDate, userFrom));
                     else
-                        conMessages.Add(new Tuple<string,string, List<Tuple<int,string>>>(userFrom, message.UserFrom.Email, new List<Tuple<int, string>> { new Tuple<int, string>(message.Id, message.Text) }));
+                        conMessages.Add(new Tuple<string,string, List<Tuple<int,string, bool, DateTime, string>>>
+                            (userFrom, message.UserFrom.Email, new List<Tuple<int, string, bool, DateTime, string>>
+                            { new Tuple<int, string, bool, DateTime, string>(message.Id, message.Text, false, message.SendDate, userFrom) }));
                 }
                 else if (message.UserTo.Email.ToLower() != mail.ToLower())
                 {
                     if (conMessages.Any(x => x.Item1 == userTo))
-                        conMessages.FirstOrDefault(x => x.Item1 == userTo).Item3.Add(new Tuple<int, string>(message.Id, message.Text));
+                        conMessages.FirstOrDefault(x => x.Item1 == userTo).Item3.Add(new Tuple<int, string, bool, DateTime, string>
+                            (message.Id, message.Text, true, message.SendDate, userFrom));
                     else
-                        conMessages.Add(new Tuple<string, string, List<Tuple<int,string>>>(userTo, message.UserTo.Email, new List<Tuple<int,string>>{ new Tuple<int, string>(message.Id, message.Text)}));
+                        conMessages.Add(new Tuple<string, string, List<Tuple<int,string, bool, DateTime, string>>>
+                            (userTo, message.UserTo.Email, new List<Tuple<int,string, bool, DateTime, string>>
+                            { new Tuple<int, string, bool, DateTime, string>(message.Id, message.Text, true, message.SendDate, userFrom)}));
 
                 }
             }
