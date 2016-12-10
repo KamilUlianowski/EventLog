@@ -50,7 +50,7 @@ namespace WebLog.Controllers
             _unitOfWork.Tests.Add(test);
             _unitOfWork.Complete();
 
-            return RedirectToAction("Subject", "Home", new { id = vm.Subject.Id });
+            return RedirectToAction("Subject", "Teacher", new { id = vm.Subject.Id });
         }
 
         [HttpGet]

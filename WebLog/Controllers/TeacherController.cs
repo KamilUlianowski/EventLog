@@ -93,8 +93,9 @@ namespace WebLog.Controllers
         public ActionResult TeacherAdvertisements()
         {
             var teacher = _unitOfWork.Teachers.GetTeacher(User.Identity.GetUserId());
+            var schoolClasses = _unitOfWork.Classes.GetAll().ToList();
             if (teacher == null) return PartialView(new TeacherAccountViewModel());
-            return PartialView(new TeacherAccountViewModel(teacher));
+            return PartialView(new TeacherAccountViewModel(teacher, schoolClasses));
         }
 
         [HttpPost]

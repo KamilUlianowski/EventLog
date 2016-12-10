@@ -8,16 +8,29 @@
     @foreach (var subject in Model)
     {
         <h1>@subject.Key</h1>
-        foreach (var student in subject.Value)
-        {
-            <div class="row">
-                <h4>@student.Key</h4>
-                @foreach (var grade in student.Value)
+        <table class="table striped hovered cell-hovered border bordered">
+            <thead class="row cells12">
+                <tr>
+                    <th class="cell colspan3">Uczeń</th>
+                    <th class="cell colspan9">Oceny</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in subject.Value)
                 {
-                    <a>@grade</a>
+
+                    <tr class="row cells12">
+                        <td class="cell colspan3"> <h4>@student.Key</h4></td>
+                        <td class="cell colspan9">
+                            @foreach (var grade in student.Value)
+                    {
+                                <label>@grade</label>
+                            }
+                        </td>
+                    </tr>
                 }
-            </div>
-        }
+            </tbody>
+        </table>
     }
-    
+
 </div>

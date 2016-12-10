@@ -61,7 +61,6 @@
                         UpdateTargetId = "student-account-content"
                     }))
                     {
-                        <input class="button primary" type="submit" value="@test.Name"/>
                          <a class="button primary" href="~/Test/Detail/@test.Id">@test.Name</a>
                          <br/>
                      }
@@ -75,11 +74,6 @@
 
     </div>
 
-    @foreach (var test in Model.Tests)
-    {
-        <a class="row" href="~/Test/Detail/@test.Id">@test.Name</a>
-    }
-
 
 </div>
 
@@ -90,7 +84,7 @@
         <div class="modal-content">
             <div class="modal-header modal-header-adds">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Nowy Przedmiot</h4>
+                <h4 class="modal-title">Nowy test</h4>
             </div>
 
             @using (Ajax.BeginForm("AddTest", "Test", new AjaxOptions
@@ -101,17 +95,20 @@
             {
                 @Html.HiddenFor(x => x.Subject.Id)
                 <div class="modal-body">
-                    <div>
-                        @Html.TextBoxFor(x => x.Name, new { @class = "input-signin", @placeholder = @Global.NameOfTest })
+                    <div class="form-group">
+                        <label>Nazwa</label>
+                        @Html.TextBoxFor(x => x.Name, new {@class = "form-control", @placeholder = @Global.NameOfTest})
                         @Html.ValidationMessageFor(x => x.Name)
                     </div>
 
-                    <div>
-                        @Html.TextBoxFor(x => x.Time, new { @class = "input-signin", @placeholder = @Global.TimeOfTest })
+                    <div class="form-group">
+                        <label>Czas testu</label>
+                        @Html.TextBoxFor(x => x.Time, new {@class = "form-control", @placeholder = @Global.TimeOfTest})
                         @Html.ValidationMessageFor(x => x.Time)
                     </div>
                     <div class="form-group">
-                        @Html.DropDownListFor(model => model.SelectedSubject, Model.Subjects, new { @class = "form-control" })
+                        <label>Przedmiot</label>
+                        @Html.DropDownListFor(model => model.SelectedSubject, Model.Subjects, new {@class = "form-control"})
 
                     </div>
 

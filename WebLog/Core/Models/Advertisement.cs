@@ -47,7 +47,8 @@ namespace WebLog.Core.Models
 
         public Advertisement(string text, Teacher teacher, List<SchoolClass> classes, bool forParents, bool visible = false)
         {
-            Text = "Wiadomość od : " + teacher.Name + " " + teacher.Surname + "\n\n" +text;
+            Text = text;
+            Title = "Wiadomość od : " + teacher.Name + " " + teacher.Surname;
             Teacher = teacher;
             Date = DateTime.Now;
             Classes = classes;
