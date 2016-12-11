@@ -101,6 +101,7 @@ namespace WebLog.Controllers
         [HttpPost]
         public ActionResult AddQuestion(TestDetailViewModel vm)
         {
+            vm.NewQuestionViewModel.CorrectAnswer--;
             _unitOfWork.Questions.AddQuestion(vm.NewQuestionViewModel);
             _unitOfWork.Complete();
 
