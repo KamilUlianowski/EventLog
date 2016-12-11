@@ -29,6 +29,12 @@ function GetTestResult(id) {
     });
 }
 
+function onLoadEnd() {
+    $('#myModal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+}
+
 function addGrade(id) {
     var selectedGrade = $("#student" + id).val();
     $("#grades" + id).append(selectedGrade + "  ");
@@ -65,3 +71,4 @@ $(function () {
         "transition": ".5s"
     });
 });
+

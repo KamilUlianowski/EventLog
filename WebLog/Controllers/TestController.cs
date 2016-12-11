@@ -9,6 +9,7 @@ using WebLog.Core;
 using WebLog.Core.Common;
 using WebLog.Core.Models;
 using WebLog.Core.Services;
+using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.SubjectViewModels;
 using WebLog.Core.ViewModels.TestsViewModels;
 
@@ -64,7 +65,7 @@ namespace WebLog.Controllers
             if (test == null)
                 if (Request.UrlReferrer != null) Response.Redirect(Request.UrlReferrer.ToString());
 
-            return View(new TestDetailViewModel(test));
+            return PartialView(new TestDetailViewModel(test));
         }
 
         [HttpPost]
@@ -79,7 +80,7 @@ namespace WebLog.Controllers
             if (test == null)
                 if (Request.UrlReferrer != null) Response.Redirect(Request.UrlReferrer.ToString());
 
-            return View(new TestDetailViewModel(test));
+            return PartialView(new TestDetailViewModel(test));
         }
 
         [HttpGet]
@@ -97,19 +98,19 @@ namespace WebLog.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult AddQuestion(int id)
-        {
-            return View(new NewQuestionViewModel(id));
-        }
-
         [HttpPost]
-        public ActionResult AddQuestion(NewQuestionViewModel vm)
+        public ActionResult AddQuestion(TestDetailViewModel vm)
         {
-            _unitOfWork.Questions.AddQuestion(vm);
+            _unitOfWork.Questions.AddQuestion(vm.NewQuestionViewModel);
             _unitOfWork.Complete();
 
-            return RedirectToAction("Detail", new { id = vm.TestId });
+
+            var test = _unitOfWork.Tests.Get(vm.NewQuestionViewModel.TestId);
+
+            if (test == null)
+                if (Request.UrlReferrer != null) Response.Redirect(Request.UrlReferrer.ToString());
+
+            return PartialView("Detail", new TestDetailViewModel(test));
         }
 
         [HttpPost]

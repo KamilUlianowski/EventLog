@@ -695,7 +695,6 @@
     <Content Include="Views\Test\AddTest.cshtml" />
     <Content Include="Views\Test\Detail.cshtml" />
     <Content Include="Views\Shared\Question.cshtml" />
-    <Content Include="Views\Test\AddQuestion.cshtml" />
     <Content Include="Views\Admin\Classes.cshtml" />
     <Content Include="Views\Admin\Students.cshtml" />
     <Content Include="Views\Admin\Teachers.cshtml" />

@@ -14,18 +14,24 @@ namespace WebLog.Core.ViewModels.TestsViewModels
         public List<Question> Questions { get; set; }
         public Subject Subject { get; set; }
 
+        public NewQuestionViewModel NewQuestionViewModel { get; set; }
         public TestDetailViewModel()
         {
-            
+            NewQuestionViewModel = new NewQuestionViewModel();
         }
 
         public TestDetailViewModel(Test test)
         {
-            Id = test.Id;
-            Name = test.Name;
-            Time = test.Time;
-            Questions = test.Questions;
-            Subject = test.Subject;
+            if (test != null)
+            {
+                NewQuestionViewModel = new NewQuestionViewModel();
+                NewQuestionViewModel.TestId = test.Id;
+                Id = test.Id;
+                Name = test.Name;
+                Time = test.Time;
+                Questions = test.Questions;
+                Subject = test.Subject;
+            }
         }
     }
 }

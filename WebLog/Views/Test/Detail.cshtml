@@ -1,48 +1,117 @@
 ﻿@using Resources
 @using WebLog.Core.Models
 @model WebLog.Core.ViewModels.TestsViewModels.TestDetailViewModel
-    
-<div class="col-sm-4">
 
-    @using (Html.BeginForm("Detail", "Test", FormMethod.Post))
-    {
-        @Html.HiddenFor(x => x.Id)
+@Styles.Render("~/Content/bootstrap-modal")
+@Styles.Render("~/Content/bootstap-adds")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/metro")
 
-        <div class="form-group">
-            <label>@Global.Name: </label>
-            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.Name)
+<div class="cell auto-size padding20 bg-white manage-content" id="cell-content" ng-if="class == null">
+    <h1 class="text-light">@Model.Name <span class="mif-drive-eta place-right"></span></h1>
+    <hr class="thin bg-grayLighter">
+
+    <div>
+        <div class="teacher-content-part">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td><h2>Pytania</h2></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var question in Model.Questions)
+                    {
+                        <tr>
+                            <td>
+                                <a onclick="toggleAnswers(@question.Id)"><h3 class="row">@(question.Points)p.    @question.Text</h3></a>
+                                <div id="@("question" + question.Id)" hidden="">
+                                    @foreach (var answer in question.Answers)
+                                    {
+                                        <h4>-@answer.Text</h4><br />
+                                    }
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">@Global.AddQuestion</button>
+
         </div>
-
-        <div class="form-group">
-            <label>@Global.Surname: </label>
-            @Html.TextBoxFor(x => x.Time, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.Time)
-        </div>
+    </div>
 
 
-        <div class="form-group modal-header">
-            <input type="submit" class="btn btn-primary" value="@Global.Update">
-        </div>
-    }
 </div>
 
-<div class="col-sm-8">
-    @foreach (var question in Model.Questions)
-    {
-        <div>
-            <a onclick="toggleAnswers(@question.Id)"><span class="row">@(question.Points)p.    @question.Text</span></a>
-            <div id="@("question" + question.Id)" hidden="">
-                @foreach (var answer in question.Answers)
+<div id="myModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header-adds">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nowy test</h4>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("AddQuestion", "Test", new AjaxOptions
                 {
-                    <span>-@answer.Text</span><br/>
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,
+                    OnSuccess = "onLoadEnd",
+                    UpdateTargetId = "teacher-account-content"
+                }))
+                {
+                    @Html.HiddenFor(x => x.NewQuestionViewModel.TestId)
+
+                    <div class="form-group">
+                        <label>@Global.Question: </label>
+                        @Html.TextBoxFor(x => x.NewQuestionViewModel.QuestionText, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.NewQuestionViewModel.QuestionText)
+                    </div>
+
+                    <div class="form-group">
+                        <label>@Global.Answers: </label>
+                        @Html.TextAreaFor(x => x.NewQuestionViewModel.Answer1, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.NewQuestionViewModel.Answer1)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextAreaFor(x => x.NewQuestionViewModel.Answer2, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.NewQuestionViewModel.Answer2)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextAreaFor(x => x.NewQuestionViewModel.Answer3, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.NewQuestionViewModel.Answer3)
+                    </div>
+
+                    <div class="form-group">
+                        <label>@Global.CorrectAnswer: </label>
+                        @Html.TextBoxFor(x => x.NewQuestionViewModel.CorrectAnswer, new { @class = "form-control", @type = "number", @max=3})
+                        @Html.ValidationMessageFor(x => x.NewQuestionViewModel.CorrectAnswer)
+                    </div>
+
+                    <div class="form-group">
+                        <label>@Global.Points: </label>
+                        @Html.TextBoxFor(x => x.NewQuestionViewModel.Points, new { @class = "form-control", @type = "number" })
+                        @Html.ValidationMessageFor(x => x.NewQuestionViewModel.Points)
+                    </div>
+
+                    <div class="modal-footer">
+                        <input style="float: left; margin-left: -15px;" type="submit" class="btn btn-primary" value="@Global.Add">
+                        <button id="add-test-button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
                 }
             </div>
-        </div>
-    }
-    
-    <a class="btn btn-primary" href="~/Test/AddQuestion/@Model.Id">@Global.AddQuestion</a>
 
+
+        </div>
+
+    </div>
 </div>
 
 <script>
