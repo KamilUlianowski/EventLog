@@ -16,7 +16,10 @@ namespace WebLog.Persistance.Services
             {
                 foreach (var student in schoolClass.Students)
                 {
+                    if (student.Parent != null)
+                    {
                     Mail.Send(advertisement.Text, student.Parent.Email, "Ogłoszenie");
+                    }
                     Mail.Send(advertisement.Text, student.Email, "Ogłoszenie");
                 }
             }

@@ -37,7 +37,7 @@ namespace WebLog.Core.Models
                 message.Append(Name + ' ' + Surname + ' ');
                 message.Append("dostał właśnie 1 z przedmiotu " + lastSchoolGrade.Subject.Name);
                 if (lastSchoolGrade.Teacher != null)
-                    message.Append("\n Pozdrawiam" + lastSchoolGrade.Teacher.Name + ' ' + lastSchoolGrade.Teacher.Surname);
+                    message.Append("\n Pozdrawiam " + lastSchoolGrade.Teacher.Name + ' ' + lastSchoolGrade.Teacher.Surname);
                 Mail.Send(message.ToString(), Parent.Email, "1 z przedmiotu " + lastSchoolGrade.Subject.Name);
             }
         }

@@ -101,8 +101,10 @@ namespace WebLog.Persistance.Services
                     message.Append(subject.Key + ": ");
                     message.Append(string.Join(",", subject.Value));
                 }
-
-                Send(message.ToString(), student.Parent.Email, "Zestawienie ocen");
+                if (student.Parent != null)
+                {
+                    Send(message.ToString(), student.Parent.Email, "Zestawienie ocen");
+                }
             }         
         }
     }

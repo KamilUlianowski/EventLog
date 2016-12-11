@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-header modal-header-adds">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Nowy Przedmiot</h4>
+                <h4 class="modal-title">Nowa klasa</h4>
             </div>
 
             <form ng-submit="addClass(name)">
@@ -66,7 +66,7 @@
         <div class="row cells12">
             <div class="cell colspan6">
                 <span>Dodaj ucznia</span>
-                <select ng-model="selectedStudent" ng-options="student as student.Name for student in restOfStudents" ng-change="addStudentToClass(class.Id, selectedStudent.Id)">
+                <select ng-model="selectedStudent" ng-options="student as student.Surname for student in restOfStudents" ng-change="addStudentToClass(class.Id, selectedStudent.Id)">
                     <option value="">Uczeń</option>
                 </select>
 
