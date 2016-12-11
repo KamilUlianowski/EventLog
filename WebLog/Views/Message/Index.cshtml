@@ -38,37 +38,66 @@
                             }
 
                             <section>
-                                <!-- First Comment -->
-                                <article class="row" ng-repeat="message in myMessages" ng-if="message" ng-class="{'background-message': message.m_Item3 === false}">
 
 
-                                    <div>
-                                        <div>
-                                            <div>
-                                                <header>
-                                                    <span><b>{{message.m_Item5}}</b> on </span><time><i></i>{{message.m_Item4 | date:'yyyy-MM-dd HH:mm'}}</time>
-                                                </header>
-                                                <div>
-                                                    <p>
-                                                        {{message.m_Item2}}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                <div class="messages-wrapper" ng-repeat="message in myMessages" ng-if="message" ng-class="{'background-message': message.m_Item3 === false}">
+                                    <div class="messages-left-header">
+                                        <div class="messages-author">{{message.m_Item5}}</div>
+                                        <div class="messages-time">{{message.m_Item4 | date:'yyyy-MM-dd HH:mm'}}</div>
                                     </div>
-                                </article>
-                                <div ng-if="myMessages">
-                                    <h4>Leave a Comment:</h4>
-                                    <div>
-                                        <form ng-submit="sendMessage(formInputs.newMessage)">
-                                            <input type="text" ng-model="formInputs.newMessage" />
-                                            <input type="submit" />
-                                        </form>
+                                    <div class="messages-right-header">
+                                        <img src="~/Content/img/koperta.gif" alt="Message" width="8%" height="8%" />
+                                    </div>
 
+                                    <div class="messages-content">
+                                        {{message.m_Item2}}
                                     </div>
                                 </div>
-                            </section>
+
+
+
+
+                                <!-- First Comment -->
+                                @*<article class="row" ng-repeat="message in myMessages" ng-if="message" ng-class="{'background-message': message.m_Item3 === false}">
+
+
+                        <div>
+                            <div>
+                                <div>
+                                    <header>
+                                        <span><b>{{message.m_Item5}}</b> on </span><time><i></i>{{message.m_Item4 | date:'yyyy-MM-dd HH:mm'}}</time>
+                                    </header>
+                                    <div>
+                                        <p>
+                                            {{message.m_Item2}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </article>*@
+
+
+
+
+
+                        <div ng-if="myMessages">
+
+                            <div class="messages-add">
+                                Zostaw wiadomość:
+                            </div>
+                            <div>
+                                <form ng-submit="sendMessage(formInputs.newMessage)" >
+                                    <input type="text" ng-model="formInputs.newMessage" class="messages-input"/>
+                                    <br />
+                                    <input type="submit" class="messages-submit" />
+                                </form>
+
+                            </div>
+                        </div>
+                        </section>
+                    </div>
                     </div>
                 </div>
 

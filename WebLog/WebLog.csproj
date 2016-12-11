@@ -254,6 +254,10 @@
     <Compile Include="Migrations\201612071833530_initial.Designer.cs">
       <DependentUpon>201612071833530_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612102137388_Baza01.cs" />
+    <Compile Include="Migrations\201612102137388_Baza01.Designer.cs">
+      <DependentUpon>201612102137388_Baza01.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Persistance\Services\NoticeToAllService.cs" />
     <Compile Include="Persistance\Services\NoticeToParentsService.cs" />
@@ -518,6 +522,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\img\hexellence.png" />
+    <Content Include="Content\img\koperta.gif" />
     <Content Include="Content\img\maths.jpg" />
     <Content Include="Content\metro-colors.css" />
     <Content Include="Content\metro-colors.min.css" />
@@ -727,6 +732,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612071833530_initial.resx">
       <DependentUpon>201612071833530_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612102137388_Baza01.resx">
+      <DependentUpon>201612102137388_Baza01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
