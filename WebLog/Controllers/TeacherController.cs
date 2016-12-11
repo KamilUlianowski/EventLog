@@ -82,11 +82,13 @@ namespace WebLog.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Teacher")]
-        public void AddContent(SubjectSiteViewModel vm)
+        public ActionResult AddContent(SubjectSiteViewModel vm)
         {
             _unitOfWork.Subjects.UpdateContent(vm.Subject.Id, vm.Content);
             _unitOfWork.Complete();
             var subjects = _unitOfWork.Subjects.GetAll().ToList();
+
+            return RedirectToAction("Subject", "Teacher", new { id = vm.Subject.Id });
         }
 
         [HttpGet]

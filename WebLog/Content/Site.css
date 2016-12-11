@@ -42,7 +42,6 @@
     width: 100%;
     float: left;
     margin-top: 3.15rem !important;
-
 }
 
 #Wrapper {
@@ -174,7 +173,7 @@
     float: left;
     font-size: 10rem;
     background-color: #aaaaaa;
-    padding: 10px 40px 30px 30px
+    padding: 10px 40px 30px 30px;
 }
 
 .image-container-adds {
@@ -222,6 +221,7 @@
     line-height: 15px;
     border-radius: 50%;
 }
+
 .img-wrap:hover .close {
     opacity: 1;
 }
@@ -259,7 +259,7 @@
 
 .bar-serach-form-submit {
     float: right !important;
-    margin-right: 17px !important
+    margin-right: 17px !important;
 }
 
 .teacher-content-part {
@@ -326,93 +326,93 @@
 .my-message {
     background-color: #D2D5DD;
 }
+
 .background-message {
-    background-color:yellow;
+    background-color: yellow;
 }
 
-.messages-wrapper
-{
-	width: 500px;
-	background-color: #BFD8F2;
-	border: 0px solid #5494D9;	
-	font-family: 'Lato', sans-serif;
-	font-size: 15px;
+.messages-wrapper {
+    width: 500px;
+    background-color: #BFD8F2;
+    border: 0px solid #5494D9;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
     margin: 10px;
 }
 
-.messages-left-header
-{
-	padding: 10px 10px 5px 10px;
-	color: #666699;
-	float: left;
+.messages-left-header {
+    padding: 10px 10px 5px 10px;
+    color: #666699;
+    float: left;
 }
 
-.messages-right-header
-{
-	padding: 10px 10px 5px 10px;
-	text-align: right;
-	border: 2px solid #5494D9;
-
+.messages-right-header {
+    padding: 10px 10px 5px 10px;
+    text-align: right;
+    border: 2px solid #5494D9;
 }
 
-.messages-author
-{	
-	font-size:16px;
+.messages-author {
+    font-size: 16px;
     font-weight: bold;
-	color: #0933B0; 
+    color: #0933B0;
 }
 
-.messages-time
-{	
+.messages-time {
     padding: 5px 0px 0px 0px;
-	font-size: 12px;
-	font-style: oblique;
-    }
-
-.messages-content
-{	
-	clear: both;	
-	padding: 10px 10px 10px 10px;
-	text-align: justify;
-
+    font-size: 12px;
+    font-style: oblique;
 }
 
-.background-message
-{
+.messages-content {
+    clear: both;
+    padding: 10px 10px 10px 10px;
+    text-align: justify;
+}
+
+.background-message {
     background-color: #EDF2F7;
 }
 
-.messages-input
-{	
-	width: 500px;
+.messages-input {
+    width: 500px;
     margin: 10px;
-	background-color: #BFD8F2;
-	border: 1px solid #5494D9;	
-	font-family: 'Lato', sans-serif;
-	font-size: 15px;
-	padding: 5px 5px 5px 5px;
+    background-color: #BFD8F2;
+    border: 1px solid #5494D9;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    padding: 5px 5px 5px 5px;
 }
 
-.messages-add
-{
+.messages-add {
     margin: 10px;
     margin-top: 20px;
     font-weight: bold;
     font-size: 15px;
 }
 
-.messages-submit
-{
+.messages-submit {
     margin-left: 10px !important;
     font-weight: bold;
-    font-size: 15px !important;;
+    font-size: 15px !important;
+    ;
     width: 100px;
     height: 28px !important;
     border: 1px solid #5494D9 !important;
-    
 }
 
-.messages-submit:hover
-{
-    background-color: #3960D4;
+    .messages-submit:hover {
+        background-color: #3960D4;
+    }
+
+.input-class-te {
+    width: 50px !important;
+    float: left !important;
+    margin-right: 20px !important;
+}
+
+.input-test-te {
+    width: 150px !important;
+    float: left !important;
+    margin-right: 20px !important;
 }

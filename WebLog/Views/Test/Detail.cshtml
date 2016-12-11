@@ -15,31 +15,33 @@
         <div class="teacher-content-part">
             <table class="table">
                 <thead>
-                    <tr>
-                        <td><h2>Pytania</h2></td>
-                    </tr>
+                <tr>
+                    <td><h2>Pytania</h2></td>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach (var question in Model.Questions)
-                    {
-                        <tr>
-                            <td>
-                                <a style="cursor: pointer; text-decoration: none;" onclick="toggleAnswers(@question.Id)"><h3 class="row">@(question.Points)p.    @question.Text</h3></a>
-                                <div id="@("question" + question.Id)" hidden="">
-                                    @foreach (var answer in question.Answers)
-                                    {
-                                        <h4 style="margin-left: 10px; margin-top :5px; background-color: #C9DDF0; padding: 10px;">-@answer.Text</h4><br />
-                                    }
-                                </div>
-                            </td>
+                @foreach (var question in Model.Questions)
+                {
+                    <tr>
+                        <td>
+                            <a style="cursor: pointer; text-decoration: none;" onclick="toggleAnswers(@question.Id)"><h3 class="row">@(question.Points)p.    @question.Text</h3></a>
+                            <div id="@("question" + question.Id)" hidden="">
+                                @foreach (var answer in question.Answers)
+                                {
+                                    <h4 style="margin-left: 10px; margin-top :5px; background-color: #C9DDF0; padding: 10px;">-@answer.Text</h4><br />
+                                }
+                            </div>
+                        </td>
 
-                        </tr>
-                    }
+                    </tr>
+                }
                 </tbody>
             </table>
 
             <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">@Global.AddQuestion</button>
-
+        </div>
+        <div >
+            <img style="margin-top: 4.6rem; margin-left: 2rem;" src="~/Content/img/teacher.jpg" width="30%" />
         </div>
     </div>
 

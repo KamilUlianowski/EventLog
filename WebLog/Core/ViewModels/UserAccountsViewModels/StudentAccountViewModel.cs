@@ -27,5 +27,12 @@ namespace WebLog.Core.ViewModels
             SchoolGrades = schoolGrades.ToList();
             DictGrades = ConvertHelper.StudentSchoolGrades(SchoolGrades);
         }
+
+        public StudentAccountViewModel(Student student, IEnumerable<SchoolGrade> schoolGrades)
+        {
+            Student = student;
+            SchoolGrades = schoolGrades.ToList();
+            DictGrades = ConvertHelper.StudentSchoolGrades(SchoolGrades);
+        }
     }
 }

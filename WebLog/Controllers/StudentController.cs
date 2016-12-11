@@ -24,7 +24,8 @@ namespace WebLog.Controllers
             var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
 
             var student = _unitOfWork.Students.Get(user.Id);
-            return View(student);
+            var schoolGrades = _unitOfWork.SchoolGrades.GetSchoolGrades(student.Id);
+            return View(new StudentAccountViewModel(student, schoolGrades));
         }
 
         [HttpGet]

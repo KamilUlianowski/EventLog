@@ -59,7 +59,6 @@ namespace WebLog.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IHttpActionResult GetMainAdvertisements()
         {
             var advertisements = _unitOfWork.Advertisements.GetMainAdvertisements().ToList();

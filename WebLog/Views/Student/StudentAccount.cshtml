@@ -1,4 +1,4 @@
-﻿@model WebLog.Core.Models.Student
+﻿@model WebLog.Core.ViewModels.StudentAccountViewModel
 
 @Styles.Render("~/Content/bootstrap-modal")
 @Styles.Render("~/Content/jquery-datatables")
@@ -34,7 +34,7 @@
                         </li>
                     }
 
-                    @using (Ajax.BeginForm("StudentAdvertisements", "Student", new { classId = Model.SchoolClass.Id }, new AjaxOptions
+                    @using (Ajax.BeginForm("StudentAdvertisements", "Student", new { classId = Model.Student.SchoolClass.Id }, new AjaxOptions
                     {
                         HttpMethod = "GET",
                         UpdateTargetId = "student-account-content"
@@ -51,6 +51,7 @@
             </div>
 
             <div id="student-account-content" class="cell auto-size padding20 bg-white site-content">
+                @Html.Partial("StudentGrades", Model)
             </div>
 
         </div>
@@ -62,6 +63,5 @@
 
     @Scripts.Render("~/bundles/angular");
     @Scripts.Render("~/bundles/bootstrap-modal");
-    @Scripts.Render("~/bundles/jquery-datatables")
 
 }

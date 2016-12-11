@@ -15,7 +15,8 @@
             @using (Ajax.BeginForm("AddAdvertisement", "Teacher", new AjaxOptions
             {
                 HttpMethod = "POST",
-                UpdateTargetId = "teacher-account-content"
+                UpdateTargetId = "teacher-account-content",
+                OnSuccess = "onLoadEnd"
             }))
             {
                 <div class="modal-body">

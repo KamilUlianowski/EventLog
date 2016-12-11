@@ -13,6 +13,12 @@
             <h2>@Model.Name</h2>
         </div>
     </div>
+    <div style="width: 500px; margin-right: 30rem; float: right">
+        <h1 class="text-light"> Treści nauczani</h1>
+        <div>
+            @Model.Content
+        </div>
+    </div>
     
     @foreach (var test in Model.Tests)
     {
