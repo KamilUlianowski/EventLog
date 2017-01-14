@@ -11,6 +11,7 @@ namespace WebLog.Core.Models
     [Table("Teacher")]
     public class Teacher : User
     {
+        public byte[] Pitcure { get; set; }
         public ICollection<Subject> Subjects { get; set; }
         public ICollection<SchoolClass> SchoolClasses { get; set; }
         public ICollection<Advertisement> Advertisements { get; set; }

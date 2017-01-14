@@ -233,6 +233,7 @@ namespace WebLog.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false),
+                        Pitcure = c.Binary(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.Id)

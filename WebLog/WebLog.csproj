@@ -248,9 +248,9 @@
     <Compile Include="Core\Services\INoticeService.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
-    <Compile Include="Migrations\201701141237142_init.cs" />
-    <Compile Include="Migrations\201701141237142_init.Designer.cs">
-      <DependentUpon>201701141237142_init.cs</DependentUpon>
+    <Compile Include="Migrations\201701141314333_init.cs" />
+    <Compile Include="Migrations\201701141314333_init.Designer.cs">
+      <DependentUpon>201701141314333_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
     <Compile Include="Persistance\Services\NoticeToAllService.cs" />
@@ -725,8 +725,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701141237142_init.resx">
-      <DependentUpon>201701141237142_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701141314333_init.resx">
+      <DependentUpon>201701141314333_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
