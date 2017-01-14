@@ -29,6 +29,7 @@ namespace WebLog.Core.Models
         public SchoolClass()
         {
             Students = new List<Student>();
+            Subjects = new List<Subject>();
         }
     }
 }

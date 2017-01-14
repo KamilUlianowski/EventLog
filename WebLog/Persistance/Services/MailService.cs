@@ -100,6 +100,7 @@ namespace WebLog.Persistance.Services
                 {
                     message.Append(subject.Key + ": ");
                     message.Append(string.Join(",", subject.Value));
+                    message.Append('\n');
                 }
                 if (student.Parent != null)
                 {

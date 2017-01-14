@@ -22,7 +22,8 @@ namespace WebLog.Persistance.Factory
                 case TypeOfUser.Teacher:
                    return new Teacher(signUpViewModel);
                 default:
-                    return new User();
+                    return null;
+                //return new User();
             }
         }
     }

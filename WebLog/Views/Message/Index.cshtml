@@ -26,7 +26,7 @@
                             @if (User.IsInRole("Parent"))
                             {
                                 <div ng-if="selected > 0">
-                                    <h4>Leave a Comment:</h4>
+                                    <h4>Wyślij wiadomość:</h4>
                                     <div>
                                         <form ng-submit="sendNewMessage(formInputs.newMessage)">
                                             <input type="text" ng-model="formInputs.newMessage" />

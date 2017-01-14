@@ -16,7 +16,7 @@
 <body ng-app="mainModule" >
 
     <div class="app-bar bg-color-black top-navbar">
-        <a class="app-bar-element" href="~/Home/Index"><span class="mif-home mif-2x"></span> Home</a>
+        <a class="app-bar-element" href="~/Home/Index"><span class="mif-home mif-2x"></span> Strona główna</a>
         @*<span class="app-bar-divider"></span>*@
         <ul class="app-bar-menu place-right navbar-adds">
             @if (User.Identity.IsAuthenticated)
@@ -44,7 +44,7 @@
                 <li><a href="~/Home/SignIn">@Global.SignIn</a></li>
             }
             <li>
-                <a href="" class="dropdown-toggle">Language</a>
+                <a href="" class="dropdown-toggle">Język</a>
                 <ul class="d-menu" data-role="dropdown">
                     <li><a onclick="changeLanguage('pl')">PL</a></li>
                     <li><a onclick="changeLanguage('en')">EN</a></li>

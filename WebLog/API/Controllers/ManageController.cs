@@ -61,9 +61,12 @@ namespace WebLog.API.Controllers
         [HttpGet]
         public IHttpActionResult GetMainAdvertisements()
         {
-            var advertisements = _unitOfWork.Advertisements.GetMainAdvertisements().ToList();
 
-            return Ok(advertisements);
+            var advertisements = _unitOfWork.Advertisements.GetMainAdvertisements();
+            if (advertisements != null)
+                return Ok(advertisements);
+            else
+                return Ok();
         }
 
         [HttpPost]

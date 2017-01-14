@@ -15,6 +15,11 @@ namespace WebLog.Core.Models
         public ICollection<SchoolClass> SchoolClasses { get; set; }
         public ICollection<Advertisement> Advertisements { get; set; }
 
+        public Teacher(string name, string surname, string email, string password, string pesel) : base(name,surname,email,password,pesel)
+        {
+
+        }
+
         public Teacher()
         {
             Subjects = new List<Subject>();

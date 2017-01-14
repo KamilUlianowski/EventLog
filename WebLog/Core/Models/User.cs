@@ -45,6 +45,15 @@ namespace WebLog.Core.Models
             Pesel = signUpViewModel.Pesel;
         }
 
+        public User(string name, string surname, string email, string password, string pesel)
+        {
+            Name = name;
+            Surname = surname;
+            Email = email;
+            Password = password;
+            Pesel = pesel;
+        }
+
         public User()
         {
             

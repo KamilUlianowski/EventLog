@@ -13,7 +13,7 @@ namespace WebLog.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201612111825327_init"; }
+            get { return "201701141237142_init"; }
         }
         
         string IMigrationMetadata.Source

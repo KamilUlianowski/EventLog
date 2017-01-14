@@ -9,5 +9,14 @@ namespace WebLog.Core.Models
     [Table("Admin")]
     public class Admin : User
     {
+        public Admin()
+        {
+                
+        }
+
+        public Admin(string name, string surname, string email, string password, string pesel) : base(name,surname,email,password,pesel)
+        {
+   
+        }
     }
 }

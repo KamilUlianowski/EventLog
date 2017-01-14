@@ -47,7 +47,14 @@ namespace WebLog.Persistance.Repositories
 
         public IEnumerable<Advertisement> GetMainAdvertisements()
         {
-            return _context.Advertisements.Where(x => x.MainPage);
+            try
+            {
+                return _context.Advertisements.Where(x => x.MainPage);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public IEnumerable<Advertisement> GetAdvertisements(List<int> advertisementsId)
