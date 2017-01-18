@@ -1,51 +1,63 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.EditUserViewModel
 
-@using (Html.BeginForm("Update", "Edit", FormMethod.Post))
-{
-    <div class="profile-form">
+<div class="profile-form">
+    @using (Html.BeginForm("Update", "Edit", FormMethod.Post))
+    {
         <label class="profile-label">@Global.Name: </label>
-        <div class="input-control text">
-            @Html.TextBoxFor(x => x.Name, new { @class = "profile-input" })
-            @Html.ValidationMessageFor(x => x.Name)
-        </div>
-        <br />
-        <br />
+            <div class="input-control text">
+                @Html.TextBoxFor(x => x.Name, new { @class = "profile-input" })
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+            <br />
+            <br />
 
-        <label class="profile-label">@Global.Surname: </label>
-        <div class="input-control text">
-            @Html.TextBoxFor(x => x.Surname, new { @class = "profile-input" })
-            @Html.ValidationMessageFor(x => x.Surname)
-        </div>
-        <br />
-        <br />
-
-
-        <label class="profile-label">@Global.Email: </label>
-        <div class="input-control text">
-            @Html.TextBoxFor(x => x.Email, new { @class = "profile-input" })
-            @Html.ValidationMessageFor(x => x.Email)
-        </div>
-        <br />
-        <br />
-
-        <label class="profile-label">@Global.Pesel: </label>
-        <div class="input-control text">
-            @Html.TextBoxFor(x => x.Pesel, new { @class = "profile-input" })
-            @Html.ValidationMessageFor(x => x.Pesel)
-        </div>
-        <br />
-        <br />
+            <label class="profile-label">@Global.Surname: </label>
+            <div class="input-control text">
+                @Html.TextBoxFor(x => x.Surname, new { @class = "profile-input" })
+                @Html.ValidationMessageFor(x => x.Surname)
+            </div>
+            <br />
+            <br />
 
 
+            <label class="profile-label">@Global.Email: </label>
+            <div class="input-control text">
+                @Html.TextBoxFor(x => x.Email, new { @class = "profile-input" })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <br />
+            <br />
 
-        @Html.HiddenFor(x => x.Password)
-        @Html.HiddenFor(x => x.Email)
-        @Html.HiddenFor(x => x.Id)
+            <label class="profile-label">@Global.Pesel: </label>
+            <div class="input-control text">
+                @Html.TextBoxFor(x => x.Pesel, new { @class = "profile-input" })
+                @Html.ValidationMessageFor(x => x.Pesel)
+            </div>
+            <br />
+            <br />
 
 
-        <div class="form-group modal-header">
-            <input type="submit" class="btn btn-primary" value="@Global.Update">
-        </div>
+
+            @Html.HiddenFor(x => x.Password)
+            @Html.HiddenFor(x => x.Email)
+            @Html.HiddenFor(x => x.Id)
+
+
+            <div class="form-group modal-header">
+                <input type="submit" class="btn btn-primary" value="@Global.Update">
+            </div>
+    }
+    <div style="margin-top:30px">
+        @if (User.IsInRole("Teacher"))
+        {
+            using (Html.BeginForm("FileUpload", "Edit", FormMethod.Post,
+                 new { enctype = "multipart/form-data" }))
+            {
+                <label style="margin-top: 30px" for="file">Upload Image:</label>
+                <input type="file" name="file" id="file" style="width: 100%;" />
+                <input type="submit" value="Upload" class="submit" />
+            }
+        }
     </div>
-}
+</div>

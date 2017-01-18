@@ -37,7 +37,7 @@
                                 {
                                     @Html.HiddenFor(x => x.Teacher.Id)
                                     @Html.HiddenFor(x => x.Subject.Id)
-                                    @Html.HiddenFor(x => x.SchoolClass.Id)
+                               //     @Html.HiddenFor(x => x.SchoolClass.Id)
                                     <div class="form-group">
                                         @Html.EnumDropDownListFor(x => x.NewGrade, "Ocena", new { @class = "form-control", type = "date", id = "student" + student.Id })
                                     </div>

@@ -44,6 +44,9 @@ namespace WebLog.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        ClassProfile = c.Int(nullable: false),
+                        AdditionalInformation = c.String(),
+                        MaxNumberOfStudents = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 20),
                         Teacher_Id = c.Int(),
                     })
@@ -51,6 +54,19 @@ namespace WebLog.Migrations
                 .ForeignKey("dbo.Teacher", t => t.Teacher_Id)
                 .Index(t => t.Name, unique: true)
                 .Index(t => t.Teacher_Id);
+            
+            CreateTable(
+                "dbo.Events",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Date = c.DateTime(nullable: false),
+                        Description = c.String(),
+                        SchoolClass_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SchoolClasses", t => t.SchoolClass_Id)
+                .Index(t => t.SchoolClass_Id);
             
             CreateTable(
                 "dbo.SchoolGrades",
@@ -124,6 +140,15 @@ namespace WebLog.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true);
+            
+            CreateTable(
+                "dbo.ImageTeachers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Picture = c.Binary(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.SubjectFiles",
@@ -203,6 +228,36 @@ namespace WebLog.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
+                "dbo.LanguageClass",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SchoolClasses", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
+                "dbo.MathematicClass",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SchoolClasses", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
+                "dbo.MedicalClass",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SchoolClasses", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
                 "dbo.Parent",
                 c => new
                     {
@@ -233,21 +288,27 @@ namespace WebLog.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false),
-                        Pitcure = c.Binary(),
+                        Pitcure_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.Id)
-                .Index(t => t.Id);
+                .ForeignKey("dbo.ImageTeachers", t => t.Pitcure_Id)
+                .Index(t => t.Id)
+                .Index(t => t.Pitcure_Id);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Teacher", "Pitcure_Id", "dbo.ImageTeachers");
             DropForeignKey("dbo.Teacher", "Id", "dbo.Users");
             DropForeignKey("dbo.Student", "SchoolClass_Id", "dbo.SchoolClasses");
             DropForeignKey("dbo.Student", "Parent_Id", "dbo.Parent");
             DropForeignKey("dbo.Student", "Id", "dbo.Users");
             DropForeignKey("dbo.Parent", "Id", "dbo.Users");
+            DropForeignKey("dbo.MedicalClass", "Id", "dbo.SchoolClasses");
+            DropForeignKey("dbo.MathematicClass", "Id", "dbo.SchoolClasses");
+            DropForeignKey("dbo.LanguageClass", "Id", "dbo.SchoolClasses");
             DropForeignKey("dbo.Admin", "Id", "dbo.Users");
             DropForeignKey("dbo.Messages", "UserTo_Id", "dbo.Users");
             DropForeignKey("dbo.Messages", "UserFrom_Id", "dbo.Users");
@@ -265,13 +326,18 @@ namespace WebLog.Migrations
             DropForeignKey("dbo.SubjectSchoolClasses", "Subject_Id", "dbo.Subjects");
             DropForeignKey("dbo.Questions", "Test_Id", "dbo.Tests");
             DropForeignKey("dbo.QuestionAnswers", "Question_Id", "dbo.Questions");
+            DropForeignKey("dbo.Events", "SchoolClass_Id", "dbo.SchoolClasses");
             DropForeignKey("dbo.SchoolClassAdvertisements", "Advertisement_Id", "dbo.Advertisements");
             DropForeignKey("dbo.SchoolClassAdvertisements", "SchoolClass_Id", "dbo.SchoolClasses");
+            DropIndex("dbo.Teacher", new[] { "Pitcure_Id" });
             DropIndex("dbo.Teacher", new[] { "Id" });
             DropIndex("dbo.Student", new[] { "SchoolClass_Id" });
             DropIndex("dbo.Student", new[] { "Parent_Id" });
             DropIndex("dbo.Student", new[] { "Id" });
             DropIndex("dbo.Parent", new[] { "Id" });
+            DropIndex("dbo.MedicalClass", new[] { "Id" });
+            DropIndex("dbo.MathematicClass", new[] { "Id" });
+            DropIndex("dbo.LanguageClass", new[] { "Id" });
             DropIndex("dbo.Admin", new[] { "Id" });
             DropIndex("dbo.TeacherSubjects", new[] { "Subject_Id" });
             DropIndex("dbo.TeacherSubjects", new[] { "Teacher_Id" });
@@ -290,6 +356,7 @@ namespace WebLog.Migrations
             DropIndex("dbo.SchoolGrades", new[] { "Subject_Id" });
             DropIndex("dbo.SchoolGrades", new[] { "Student_Id" });
             DropIndex("dbo.SchoolGrades", new[] { "MyTest_Id" });
+            DropIndex("dbo.Events", new[] { "SchoolClass_Id" });
             DropIndex("dbo.SchoolClasses", new[] { "Teacher_Id" });
             DropIndex("dbo.SchoolClasses", new[] { "Name" });
             DropIndex("dbo.Advertisements", new[] { "Teacher_Id" });
@@ -297,17 +364,22 @@ namespace WebLog.Migrations
             DropTable("dbo.Teacher");
             DropTable("dbo.Student");
             DropTable("dbo.Parent");
+            DropTable("dbo.MedicalClass");
+            DropTable("dbo.MathematicClass");
+            DropTable("dbo.LanguageClass");
             DropTable("dbo.Admin");
             DropTable("dbo.TeacherSubjects");
             DropTable("dbo.SubjectSchoolClasses");
             DropTable("dbo.SchoolClassAdvertisements");
             DropTable("dbo.Messages");
             DropTable("dbo.SubjectFiles");
+            DropTable("dbo.ImageTeachers");
             DropTable("dbo.Subjects");
             DropTable("dbo.QuestionAnswers");
             DropTable("dbo.Questions");
             DropTable("dbo.Tests");
             DropTable("dbo.SchoolGrades");
+            DropTable("dbo.Events");
             DropTable("dbo.SchoolClasses");
             DropTable("dbo.Advertisements");
             DropTable("dbo.Users");

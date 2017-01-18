@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using WebLog.Core.Models;
 using WebLog.Core.Repositories;
 
 namespace WebLog.Persistance.Repositories
 {
+
     public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext Context;

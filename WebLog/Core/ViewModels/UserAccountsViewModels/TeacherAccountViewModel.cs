@@ -14,7 +14,8 @@ namespace WebLog.Core.ViewModels
         public string Text { get; set; }
         public bool ByEmail { get; set; }
         public bool BySite { get; set; }
-        public bool OnlyForParents { get; set; }
+        public bool ForParents { get; set; }
+        public bool ForStudents { get; set; }
         public DateTime Date { get; set; }
         public IList<SelectListItem> Classes = new List<SelectListItem>();
         public IEnumerable<int> SelectedClasses { get; set; }

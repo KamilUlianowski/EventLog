@@ -15,7 +15,12 @@
                     <label class="modal-label">Nazwa</label>
                     <div class="input-control text">
                         <input type="text" ng-model="name" />
-                    </div><br /><br />
+                    </div>
+                    <br />
+                    <label class="modal-label">Profil</label>
+                    <select class="input-control text" required ng-model="classForm.selectedProfile" ng-options="profile.id as profile.profile for profile in profiles">
+                        <option></option>
+                    </select><br /><br />
 
                 </div>
                 <div class="modal-footer">
@@ -58,8 +63,48 @@
 
 </div>
 
+<div id="classDetail" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header modal-header-adds">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label class="modal-label left-side-text ">Nazwa</label>
+                <div class="input-control text">
+                    <label class="right-side-text">{{class.Name}}</label>
+                </div><br />
+                <label class="modal-label left-side-text ">Dodatkowe informacje</label>
+                <div class="input-control text">
+                    <label class="right-side-text">{{class.AdditionalInformation}}</label>
+                </div><br />
+                <label class="modal-label left-side-text ">Maksymalna liczba studentów</label>
+                <div class="input-control text">
+
+                    <label class="right-side-text">{{class.MaxNumberOfStudents}}</label>
+                </div><br />
+                <label class="modal-label left-side-text ">Przedmioty</label>
+                <div class="input-control text">
+                    <div style="float: left; margin-left: 5px;">
+                        <label class="right-side-text" ng-repeat="sub in class.Subjects">{{sub.Name}}</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 <div class="cell auto-size padding20 bg-white manage-content" ng-if="class">
     <h1 class="text-light"> Klasa {{class.Name}}<span class="mif-drive-eta place-right"></span></h1>
+    <button data-toggle="modal" data-target="#classDetail" class="button primary">Pokaz szczegoly</button>
     <hr class="thin bg-grayLighter">
 
     <div class="grid">
@@ -112,7 +157,7 @@
                         </tr>
                     </tbody>
                 </table>
-   
+
             </div>
         </div>
     </div>

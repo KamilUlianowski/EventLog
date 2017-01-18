@@ -1,5 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Security.Cryptography;
+using WebLog.Core.TemplateMethod;
 
 namespace WebLog.Core.Models
 {
@@ -24,9 +27,24 @@ namespace WebLog.Core.Models
             p2.MyChildrens.Add(s2);
             context.Parents.Add(p1);
             context.Parents.Add(p2);
+            context.Subjects.Add(new Subject("Matematyka", @"https://data1.cupsell.pl/upload/generator/51436/640x420/1089545_print-trimmed-1.png?resize=max_sizes&key=55f9a22768eed085006592c1174c0235"));
+            context.Subjects.Add(new Subject("Angielski", @"http://translatica.pl/theme/Dictionary/img/en.svg?1410243971"));
+            context.Subjects.Add(new Subject("Biologia", @"http://www.vitalogy.pl/photo_max/biologia.jpg"));
+            context.Subjects.Add(new Subject("Polski", @"http://www.newsweek.pl/g/i.aspx/680/0/newsweek/635521994225190164.jpg"));
+            context.Subjects.Add(new Subject("Chemia", @"http://www.placpigal.pl/blog/wp-content/uploads/2015/12/chemia1.jpg"));
+            context.Subjects.Add(new Subject("Geografia", @"http://lo.krapkowice.pl/download//388/geografia.jpeg"));
             base.Seed(context);
+            context.SaveChanges();
         }
     }
+
+    //public class DatabaseConfiguration : DbMigrationsConfiguration<LogDbContext>
+    //{
+    //    public DatabaseConfiguration()
+    //    {
+    //        this.AutomaticMigrationsEnabled = true;
+    //    }
+    //}
 
     public class LogDbContext : DbContext
     {
@@ -35,8 +53,12 @@ namespace WebLog.Core.Models
             Database.SetInitializer(new SchoolDbInitializer());
         }
 
+        public DbSet<Event> Events { get; set; }
         public DbSet<User> Users { get; set; } 
         public DbSet<SchoolClass> SchoolClass { get; set; }
+        public DbSet<MedicalClass> MedicalClass { get; set; }
+        public DbSet<MathematicClass> MathematicClass { get; set; }
+        public DbSet<LanguageClass> LanguageClass { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Admin> Admin { get; set; }

@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using WebLog.Core;
 using WebLog.Core.Models;
 using WebLog.Core.Services;
+using WebLog.Core.Strategy;
 using WebLog.Core.ViewModels;
 using WebLog.Core.ViewModels.SubjectViewModels;
 using WebLog.Persistance.Services;
@@ -24,6 +25,7 @@ namespace WebLog.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [Authorize]
         public ActionResult TeacherAccount()
         {
             var user = _unitOfWork.Users.GetUser(User.Identity.GetUserId());
@@ -106,16 +108,19 @@ namespace WebLog.Controllers
             if(viewModel.SelectedClasses == null) return RedirectToAction("TeacherAdvertisements");
             var classes = _unitOfWork.Classes.GetClasses(viewModel.SelectedClasses.ToList()).ToList();
             viewModel.Teacher = _unitOfWork.Teachers.Get(viewModel.Teacher.Id);
-            var advertisement = new Advertisement(viewModel.Text, viewModel.Teacher, classes, viewModel.OnlyForParents, viewModel.BySite);
+            var advertisement = new Advertisement(viewModel.Text, viewModel.Teacher, classes, viewModel.ForParents, viewModel.BySite);
             _unitOfWork.Advertisements.Add(advertisement);
             _unitOfWork.Complete();
 
             if (!viewModel.ByEmail) return RedirectToAction("TeacherAdvertisements");
-
-            if(viewModel.OnlyForParents)
-                _noticeService = new NoticeToParentsService();
-            else
+            
+            if(viewModel.ForStudents && viewModel.ForParents) // Strategia
                 _noticeService = new NoticeToAllService();
+
+            else if(viewModel.ForParents)
+                _noticeService = new NoticeToParentsService();
+            else if(viewModel.ForStudents)
+                _noticeService = new NoticeToStudentService();
             _noticeService.SendNotice(advertisement);
 
             return RedirectToAction("TeacherAdvertisements");

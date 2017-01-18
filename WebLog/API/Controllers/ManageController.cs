@@ -7,7 +7,9 @@ using System.Web.Http;
 using WebLog.API.ViewModels;
 using WebLog.Core;
 using WebLog.Core.Models;
+using WebLog.Core.Proxy;
 using WebLog.Core.Services;
+using WebLog.Core.TemplateMethod;
 
 namespace WebLog.API.Controllers
 {
@@ -47,6 +49,16 @@ namespace WebLog.API.Controllers
             var students = _unitOfWork.Students.GetAll();
 
             return Ok(students);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult GetTeacherWithImage([FromUri] int teacherId)
+        {
+            var teacher = _unitOfWork.Teachers.GetTeacher(teacherId);
+            teacher.FaceImage.ShowImage(teacherId);
+            RealImage realImage = ((ProxyImage) teacher.FaceImage).RealImage;
+            return Ok(realImage.ImageTeacher);
         }
 
         [HttpGet]
@@ -117,9 +129,22 @@ namespace WebLog.API.Controllers
 
         [HttpPost]
         [Authorize]
-        public IHttpActionResult AddClass([FromUri] string name)
+        public IHttpActionResult AddClass([FromUri] string name, int profileId)
         {
-            var schoolClass = new SchoolClass(name);
+            SchoolClass schoolClass = null;
+            switch (profileId)
+            {
+                case 0:
+                     schoolClass = new LanguageClass(name);
+                    break;
+                case 1:
+                    schoolClass = new MedicalClass(name);
+                    break;
+                case 2:
+                    schoolClass = new MathematicClass(name);
+                    break;
+            }
+
             _unitOfWork.Classes.Add(schoolClass);
             _unitOfWork.Complete();
 
@@ -143,7 +168,7 @@ namespace WebLog.API.Controllers
 
         [HttpPost]
         [Authorize]
-        public IHttpActionResult DeleteClass([FromBody] int num)
+        public IHttpActionResult DeleteClass([FromUri] int num)
         {
             var selectedClass = _unitOfWork.Classes.Get(num);
 

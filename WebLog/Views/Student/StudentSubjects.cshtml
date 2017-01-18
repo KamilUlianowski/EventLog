@@ -4,16 +4,19 @@
 <div class="cell auto-size padding20 bg-white manage-content" id="cell-content">
     <h1 class="text-light">@Global.Subjects <span class="mif-drive-eta place-right"></span></h1>
     <hr class="thin bg-grayLighter">
-    @foreach (var subject in Model.SchoolClass.Subjects)
+    @if (Model.SchoolClass != null)
     {
-        <div class="image-container image-format-square mouse-pointer"  onclick="GetSubjectDetail(@subject.Id)">
-            <div class="frame img-wrap">
-                <img class="image-resize" src="@subject.ImagePath"/>
-            </div>
-            <div class="image-overlay">
-                <h2>@subject.Name</h2>
-            </div>
-        </div>
+       foreach (var subject in Model.SchoolClass.Subjects)
+         {
+             <div class="image-container image-format-square mouse-pointer" onclick="GetSubjectDetail(@subject.Id)">
+                 <div class="frame img-wrap">
+                     <img class="image-resize" src="@subject.ImagePath"/>
+                 </div>
+                 <div class="image-overlay">
+                     <h2>@subject.Name</h2>
+                 </div>
+             </div>
 
+         }
     }
 </div>

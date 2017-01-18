@@ -5,6 +5,7 @@ using System.Web;
 using WebLog.Core.Models;
 using System.Data.Entity;
 using WebLog.Core.Repositories;
+using WebLog.Core.TemplateMethod;
 using WebLog.Core.ViewModels;
 
 namespace WebLog.Persistance.Repositories
@@ -16,6 +17,22 @@ namespace WebLog.Persistance.Repositories
         public SchoolClassRepository(LogDbContext context) : base(context)
         {
             _context = context;
+        }
+
+        public override void Add(SchoolClass entity)
+        {
+            var subjects = new List<Subject>();
+            var events = new List<Event>();
+            foreach (var subject in entity.Subjects)
+            {
+                var existing_subject = _context.Subjects.FirstOrDefault(x => x.Id == subject.Id);
+                if (existing_subject != null)
+                    subjects.Add(existing_subject);
+            }
+            entity.Subjects = subjects;
+            _context.SchoolClass.Add(entity);
+            _context.SaveChanges();
+
         }
 
         public override IEnumerable<SchoolClass> GetAll()
@@ -30,6 +47,7 @@ namespace WebLog.Persistance.Repositories
             return _context.SchoolClass.Include(x => x.Teacher)
                                        .Include(x => x.Students)
                                        .Include(x => x.Advertisements)
+                                       .Include(x => x.Subjects)
                                        .FirstOrDefault(x => x.Id == id);
         }
 
@@ -43,7 +61,7 @@ namespace WebLog.Persistance.Repositories
 
         public void Add(SchoolClassViewModel classViewModel)
         {
-            _context.SchoolClass.Add(new SchoolClass(classViewModel.Name));
+            _context.SchoolClass.Add(new MedicalClass());
         }
 
         public SchoolClass AddStudent(int schoolClassId, int studentId)

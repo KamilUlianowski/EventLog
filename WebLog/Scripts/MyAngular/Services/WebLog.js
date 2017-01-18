@@ -67,8 +67,8 @@
         return $http.post("/api/manage/addSubject", JSON.stringify({ Name: name, Url: url }));
     };
 
-    var addClass = function (name) {
-        return $http.post("/api/manage/addClass?name=" + name);
+    var addClass = function (name, profileId) {
+        return $http.post("/api/manage/addClass?name=" + name + "&profileId="+profileId );
     };
 
     var addAdvertisement = function (titleAdv, textAdv) {
@@ -99,6 +99,14 @@
 
      var sendNewMessage = function (message, toId) {
       return $http.post("/api/message/SendNewMessageToTeacher", JSON.stringify({ Id: toId, Text: message }));
+     }
+
+     var getTeacherWithImage = function (id) {
+         return $http.get("/api/manage/GetTeacherWithImage?teacherId=" + id);
+     }
+
+    var deleteClass = function(id) {
+        return $http.post("/api/manage/deleteClass?num=" + id);
     }
 
 
@@ -127,8 +135,8 @@
         getMessages: getMessages,
         sendMessage: sendMessage,
         getSchoolGrades: getSchoolGrades,
-        sendNewMessage: sendNewMessage
-
-
+        sendNewMessage: sendNewMessage,
+        deleteClass: deleteClass,
+        getTeacherWithImage: getTeacherWithImage
     };
 })

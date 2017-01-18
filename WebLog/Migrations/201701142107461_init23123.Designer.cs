@@ -7,13 +7,13 @@ namespace WebLog.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class init : IMigrationMetadata
+    public sealed partial class init23123 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init23123));
         
         string IMigrationMetadata.Id
         {
-            get { return "201701141314333_init"; }
+            get { return "201701142107461_init23123"; }
         }
         
         string IMigrationMetadata.Source

@@ -303,4 +303,7 @@
   <data name="Teachers" xml:space="preserve">
     <value>Nauczyciele</value>
   </data>
+  <data name="EmailValidation" xml:space="preserve">
+    <value>Wpisz prawidłowy email </value>
+  </data>
 </root>

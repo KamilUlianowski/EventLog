@@ -43,7 +43,6 @@ namespace WebLog.Persistance
             Questions = new QuestionRepository(dbContext);
             QuestionAnswers = new QuestionAnswerRepository(dbContext);
             Tests = new TestRepository(dbContext);
-
         }
 
         public void Complete()

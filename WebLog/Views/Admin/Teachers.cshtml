@@ -7,22 +7,34 @@
     <div class="manage-table">
         <table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
             <thead>
-                <tr>
-                    <td class="sortable-column sort-asc" style="width: 100px">Imie</td>
-                    <td class="sortable-column">Nazwisko</td>
-                    <td class="sortable-column">Email</td>
-                    <td class="sortable-column">Liczba przedmiotów</td>
-                </tr>
+            <tr>
+                <td class="sortable-column">Zdjęcie</td>
+                <td class="sortable-column sort-asc" style="width: 100px">Imie</td>
+                <td class="sortable-column">Nazwisko</td>
+                <td class="sortable-column">Email</td>
+                <td class="sortable-column">Liczba przedmiotów</td>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="teacher in teachers">
-                    <td>{{teacher.Name}}</td>
-                    <td>{{teacher.Surname}}</td>
-                    <td>{{teacher.Email}}</td>
-                    <td>{{teacher.Subjects.length}}</td>
-                </tr>
+            <tr ng-repeat="teacher in teachers">
+                <td><button class="btn btn-primary" ng-click="showImage(teacher)">Zobacz zdjęcie</button></td>
+                <td>{{teacher.Name}}</td>
+                <td>{{teacher.Surname}}</td>
+                <td>{{teacher.Email}}</td>
+                <td>{{teacher.Subjects.length}}</td>
+            </tr>
             </tbody>
         </table>
     </div>
 
+</div>
+
+<div id="TeacherImage" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img ng-src="data:image/JPEG;base64,{{teacherImage}}">
+            </div>
+        </div>
+    </div>
 </div>

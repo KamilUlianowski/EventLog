@@ -13,26 +13,27 @@ namespace WebLog.Resources
 
     public class LocalizedControllerActivator : IControllerActivator
     {
-        private string _DefaultLanguage = "en";
+        private string _DefaultLanguage = "pl";
 
         public IController Create(RequestContext requestContext, Type controllerType)
         {
             //Get the {language} parameter in the RouteData
            // string lang = requestContext.RouteData.Values["lang"]?.ToString() ?? _DefaultLanguage;
-            var lang = HttpContext.Current.Session["lang"].ToString();
+            //var lang = HttpContext.Current.Session["lang"].ToString();
+            var lang = "pl";
             
-            if (lang != _DefaultLanguage)
-            {
-                try
-                {
+            //if (lang != _DefaultLanguage)
+            //{
+            //    try
+            //    {
                     Thread.CurrentThread.CurrentCulture =
                         Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-                }
-                catch (Exception e)
-                {
-                    throw new NotSupportedException($"ERROR: Invalid language code '{lang}'.");
-                }
-            }
+                //}
+                //catch (Exception e)
+                //{
+                //    throw new NotSupportedException($"ERROR: Invalid language code '{lang}'.");
+                //}
+            //}
 
             return DependencyResolver.Current.GetService(controllerType) as IController;
         }

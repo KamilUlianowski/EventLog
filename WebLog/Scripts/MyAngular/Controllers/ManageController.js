@@ -8,7 +8,17 @@ app.controller('ManageController',
         $scope.selectedClass;
         $scope.selectedTeacher;
         $scope.selectedStudent;
+        $scope.teacherImage;
+        $scope.classForm = {
+          selectedForm: ""   
+        }
         var previousChoice;
+
+        $scope.profiles = [
+            { id: 0, profile: "Matematyczny" },
+            { id: 0, profile: "Językowy" },
+            { id: 0, profile: "Medyczny" }
+        ]
 
         var searchById = function (arr, id) {
             for (var i = 0; i < arr.length; i++) {
@@ -214,9 +224,10 @@ app.controller('ManageController',
         };
 
         $scope.addClass = function (name) {
-            WebLog.addClass(name).then(function (response) {
+            WebLog.addClass(name, $scope.classForm.selectedProfile).then(function (response) {
                 $scope.classes.push(response.data);
-                angular.element('#myModal').modal('hide');
+                $('#myModal').modal('hide');
+                getClasses();
             });
         };
 
@@ -256,6 +267,14 @@ app.controller('ManageController',
                     updateClassDetails($scope.class);
                 });
             }
+        }
+
+        $scope.showImage = function(teacher) {
+            $scope.teacherImage = teacher.Pitcure;
+            WebLog.getTeacherWithImage(teacher.Id).then(function(response) {
+                $scope.teacherImage = response.data.Picture;
+            });
+            $('#TeacherImage').modal('show');
         }
 
 

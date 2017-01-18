@@ -32,9 +32,13 @@
                     @Html.CheckBoxFor(x => x.BySite, new { @class = "input-control checkbox" })
                     @Html.ValidationMessageFor(x => x.BySite)
                     <br />
-                    <label class="modal-label">Tylko dla rodziców: </label>
-                    @Html.CheckBoxFor(x => x.OnlyForParents, new { @class = "input-control checkbox" })
-                    @Html.ValidationMessageFor(x => x.OnlyForParents)
+                    <label class="modal-label">Do rodziców: </label>
+                    @Html.CheckBoxFor(x => x.ForParents, new { @class = "input-control checkbox" })
+                    @Html.ValidationMessageFor(x => x.ForParents)
+                    <br />
+                    <label class="modal-label">Do studentów: </label>
+                    @Html.CheckBoxFor(x => x.ForStudents, new { @class = "input-control checkbox" })
+                    @Html.ValidationMessageFor(x => x.ForStudents)
                     <br />
 
                     @Html.HiddenFor(x => x.Teacher.Id)

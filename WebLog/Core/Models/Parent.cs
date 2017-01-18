@@ -49,7 +49,7 @@ namespace WebLog.Core.Models
                     if (lastSchoolGrade.Teacher != null)
                         message.Append("\n Pozdrawiam " + lastSchoolGrade.Teacher.Name + ' ' +
                                        lastSchoolGrade.Teacher.Surname);
-                    Mail.Send(message.ToString(), Email, "1 z przedmiotu " + lastSchoolGrade.Subject.Name);
+                    Mail.Send(message.ToString(), Child.Email, "1 z przedmiotu " + lastSchoolGrade.Subject.Name);
                 }
             }
         }

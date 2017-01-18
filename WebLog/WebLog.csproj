@@ -245,16 +245,29 @@
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Core\Common\Mail.cs" />
     <Compile Include="Core\Common\TestResult.cs" />
-    <Compile Include="Core\Services\INoticeService.cs" />
+    <Compile Include="Core\Models\Event.cs" />
+    <Compile Include="Core\Models\ImageTeacher.cs" />
+    <Compile Include="Core\Proxy\IFacePicture.cs" />
+    <Compile Include="Core\Proxy\ProxyImage.cs" />
+    <Compile Include="Core\Proxy\RealImage.cs" />
+    <Compile Include="Core\Strategy\INoticeService.cs" />
     <Compile Include="Core\Services\IDataConversionService.cs" />
+    <Compile Include="Core\Strategy\NoticeToStudentService.cs" />
+    <Compile Include="Core\TemplateMethod\LanguageClass.cs" />
+    <Compile Include="Core\TemplateMethod\MathematicClass.cs" />
+    <Compile Include="Core\TemplateMethod\MedicalClass.cs" />
     <Compile Include="Core\ViewModels\TestsViewModels\SolveTestViewModel.cs" />
-    <Compile Include="Migrations\201701141314333_init.cs" />
-    <Compile Include="Migrations\201701141314333_init.Designer.cs">
-      <DependentUpon>201701141314333_init.cs</DependentUpon>
+    <Compile Include="Migrations\201701141800360_init.cs" />
+    <Compile Include="Migrations\201701141800360_init.Designer.cs">
+      <DependentUpon>201701141800360_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701142107461_init23123.cs" />
+    <Compile Include="Migrations\201701142107461_init23123.Designer.cs">
+      <DependentUpon>201701142107461_init23123.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistance\Services\DataConversionService.cs" />
-    <Compile Include="Persistance\Services\NoticeToAllService.cs" />
-    <Compile Include="Persistance\Services\NoticeToParentsService.cs" />
+    <Compile Include="Core\Strategy\NoticeToAllService.cs" />
+    <Compile Include="Core\Strategy\NoticeToParentsService.cs" />
     <Compile Include="Service References\API\Controllers\LogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -725,8 +738,11 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701141314333_init.resx">
-      <DependentUpon>201701141314333_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701141800360_init.resx">
+      <DependentUpon>201701141800360_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701142107461_init23123.resx">
+      <DependentUpon>201701142107461_init23123.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

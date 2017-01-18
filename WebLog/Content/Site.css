@@ -13,6 +13,18 @@
     transform: scale(.8);
 }
 
+.left-side-text {
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+.right-side-text {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 .register-form {
     width: 25rem;
     height: 39.5rem;

@@ -16,7 +16,7 @@ namespace WebLog.Persistance.Repositories
 
         public void AddChildren(int parentId, Student student)
         {
-            var parent = _context.Parents.FirstOrDefault(x => x.Id == parentId);
+            var parent = _context.Parents.Include(x => x.MyChildrens).FirstOrDefault(x => x.Id == parentId);
 
             if (parent != null && !parent.MyChildrens.Contains(student))
                 parent.MyChildrens.Add(student);

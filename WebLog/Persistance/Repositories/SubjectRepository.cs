@@ -84,5 +84,12 @@ namespace WebLog.Persistance.Repositories
                 .Include(x => x.Tests)
                 .FirstOrDefault(x => x.Id == id);
         }
+
+        public override IEnumerable<Subject> GetAll()
+        {
+            return _context.Subjects.Include(x => x.SchoolClasses)
+                .Include(x => x.Teachers)
+                .Include(x => x.Tests);
+        }
     }
 }
