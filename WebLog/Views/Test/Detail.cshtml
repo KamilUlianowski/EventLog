@@ -28,7 +28,7 @@
                             <div id="@("question" + question.Id)" hidden="">
                                 @foreach (var answer in question.Answers)
                                 {
-                                    <h4 style="margin-left: 10px; margin-top :5px; background-color: #C9DDF0; padding: 10px;">-@answer.Text</h4><br />
+                                    <h4 style="margin-left: 10px; margin-top :5px; background-color: #C9DDF0; padding: 10px;"># @answer.Text</h4><br />
                                 }
                             </div>
                         </td>

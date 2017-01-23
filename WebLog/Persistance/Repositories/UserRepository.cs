@@ -28,6 +28,7 @@ namespace WebLog.Persistance.Repositories
 
         public void AddUser(SignUpViewModel signUpViewModel)
         {
+            User zz = _userFactory.CreateUser(signUpViewModel);
             _dbContext.Users.Add(_userFactory.CreateUser(signUpViewModel));
         }
 

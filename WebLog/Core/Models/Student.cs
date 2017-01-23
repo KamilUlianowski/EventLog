@@ -53,7 +53,10 @@ namespace WebLog.Core.Models
 
         public void Notify()
         {
-            observer.SendNotice();
+            if (observer != null)
+            {
+                observer.SendNotice();
+            }
         }
     }
 }

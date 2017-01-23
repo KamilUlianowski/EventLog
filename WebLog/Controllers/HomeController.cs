@@ -180,7 +180,14 @@ namespace WebLog.Controllers
         {
             _unitOfWork.Users.UpdateToken(user_login);
             _unitOfWork.Complete();
-            _iMailService.RemindOrChangePassword(user_login, _unitOfWork.Users.GetUser(user_login).Token);
+            try
+            {
+                _iMailService.RemindOrChangePassword(user_login, _unitOfWork.Users.GetUser(user_login).Token);
+            }
+            catch
+            {
+                
+            }
             return RedirectToAction("Confirm", new { message = "Wysłano maila" });
         }
 

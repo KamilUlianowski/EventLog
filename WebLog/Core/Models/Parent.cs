@@ -44,12 +44,12 @@ namespace WebLog.Core.Models
                 if (lastSchoolGrade.Grade == Grade.One && DateTime.Now < lastSchoolGrade.Date.AddMinutes(10))
                 {
                     var message = new StringBuilder();
-                    message.Append(Name + ' ' + Surname + ' ');
+                    message.Append(Child.Name + ' ' + Child.Surname + ' ');
                     message.Append("dostał właśnie 1 z przedmiotu " + lastSchoolGrade.Subject.Name);
                     if (lastSchoolGrade.Teacher != null)
                         message.Append("\n Pozdrawiam " + lastSchoolGrade.Teacher.Name + ' ' +
                                        lastSchoolGrade.Teacher.Surname);
-                    Mail.Send(message.ToString(), Child.Email, "1 z przedmiotu " + lastSchoolGrade.Subject.Name);
+                    Mail.Send(message.ToString(), Email, "1 z przedmiotu " + lastSchoolGrade.Subject.Name);
                 }
             }
         }

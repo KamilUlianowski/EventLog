@@ -1,6 +1,6 @@
 ﻿@using Resources
 @model WebLog.Core.ViewModels.TeacherAccountViewModel
-    
+
 
 <div id="myModal" class="modal fade" role="dialog">
 
@@ -24,13 +24,16 @@
                     @Html.TextAreaFor(x => x.Text)
                     @Html.ValidationMessageFor(x => x.Text)
                     <br />
-                    <label class="modal-label">Przez Email: </label>
+                    @*<label class="modal-label">Przez Email: </label>
                     @Html.CheckBoxFor(x => x.ByEmail, new { @class = "input-control checkbox" })
                     @Html.ValidationMessageFor(x => x.ByEmail)
-                    <br />
-                    <label class="modal-label">Przez stronę: </label>
-                    @Html.CheckBoxFor(x => x.BySite, new { @class = "input-control checkbox" })
-                    @Html.ValidationMessageFor(x => x.BySite)
+                    <br />*@
+                    @{
+                        Model.ByEmail = true;
+                    }
+                    @*<label class="modal-label">Przez stronę: </label>
+                        @Html.CheckBoxFor(x => x.BySite, new { @class = "input-control checkbox" })
+                        @Html.ValidationMessageFor(x => x.BySite)*@
                     <br />
                     <label class="modal-label">Do rodziców: </label>
                     @Html.CheckBoxFor(x => x.ForParents, new { @class = "input-control checkbox" })
@@ -40,8 +43,10 @@
                     @Html.CheckBoxFor(x => x.ForStudents, new { @class = "input-control checkbox" })
                     @Html.ValidationMessageFor(x => x.ForStudents)
                     <br />
-
+                    @*@Html.HiddenFor(x => x.Teacher.Id)*@
                     @Html.HiddenFor(x => x.Teacher.Id)
+                    @Html.HiddenFor(x => x.BySite)
+                    @Html.HiddenFor(x => x.ByEmail)
                     <label class="modal-label">Klasy: </label>
                     @foreach (var item in Model.Classes)
                     {
@@ -70,18 +75,21 @@
     <hr class="thin bg-grayLighter">
     <button data-toggle="modal" data-target="#myModal" class="button primary"><span class="mif-plus">  @Global.Create </span></button>
     <hr class="thin bg-grayLighter">
-    @foreach (var adv in Model.Teacher.Advertisements)
+    @if (Model.Teacher != null && Model.Teacher.Advertisements != null)
     {
-        <div class="tile tile-wide" data-role="tile">
-            <div class="panel">
-                <div class="heading">
-                    <span class="title">@adv.Title</span>
-                </div>
-                <div class="content adv-text">
-                    @adv.Text
+        foreach (var adv in Model.Teacher.Advertisements)
+        {
+            <div class="tile tile-wide" data-role="tile">
+                <div class="panel">
+                    <div class="heading">
+                        <span class="title">@adv.Title</span>
+                    </div>
+                    <div class="content adv-text">
+                        @adv.Text
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
 
 
