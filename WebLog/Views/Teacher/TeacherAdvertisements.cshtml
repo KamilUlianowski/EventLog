@@ -24,16 +24,16 @@
                     @Html.TextAreaFor(x => x.Text)
                     @Html.ValidationMessageFor(x => x.Text)
                     <br />
-                    @*<label class="modal-label">Przez Email: </label>
+                    <label class="modal-label">Przez Email: </label>
                     @Html.CheckBoxFor(x => x.ByEmail, new { @class = "input-control checkbox" })
                     @Html.ValidationMessageFor(x => x.ByEmail)
-                    <br />*@
+                    <br />
                     @{
                         Model.ByEmail = true;
                     }
-                    @*<label class="modal-label">Przez stronę: </label>
+                    <label class="modal-label">Przez stronę: </label>
                         @Html.CheckBoxFor(x => x.BySite, new { @class = "input-control checkbox" })
-                        @Html.ValidationMessageFor(x => x.BySite)*@
+                        @Html.ValidationMessageFor(x => x.BySite)
                     <br />
                     <label class="modal-label">Do rodziców: </label>
                     @Html.CheckBoxFor(x => x.ForParents, new { @class = "input-control checkbox" })
@@ -43,7 +43,7 @@
                     @Html.CheckBoxFor(x => x.ForStudents, new { @class = "input-control checkbox" })
                     @Html.ValidationMessageFor(x => x.ForStudents)
                     <br />
-                    @*@Html.HiddenFor(x => x.Teacher.Id)*@
+                    @Html.HiddenFor(x => x.Teacher.Id)
                     @Html.HiddenFor(x => x.Teacher.Id)
                     @Html.HiddenFor(x => x.BySite)
                     @Html.HiddenFor(x => x.ByEmail)
